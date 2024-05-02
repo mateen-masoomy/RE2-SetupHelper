@@ -58,6 +58,7 @@
         <div class="grid-container">
             <!--25*19-->
             <div class='grid'>
+                <!--
                 <div class='grid-cell' id='cell_1x1'></div>
                 <div class='grid-cell' id='cell_2x1'></div>
                 <div class='grid-cell' id='cell_3x1'></div>
@@ -577,6 +578,7 @@
                 <div class='grid-cell' id='cell_23x20'></div>
                 <div class='grid-cell' id='cell_24x20'></div>
                 <div class='grid-cell' id='cell_25x20'></div>
+            -->
             </div>
         </div>
         <label for="scenarioSelect">Select a Scenario</label>
@@ -587,6 +589,18 @@
     </body>
 
     <script>
+        (function() {
+            var grid = document.querySelector('.grid');
+            for(var col = 25; col > 0; col--) {
+                for (var row = 20; row > 0; row--) {
+                    var div = document.createElement('div');
+                    div.id = 'cell_' + col + 'x' + row;
+                    div.classList.add('grid-cell');
+                    grid.appendChild(div);
+                }
+            }
+        })();
+
         var shapeDefs = {
             '2x1': {
                 down: 0,
