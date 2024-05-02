@@ -1,0 +1,2524 @@
+.grid-container {
+  width: 80%;
+  position: relative;
+  background-color: darkgray;
+  padding-top: 64%;
+  box-sizing: border-box;
+  border: 1px solid darkgrey;
+}
+
+.grid {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  grid-template-columns: repeat(25, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  grid-gap: 1px;
+}
+
+.grid-cell {
+  background-color: white;
+}
+
+#cell_1x1 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+#cell_2x1 {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+#cell_3x1 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+#cell_4x1 {
+  grid-column-start: 4;
+  grid-row-start: 1;
+}
+
+#cell_5x1 {
+  grid-column-start: 5;
+  grid-row-start: 1;
+}
+
+#cell_6x1 {
+  grid-column-start: 6;
+  grid-row-start: 1;
+}
+
+#cell_7x1 {
+  grid-column-start: 7;
+  grid-row-start: 1;
+}
+
+#cell_8x1 {
+  grid-column-start: 8;
+  grid-row-start: 1;
+}
+
+#cell_9x1 {
+  grid-column-start: 9;
+  grid-row-start: 1;
+}
+
+#cell_10x1 {
+  grid-column-start: 10;
+  grid-row-start: 1;
+}
+
+#cell_11x1 {
+  grid-column-start: 11;
+  grid-row-start: 1;
+}
+
+#cell_12x1 {
+  grid-column-start: 12;
+  grid-row-start: 1;
+}
+
+#cell_13x1 {
+  grid-column-start: 13;
+  grid-row-start: 1;
+}
+
+#cell_14x1 {
+  grid-column-start: 14;
+  grid-row-start: 1;
+}
+
+#cell_15x1 {
+  grid-column-start: 15;
+  grid-row-start: 1;
+}
+
+#cell_16x1 {
+  grid-column-start: 16;
+  grid-row-start: 1;
+}
+
+#cell_17x1 {
+  grid-column-start: 17;
+  grid-row-start: 1;
+}
+
+#cell_18x1 {
+  grid-column-start: 18;
+  grid-row-start: 1;
+}
+
+#cell_19x1 {
+  grid-column-start: 19;
+  grid-row-start: 1;
+}
+
+#cell_20x1 {
+  grid-column-start: 20;
+  grid-row-start: 1;
+}
+
+#cell_21x1 {
+  grid-column-start: 21;
+  grid-row-start: 1;
+}
+
+#cell_22x1 {
+  grid-column-start: 22;
+  grid-row-start: 1;
+}
+
+#cell_23x1 {
+  grid-column-start: 23;
+  grid-row-start: 1;
+}
+
+#cell_24x1 {
+  grid-column-start: 24;
+  grid-row-start: 1;
+}
+
+#cell_25x1 {
+  grid-column-start: 25;
+  grid-row-start: 1;
+}
+
+#cell_1x2 {
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+
+#cell_2x2 {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+#cell_3x2 {
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+
+#cell_4x2 {
+  grid-column-start: 4;
+  grid-row-start: 2;
+}
+
+#cell_5x2 {
+  grid-column-start: 5;
+  grid-row-start: 2;
+}
+
+#cell_6x2 {
+  grid-column-start: 6;
+  grid-row-start: 2;
+}
+
+#cell_7x2 {
+  grid-column-start: 7;
+  grid-row-start: 2;
+}
+
+#cell_8x2 {
+  grid-column-start: 8;
+  grid-row-start: 2;
+}
+
+#cell_9x2 {
+  grid-column-start: 9;
+  grid-row-start: 2;
+}
+
+#cell_10x2 {
+  grid-column-start: 10;
+  grid-row-start: 2;
+}
+
+#cell_11x2 {
+  grid-column-start: 11;
+  grid-row-start: 2;
+}
+
+#cell_12x2 {
+  grid-column-start: 12;
+  grid-row-start: 2;
+}
+
+#cell_13x2 {
+  grid-column-start: 13;
+  grid-row-start: 2;
+}
+
+#cell_14x2 {
+  grid-column-start: 14;
+  grid-row-start: 2;
+}
+
+#cell_15x2 {
+  grid-column-start: 15;
+  grid-row-start: 2;
+}
+
+#cell_16x2 {
+  grid-column-start: 16;
+  grid-row-start: 2;
+}
+
+#cell_17x2 {
+  grid-column-start: 17;
+  grid-row-start: 2;
+}
+
+#cell_18x2 {
+  grid-column-start: 18;
+  grid-row-start: 2;
+}
+
+#cell_19x2 {
+  grid-column-start: 19;
+  grid-row-start: 2;
+}
+
+#cell_20x2 {
+  grid-column-start: 20;
+  grid-row-start: 2;
+}
+
+#cell_21x2 {
+  grid-column-start: 21;
+  grid-row-start: 2;
+}
+
+#cell_22x2 {
+  grid-column-start: 22;
+  grid-row-start: 2;
+}
+
+#cell_23x2 {
+  grid-column-start: 23;
+  grid-row-start: 2;
+}
+
+#cell_24x2 {
+  grid-column-start: 24;
+  grid-row-start: 2;
+}
+
+#cell_25x2 {
+  grid-column-start: 25;
+  grid-row-start: 2;
+}
+
+#cell_1x3 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+#cell_2x3 {
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+#cell_3x3 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+#cell_4x3 {
+  grid-column-start: 4;
+  grid-row-start: 3;
+}
+
+#cell_5x3 {
+  grid-column-start: 5;
+  grid-row-start: 3;
+}
+
+#cell_6x3 {
+  grid-column-start: 6;
+  grid-row-start: 3;
+}
+
+#cell_7x3 {
+  grid-column-start: 7;
+  grid-row-start: 3;
+}
+
+#cell_8x3 {
+  grid-column-start: 8;
+  grid-row-start: 3;
+}
+
+#cell_9x3 {
+  grid-column-start: 9;
+  grid-row-start: 3;
+}
+
+#cell_10x3 {
+  grid-column-start: 10;
+  grid-row-start: 3;
+}
+
+#cell_11x3 {
+  grid-column-start: 11;
+  grid-row-start: 3;
+}
+
+#cell_12x3 {
+  grid-column-start: 12;
+  grid-row-start: 3;
+}
+
+#cell_13x3 {
+  grid-column-start: 13;
+  grid-row-start: 3;
+}
+
+#cell_14x3 {
+  grid-column-start: 14;
+  grid-row-start: 3;
+}
+
+#cell_15x3 {
+  grid-column-start: 15;
+  grid-row-start: 3;
+}
+
+#cell_16x3 {
+  grid-column-start: 16;
+  grid-row-start: 3;
+}
+
+#cell_17x3 {
+  grid-column-start: 17;
+  grid-row-start: 3;
+}
+
+#cell_18x3 {
+  grid-column-start: 18;
+  grid-row-start: 3;
+}
+
+#cell_19x3 {
+  grid-column-start: 19;
+  grid-row-start: 3;
+}
+
+#cell_20x3 {
+  grid-column-start: 20;
+  grid-row-start: 3;
+}
+
+#cell_21x3 {
+  grid-column-start: 21;
+  grid-row-start: 3;
+}
+
+#cell_22x3 {
+  grid-column-start: 22;
+  grid-row-start: 3;
+}
+
+#cell_23x3 {
+  grid-column-start: 23;
+  grid-row-start: 3;
+}
+
+#cell_24x3 {
+  grid-column-start: 24;
+  grid-row-start: 3;
+}
+
+#cell_25x3 {
+  grid-column-start: 25;
+  grid-row-start: 3;
+}
+
+#cell_1x4 {
+  grid-column-start: 1;
+  grid-row-start: 4;
+}
+
+#cell_2x4 {
+  grid-column-start: 2;
+  grid-row-start: 4;
+}
+
+#cell_3x4 {
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
+
+#cell_4x4 {
+  grid-column-start: 4;
+  grid-row-start: 4;
+}
+
+#cell_5x4 {
+  grid-column-start: 5;
+  grid-row-start: 4;
+}
+
+#cell_6x4 {
+  grid-column-start: 6;
+  grid-row-start: 4;
+}
+
+#cell_7x4 {
+  grid-column-start: 7;
+  grid-row-start: 4;
+}
+
+#cell_8x4 {
+  grid-column-start: 8;
+  grid-row-start: 4;
+}
+
+#cell_9x4 {
+  grid-column-start: 9;
+  grid-row-start: 4;
+}
+
+#cell_10x4 {
+  grid-column-start: 10;
+  grid-row-start: 4;
+}
+
+#cell_11x4 {
+  grid-column-start: 11;
+  grid-row-start: 4;
+}
+
+#cell_12x4 {
+  grid-column-start: 12;
+  grid-row-start: 4;
+}
+
+#cell_13x4 {
+  grid-column-start: 13;
+  grid-row-start: 4;
+}
+
+#cell_14x4 {
+  grid-column-start: 14;
+  grid-row-start: 4;
+}
+
+#cell_15x4 {
+  grid-column-start: 15;
+  grid-row-start: 4;
+}
+
+#cell_16x4 {
+  grid-column-start: 16;
+  grid-row-start: 4;
+}
+
+#cell_17x4 {
+  grid-column-start: 17;
+  grid-row-start: 4;
+}
+
+#cell_18x4 {
+  grid-column-start: 18;
+  grid-row-start: 4;
+}
+
+#cell_19x4 {
+  grid-column-start: 19;
+  grid-row-start: 4;
+}
+
+#cell_20x4 {
+  grid-column-start: 20;
+  grid-row-start: 4;
+}
+
+#cell_21x4 {
+  grid-column-start: 21;
+  grid-row-start: 4;
+}
+
+#cell_22x4 {
+  grid-column-start: 22;
+  grid-row-start: 4;
+}
+
+#cell_23x4 {
+  grid-column-start: 23;
+  grid-row-start: 4;
+}
+
+#cell_24x4 {
+  grid-column-start: 24;
+  grid-row-start: 4;
+}
+
+#cell_25x4 {
+  grid-column-start: 25;
+  grid-row-start: 4;
+}
+
+#cell_1x5 {
+  grid-column-start: 1;
+  grid-row-start: 5;
+}
+
+#cell_2x5 {
+  grid-column-start: 2;
+  grid-row-start: 5;
+}
+
+#cell_3x5 {
+  grid-column-start: 3;
+  grid-row-start: 5;
+}
+
+#cell_4x5 {
+  grid-column-start: 4;
+  grid-row-start: 5;
+}
+
+#cell_5x5 {
+  grid-column-start: 5;
+  grid-row-start: 5;
+}
+
+#cell_6x5 {
+  grid-column-start: 6;
+  grid-row-start: 5;
+}
+
+#cell_7x5 {
+  grid-column-start: 7;
+  grid-row-start: 5;
+}
+
+#cell_8x5 {
+  grid-column-start: 8;
+  grid-row-start: 5;
+}
+
+#cell_9x5 {
+  grid-column-start: 9;
+  grid-row-start: 5;
+}
+
+#cell_10x5 {
+  grid-column-start: 10;
+  grid-row-start: 5;
+}
+
+#cell_11x5 {
+  grid-column-start: 11;
+  grid-row-start: 5;
+}
+
+#cell_12x5 {
+  grid-column-start: 12;
+  grid-row-start: 5;
+}
+
+#cell_13x5 {
+  grid-column-start: 13;
+  grid-row-start: 5;
+}
+
+#cell_14x5 {
+  grid-column-start: 14;
+  grid-row-start: 5;
+}
+
+#cell_15x5 {
+  grid-column-start: 15;
+  grid-row-start: 5;
+}
+
+#cell_16x5 {
+  grid-column-start: 16;
+  grid-row-start: 5;
+}
+
+#cell_17x5 {
+  grid-column-start: 17;
+  grid-row-start: 5;
+}
+
+#cell_18x5 {
+  grid-column-start: 18;
+  grid-row-start: 5;
+}
+
+#cell_19x5 {
+  grid-column-start: 19;
+  grid-row-start: 5;
+}
+
+#cell_20x5 {
+  grid-column-start: 20;
+  grid-row-start: 5;
+}
+
+#cell_21x5 {
+  grid-column-start: 21;
+  grid-row-start: 5;
+}
+
+#cell_22x5 {
+  grid-column-start: 22;
+  grid-row-start: 5;
+}
+
+#cell_23x5 {
+  grid-column-start: 23;
+  grid-row-start: 5;
+}
+
+#cell_24x5 {
+  grid-column-start: 24;
+  grid-row-start: 5;
+}
+
+#cell_25x5 {
+  grid-column-start: 25;
+  grid-row-start: 5;
+}
+
+#cell_1x6 {
+  grid-column-start: 1;
+  grid-row-start: 6;
+}
+
+#cell_2x6 {
+  grid-column-start: 2;
+  grid-row-start: 6;
+}
+
+#cell_3x6 {
+  grid-column-start: 3;
+  grid-row-start: 6;
+}
+
+#cell_4x6 {
+  grid-column-start: 4;
+  grid-row-start: 6;
+}
+
+#cell_5x6 {
+  grid-column-start: 5;
+  grid-row-start: 6;
+}
+
+#cell_6x6 {
+  grid-column-start: 6;
+  grid-row-start: 6;
+}
+
+#cell_7x6 {
+  grid-column-start: 7;
+  grid-row-start: 6;
+}
+
+#cell_8x6 {
+  grid-column-start: 8;
+  grid-row-start: 6;
+}
+
+#cell_9x6 {
+  grid-column-start: 9;
+  grid-row-start: 6;
+}
+
+#cell_10x6 {
+  grid-column-start: 10;
+  grid-row-start: 6;
+}
+
+#cell_11x6 {
+  grid-column-start: 11;
+  grid-row-start: 6;
+}
+
+#cell_12x6 {
+  grid-column-start: 12;
+  grid-row-start: 6;
+}
+
+#cell_13x6 {
+  grid-column-start: 13;
+  grid-row-start: 6;
+}
+
+#cell_14x6 {
+  grid-column-start: 14;
+  grid-row-start: 6;
+}
+
+#cell_15x6 {
+  grid-column-start: 15;
+  grid-row-start: 6;
+}
+
+#cell_16x6 {
+  grid-column-start: 16;
+  grid-row-start: 6;
+}
+
+#cell_17x6 {
+  grid-column-start: 17;
+  grid-row-start: 6;
+}
+
+#cell_18x6 {
+  grid-column-start: 18;
+  grid-row-start: 6;
+}
+
+#cell_19x6 {
+  grid-column-start: 19;
+  grid-row-start: 6;
+}
+
+#cell_20x6 {
+  grid-column-start: 20;
+  grid-row-start: 6;
+}
+
+#cell_21x6 {
+  grid-column-start: 21;
+  grid-row-start: 6;
+}
+
+#cell_22x6 {
+  grid-column-start: 22;
+  grid-row-start: 6;
+}
+
+#cell_23x6 {
+  grid-column-start: 23;
+  grid-row-start: 6;
+}
+
+#cell_24x6 {
+  grid-column-start: 24;
+  grid-row-start: 6;
+}
+
+#cell_25x6 {
+  grid-column-start: 25;
+  grid-row-start: 6;
+}
+
+#cell_1x7 {
+  grid-column-start: 1;
+  grid-row-start: 7;
+}
+
+#cell_2x7 {
+  grid-column-start: 2;
+  grid-row-start: 7;
+}
+
+#cell_3x7 {
+  grid-column-start: 3;
+  grid-row-start: 7;
+}
+
+#cell_4x7 {
+  grid-column-start: 4;
+  grid-row-start: 7;
+}
+
+#cell_5x7 {
+  grid-column-start: 5;
+  grid-row-start: 7;
+}
+
+#cell_6x7 {
+  grid-column-start: 6;
+  grid-row-start: 7;
+}
+
+#cell_7x7 {
+  grid-column-start: 7;
+  grid-row-start: 7;
+}
+
+#cell_8x7 {
+  grid-column-start: 8;
+  grid-row-start: 7;
+}
+
+#cell_9x7 {
+  grid-column-start: 9;
+  grid-row-start: 7;
+}
+
+#cell_10x7 {
+  grid-column-start: 10;
+  grid-row-start: 7;
+}
+
+#cell_11x7 {
+  grid-column-start: 11;
+  grid-row-start: 7;
+}
+
+#cell_12x7 {
+  grid-column-start: 12;
+  grid-row-start: 7;
+}
+
+#cell_13x7 {
+  grid-column-start: 13;
+  grid-row-start: 7;
+}
+
+#cell_14x7 {
+  grid-column-start: 14;
+  grid-row-start: 7;
+}
+
+#cell_15x7 {
+  grid-column-start: 15;
+  grid-row-start: 7;
+}
+
+#cell_16x7 {
+  grid-column-start: 16;
+  grid-row-start: 7;
+}
+
+#cell_17x7 {
+  grid-column-start: 17;
+  grid-row-start: 7;
+}
+
+#cell_18x7 {
+  grid-column-start: 18;
+  grid-row-start: 7;
+}
+
+#cell_19x7 {
+  grid-column-start: 19;
+  grid-row-start: 7;
+}
+
+#cell_20x7 {
+  grid-column-start: 20;
+  grid-row-start: 7;
+}
+
+#cell_21x7 {
+  grid-column-start: 21;
+  grid-row-start: 7;
+}
+
+#cell_22x7 {
+  grid-column-start: 22;
+  grid-row-start: 7;
+}
+
+#cell_23x7 {
+  grid-column-start: 23;
+  grid-row-start: 7;
+}
+
+#cell_24x7 {
+  grid-column-start: 24;
+  grid-row-start: 7;
+}
+
+#cell_25x7 {
+  grid-column-start: 25;
+  grid-row-start: 7;
+}
+
+#cell_1x8 {
+  grid-column-start: 1;
+  grid-row-start: 8;
+}
+
+#cell_2x8 {
+  grid-column-start: 2;
+  grid-row-start: 8;
+}
+
+#cell_3x8 {
+  grid-column-start: 3;
+  grid-row-start: 8;
+}
+
+#cell_4x8 {
+  grid-column-start: 4;
+  grid-row-start: 8;
+}
+
+#cell_5x8 {
+  grid-column-start: 5;
+  grid-row-start: 8;
+}
+
+#cell_6x8 {
+  grid-column-start: 6;
+  grid-row-start: 8;
+}
+
+#cell_7x8 {
+  grid-column-start: 7;
+  grid-row-start: 8;
+}
+
+#cell_8x8 {
+  grid-column-start: 8;
+  grid-row-start: 8;
+}
+
+#cell_9x8 {
+  grid-column-start: 9;
+  grid-row-start: 8;
+}
+
+#cell_10x8 {
+  grid-column-start: 10;
+  grid-row-start: 8;
+}
+
+#cell_11x8 {
+  grid-column-start: 11;
+  grid-row-start: 8;
+}
+
+#cell_12x8 {
+  grid-column-start: 12;
+  grid-row-start: 8;
+}
+
+#cell_13x8 {
+  grid-column-start: 13;
+  grid-row-start: 8;
+}
+
+#cell_14x8 {
+  grid-column-start: 14;
+  grid-row-start: 8;
+}
+
+#cell_15x8 {
+  grid-column-start: 15;
+  grid-row-start: 8;
+}
+
+#cell_16x8 {
+  grid-column-start: 16;
+  grid-row-start: 8;
+}
+
+#cell_17x8 {
+  grid-column-start: 17;
+  grid-row-start: 8;
+}
+
+#cell_18x8 {
+  grid-column-start: 18;
+  grid-row-start: 8;
+}
+
+#cell_19x8 {
+  grid-column-start: 19;
+  grid-row-start: 8;
+}
+
+#cell_20x8 {
+  grid-column-start: 20;
+  grid-row-start: 8;
+}
+
+#cell_21x8 {
+  grid-column-start: 21;
+  grid-row-start: 8;
+}
+
+#cell_22x8 {
+  grid-column-start: 22;
+  grid-row-start: 8;
+}
+
+#cell_23x8 {
+  grid-column-start: 23;
+  grid-row-start: 8;
+}
+
+#cell_24x8 {
+  grid-column-start: 24;
+  grid-row-start: 8;
+}
+
+#cell_25x8 {
+  grid-column-start: 25;
+  grid-row-start: 8;
+}
+
+#cell_1x9 {
+  grid-column-start: 1;
+  grid-row-start: 9;
+}
+
+#cell_2x9 {
+  grid-column-start: 2;
+  grid-row-start: 9;
+}
+
+#cell_3x9 {
+  grid-column-start: 3;
+  grid-row-start: 9;
+}
+
+#cell_4x9 {
+  grid-column-start: 4;
+  grid-row-start: 9;
+}
+
+#cell_5x9 {
+  grid-column-start: 5;
+  grid-row-start: 9;
+}
+
+#cell_6x9 {
+  grid-column-start: 6;
+  grid-row-start: 9;
+}
+
+#cell_7x9 {
+  grid-column-start: 7;
+  grid-row-start: 9;
+}
+
+#cell_8x9 {
+  grid-column-start: 8;
+  grid-row-start: 9;
+}
+
+#cell_9x9 {
+  grid-column-start: 9;
+  grid-row-start: 9;
+}
+
+#cell_10x9 {
+  grid-column-start: 10;
+  grid-row-start: 9;
+}
+
+#cell_11x9 {
+  grid-column-start: 11;
+  grid-row-start: 9;
+}
+
+#cell_12x9 {
+  grid-column-start: 12;
+  grid-row-start: 9;
+}
+
+#cell_13x9 {
+  grid-column-start: 13;
+  grid-row-start: 9;
+}
+
+#cell_14x9 {
+  grid-column-start: 14;
+  grid-row-start: 9;
+}
+
+#cell_15x9 {
+  grid-column-start: 15;
+  grid-row-start: 9;
+}
+
+#cell_16x9 {
+  grid-column-start: 16;
+  grid-row-start: 9;
+}
+
+#cell_17x9 {
+  grid-column-start: 17;
+  grid-row-start: 9;
+}
+
+#cell_18x9 {
+  grid-column-start: 18;
+  grid-row-start: 9;
+}
+
+#cell_19x9 {
+  grid-column-start: 19;
+  grid-row-start: 9;
+}
+
+#cell_20x9 {
+  grid-column-start: 20;
+  grid-row-start: 9;
+}
+
+#cell_21x9 {
+  grid-column-start: 21;
+  grid-row-start: 9;
+}
+
+#cell_22x9 {
+  grid-column-start: 22;
+  grid-row-start: 9;
+}
+
+#cell_23x9 {
+  grid-column-start: 23;
+  grid-row-start: 9;
+}
+
+#cell_24x9 {
+  grid-column-start: 24;
+  grid-row-start: 9;
+}
+
+#cell_25x9 {
+  grid-column-start: 25;
+  grid-row-start: 9;
+}
+
+#cell_1x10 {
+  grid-column-start: 1;
+  grid-row-start: 10;
+}
+
+#cell_2x10 {
+  grid-column-start: 2;
+  grid-row-start: 10;
+}
+
+#cell_3x10 {
+  grid-column-start: 3;
+  grid-row-start: 10;
+}
+
+#cell_4x10 {
+  grid-column-start: 4;
+  grid-row-start: 10;
+}
+
+#cell_5x10 {
+  grid-column-start: 5;
+  grid-row-start: 10;
+}
+
+#cell_6x10 {
+  grid-column-start: 6;
+  grid-row-start: 10;
+}
+
+#cell_7x10 {
+  grid-column-start: 7;
+  grid-row-start: 10;
+}
+
+#cell_8x10 {
+  grid-column-start: 8;
+  grid-row-start: 10;
+}
+
+#cell_9x10 {
+  grid-column-start: 9;
+  grid-row-start: 10;
+}
+
+#cell_10x10 {
+  grid-column-start: 10;
+  grid-row-start: 10;
+}
+
+#cell_11x10 {
+  grid-column-start: 11;
+  grid-row-start: 10;
+}
+
+#cell_12x10 {
+  grid-column-start: 12;
+  grid-row-start: 10;
+}
+
+#cell_13x10 {
+  grid-column-start: 13;
+  grid-row-start: 10;
+}
+
+#cell_14x10 {
+  grid-column-start: 14;
+  grid-row-start: 10;
+}
+
+#cell_15x10 {
+  grid-column-start: 15;
+  grid-row-start: 10;
+}
+
+#cell_16x10 {
+  grid-column-start: 16;
+  grid-row-start: 10;
+}
+
+#cell_17x10 {
+  grid-column-start: 17;
+  grid-row-start: 10;
+}
+
+#cell_18x10 {
+  grid-column-start: 18;
+  grid-row-start: 10;
+}
+
+#cell_19x10 {
+  grid-column-start: 19;
+  grid-row-start: 10;
+}
+
+#cell_20x10 {
+  grid-column-start: 20;
+  grid-row-start: 10;
+}
+
+#cell_21x10 {
+  grid-column-start: 21;
+  grid-row-start: 10;
+}
+
+#cell_22x10 {
+  grid-column-start: 22;
+  grid-row-start: 10;
+}
+
+#cell_23x10 {
+  grid-column-start: 23;
+  grid-row-start: 10;
+}
+
+#cell_24x10 {
+  grid-column-start: 24;
+  grid-row-start: 10;
+}
+
+#cell_25x10 {
+  grid-column-start: 25;
+  grid-row-start: 10;
+}
+
+#cell_1x11 {
+  grid-column-start: 1;
+  grid-row-start: 11;
+}
+
+#cell_2x11 {
+  grid-column-start: 2;
+  grid-row-start: 11;
+}
+
+#cell_3x11 {
+  grid-column-start: 3;
+  grid-row-start: 11;
+}
+
+#cell_4x11 {
+  grid-column-start: 4;
+  grid-row-start: 11;
+}
+
+#cell_5x11 {
+  grid-column-start: 5;
+  grid-row-start: 11;
+}
+
+#cell_6x11 {
+  grid-column-start: 6;
+  grid-row-start: 11;
+}
+
+#cell_7x11 {
+  grid-column-start: 7;
+  grid-row-start: 11;
+}
+
+#cell_8x11 {
+  grid-column-start: 8;
+  grid-row-start: 11;
+}
+
+#cell_9x11 {
+  grid-column-start: 9;
+  grid-row-start: 11;
+}
+
+#cell_10x11 {
+  grid-column-start: 10;
+  grid-row-start: 11;
+}
+
+#cell_11x11 {
+  grid-column-start: 11;
+  grid-row-start: 11;
+}
+
+#cell_12x11 {
+  grid-column-start: 12;
+  grid-row-start: 11;
+}
+
+#cell_13x11 {
+  grid-column-start: 13;
+  grid-row-start: 11;
+}
+
+#cell_14x11 {
+  grid-column-start: 14;
+  grid-row-start: 11;
+}
+
+#cell_15x11 {
+  grid-column-start: 15;
+  grid-row-start: 11;
+}
+
+#cell_16x11 {
+  grid-column-start: 16;
+  grid-row-start: 11;
+}
+
+#cell_17x11 {
+  grid-column-start: 17;
+  grid-row-start: 11;
+}
+
+#cell_18x11 {
+  grid-column-start: 18;
+  grid-row-start: 11;
+}
+
+#cell_19x11 {
+  grid-column-start: 19;
+  grid-row-start: 11;
+}
+
+#cell_20x11 {
+  grid-column-start: 20;
+  grid-row-start: 11;
+}
+
+#cell_21x11 {
+  grid-column-start: 21;
+  grid-row-start: 11;
+}
+
+#cell_22x11 {
+  grid-column-start: 22;
+  grid-row-start: 11;
+}
+
+#cell_23x11 {
+  grid-column-start: 23;
+  grid-row-start: 11;
+}
+
+#cell_24x11 {
+  grid-column-start: 24;
+  grid-row-start: 11;
+}
+
+#cell_25x11 {
+  grid-column-start: 25;
+  grid-row-start: 11;
+}
+
+#cell_1x12 {
+  grid-column-start: 1;
+  grid-row-start: 12;
+}
+
+#cell_2x12 {
+  grid-column-start: 2;
+  grid-row-start: 12;
+}
+
+#cell_3x12 {
+  grid-column-start: 3;
+  grid-row-start: 12;
+}
+
+#cell_4x12 {
+  grid-column-start: 4;
+  grid-row-start: 12;
+}
+
+#cell_5x12 {
+  grid-column-start: 5;
+  grid-row-start: 12;
+}
+
+#cell_6x12 {
+  grid-column-start: 6;
+  grid-row-start: 12;
+}
+
+#cell_7x12 {
+  grid-column-start: 7;
+  grid-row-start: 12;
+}
+
+#cell_8x12 {
+  grid-column-start: 8;
+  grid-row-start: 12;
+}
+
+#cell_9x12 {
+  grid-column-start: 9;
+  grid-row-start: 12;
+}
+
+#cell_10x12 {
+  grid-column-start: 10;
+  grid-row-start: 12;
+}
+
+#cell_11x12 {
+  grid-column-start: 11;
+  grid-row-start: 12;
+}
+
+#cell_12x12 {
+  grid-column-start: 12;
+  grid-row-start: 12;
+}
+
+#cell_13x12 {
+  grid-column-start: 13;
+  grid-row-start: 12;
+}
+
+#cell_14x12 {
+  grid-column-start: 14;
+  grid-row-start: 12;
+}
+
+#cell_15x12 {
+  grid-column-start: 15;
+  grid-row-start: 12;
+}
+
+#cell_16x12 {
+  grid-column-start: 16;
+  grid-row-start: 12;
+}
+
+#cell_17x12 {
+  grid-column-start: 17;
+  grid-row-start: 12;
+}
+
+#cell_18x12 {
+  grid-column-start: 18;
+  grid-row-start: 12;
+}
+
+#cell_19x12 {
+  grid-column-start: 19;
+  grid-row-start: 12;
+}
+
+#cell_20x12 {
+  grid-column-start: 20;
+  grid-row-start: 12;
+}
+
+#cell_21x12 {
+  grid-column-start: 21;
+  grid-row-start: 12;
+}
+
+#cell_22x12 {
+  grid-column-start: 22;
+  grid-row-start: 12;
+}
+
+#cell_23x12 {
+  grid-column-start: 23;
+  grid-row-start: 12;
+}
+
+#cell_24x12 {
+  grid-column-start: 24;
+  grid-row-start: 12;
+}
+
+#cell_25x12 {
+  grid-column-start: 25;
+  grid-row-start: 12;
+}
+
+#cell_1x13 {
+  grid-column-start: 1;
+  grid-row-start: 13;
+}
+
+#cell_2x13 {
+  grid-column-start: 2;
+  grid-row-start: 13;
+}
+
+#cell_3x13 {
+  grid-column-start: 3;
+  grid-row-start: 13;
+}
+
+#cell_4x13 {
+  grid-column-start: 4;
+  grid-row-start: 13;
+}
+
+#cell_5x13 {
+  grid-column-start: 5;
+  grid-row-start: 13;
+}
+
+#cell_6x13 {
+  grid-column-start: 6;
+  grid-row-start: 13;
+}
+
+#cell_7x13 {
+  grid-column-start: 7;
+  grid-row-start: 13;
+}
+
+#cell_8x13 {
+  grid-column-start: 8;
+  grid-row-start: 13;
+}
+
+#cell_9x13 {
+  grid-column-start: 9;
+  grid-row-start: 13;
+}
+
+#cell_10x13 {
+  grid-column-start: 10;
+  grid-row-start: 13;
+}
+
+#cell_11x13 {
+  grid-column-start: 11;
+  grid-row-start: 13;
+}
+
+#cell_12x13 {
+  grid-column-start: 12;
+  grid-row-start: 13;
+}
+
+#cell_13x13 {
+  grid-column-start: 13;
+  grid-row-start: 13;
+}
+
+#cell_14x13 {
+  grid-column-start: 14;
+  grid-row-start: 13;
+}
+
+#cell_15x13 {
+  grid-column-start: 15;
+  grid-row-start: 13;
+}
+
+#cell_16x13 {
+  grid-column-start: 16;
+  grid-row-start: 13;
+}
+
+#cell_17x13 {
+  grid-column-start: 17;
+  grid-row-start: 13;
+}
+
+#cell_18x13 {
+  grid-column-start: 18;
+  grid-row-start: 13;
+}
+
+#cell_19x13 {
+  grid-column-start: 19;
+  grid-row-start: 13;
+}
+
+#cell_20x13 {
+  grid-column-start: 20;
+  grid-row-start: 13;
+}
+
+#cell_21x13 {
+  grid-column-start: 21;
+  grid-row-start: 13;
+}
+
+#cell_22x13 {
+  grid-column-start: 22;
+  grid-row-start: 13;
+}
+
+#cell_23x13 {
+  grid-column-start: 23;
+  grid-row-start: 13;
+}
+
+#cell_24x13 {
+  grid-column-start: 24;
+  grid-row-start: 13;
+}
+
+#cell_25x13 {
+  grid-column-start: 25;
+  grid-row-start: 13;
+}
+
+#cell_1x14 {
+  grid-column-start: 1;
+  grid-row-start: 14;
+}
+
+#cell_2x14 {
+  grid-column-start: 2;
+  grid-row-start: 14;
+}
+
+#cell_3x14 {
+  grid-column-start: 3;
+  grid-row-start: 14;
+}
+
+#cell_4x14 {
+  grid-column-start: 4;
+  grid-row-start: 14;
+}
+
+#cell_5x14 {
+  grid-column-start: 5;
+  grid-row-start: 14;
+}
+
+#cell_6x14 {
+  grid-column-start: 6;
+  grid-row-start: 14;
+}
+
+#cell_7x14 {
+  grid-column-start: 7;
+  grid-row-start: 14;
+}
+
+#cell_8x14 {
+  grid-column-start: 8;
+  grid-row-start: 14;
+}
+
+#cell_9x14 {
+  grid-column-start: 9;
+  grid-row-start: 14;
+}
+
+#cell_10x14 {
+  grid-column-start: 10;
+  grid-row-start: 14;
+}
+
+#cell_11x14 {
+  grid-column-start: 11;
+  grid-row-start: 14;
+}
+
+#cell_12x14 {
+  grid-column-start: 12;
+  grid-row-start: 14;
+}
+
+#cell_13x14 {
+  grid-column-start: 13;
+  grid-row-start: 14;
+}
+
+#cell_14x14 {
+  grid-column-start: 14;
+  grid-row-start: 14;
+}
+
+#cell_15x14 {
+  grid-column-start: 15;
+  grid-row-start: 14;
+}
+
+#cell_16x14 {
+  grid-column-start: 16;
+  grid-row-start: 14;
+}
+
+#cell_17x14 {
+  grid-column-start: 17;
+  grid-row-start: 14;
+}
+
+#cell_18x14 {
+  grid-column-start: 18;
+  grid-row-start: 14;
+}
+
+#cell_19x14 {
+  grid-column-start: 19;
+  grid-row-start: 14;
+}
+
+#cell_20x14 {
+  grid-column-start: 20;
+  grid-row-start: 14;
+}
+
+#cell_21x14 {
+  grid-column-start: 21;
+  grid-row-start: 14;
+}
+
+#cell_22x14 {
+  grid-column-start: 22;
+  grid-row-start: 14;
+}
+
+#cell_23x14 {
+  grid-column-start: 23;
+  grid-row-start: 14;
+}
+
+#cell_24x14 {
+  grid-column-start: 24;
+  grid-row-start: 14;
+}
+
+#cell_25x14 {
+  grid-column-start: 25;
+  grid-row-start: 14;
+}
+
+#cell_1x15 {
+  grid-column-start: 1;
+  grid-row-start: 15;
+}
+
+#cell_2x15 {
+  grid-column-start: 2;
+  grid-row-start: 15;
+}
+
+#cell_3x15 {
+  grid-column-start: 3;
+  grid-row-start: 15;
+}
+
+#cell_4x15 {
+  grid-column-start: 4;
+  grid-row-start: 15;
+}
+
+#cell_5x15 {
+  grid-column-start: 5;
+  grid-row-start: 15;
+}
+
+#cell_6x15 {
+  grid-column-start: 6;
+  grid-row-start: 15;
+}
+
+#cell_7x15 {
+  grid-column-start: 7;
+  grid-row-start: 15;
+}
+
+#cell_8x15 {
+  grid-column-start: 8;
+  grid-row-start: 15;
+}
+
+#cell_9x15 {
+  grid-column-start: 9;
+  grid-row-start: 15;
+}
+
+#cell_10x15 {
+  grid-column-start: 10;
+  grid-row-start: 15;
+}
+
+#cell_11x15 {
+  grid-column-start: 11;
+  grid-row-start: 15;
+}
+
+#cell_12x15 {
+  grid-column-start: 12;
+  grid-row-start: 15;
+}
+
+#cell_13x15 {
+  grid-column-start: 13;
+  grid-row-start: 15;
+}
+
+#cell_14x15 {
+  grid-column-start: 14;
+  grid-row-start: 15;
+}
+
+#cell_15x15 {
+  grid-column-start: 15;
+  grid-row-start: 15;
+}
+
+#cell_16x15 {
+  grid-column-start: 16;
+  grid-row-start: 15;
+}
+
+#cell_17x15 {
+  grid-column-start: 17;
+  grid-row-start: 15;
+}
+
+#cell_18x15 {
+  grid-column-start: 18;
+  grid-row-start: 15;
+}
+
+#cell_19x15 {
+  grid-column-start: 19;
+  grid-row-start: 15;
+}
+
+#cell_20x15 {
+  grid-column-start: 20;
+  grid-row-start: 15;
+}
+
+#cell_21x15 {
+  grid-column-start: 21;
+  grid-row-start: 15;
+}
+
+#cell_22x15 {
+  grid-column-start: 22;
+  grid-row-start: 15;
+}
+
+#cell_23x15 {
+  grid-column-start: 23;
+  grid-row-start: 15;
+}
+
+#cell_24x15 {
+  grid-column-start: 24;
+  grid-row-start: 15;
+}
+
+#cell_25x15 {
+  grid-column-start: 25;
+  grid-row-start: 15;
+}
+
+#cell_1x16 {
+  grid-column-start: 1;
+  grid-row-start: 16;
+}
+
+#cell_2x16 {
+  grid-column-start: 2;
+  grid-row-start: 16;
+}
+
+#cell_3x16 {
+  grid-column-start: 3;
+  grid-row-start: 16;
+}
+
+#cell_4x16 {
+  grid-column-start: 4;
+  grid-row-start: 16;
+}
+
+#cell_5x16 {
+  grid-column-start: 5;
+  grid-row-start: 16;
+}
+
+#cell_6x16 {
+  grid-column-start: 6;
+  grid-row-start: 16;
+}
+
+#cell_7x16 {
+  grid-column-start: 7;
+  grid-row-start: 16;
+}
+
+#cell_8x16 {
+  grid-column-start: 8;
+  grid-row-start: 16;
+}
+
+#cell_9x16 {
+  grid-column-start: 9;
+  grid-row-start: 16;
+}
+
+#cell_10x16 {
+  grid-column-start: 10;
+  grid-row-start: 16;
+}
+
+#cell_11x16 {
+  grid-column-start: 11;
+  grid-row-start: 16;
+}
+
+#cell_12x16 {
+  grid-column-start: 12;
+  grid-row-start: 16;
+}
+
+#cell_13x16 {
+  grid-column-start: 13;
+  grid-row-start: 16;
+}
+
+#cell_14x16 {
+  grid-column-start: 14;
+  grid-row-start: 16;
+}
+
+#cell_15x16 {
+  grid-column-start: 15;
+  grid-row-start: 16;
+}
+
+#cell_16x16 {
+  grid-column-start: 16;
+  grid-row-start: 16;
+}
+
+#cell_17x16 {
+  grid-column-start: 17;
+  grid-row-start: 16;
+}
+
+#cell_18x16 {
+  grid-column-start: 18;
+  grid-row-start: 16;
+}
+
+#cell_19x16 {
+  grid-column-start: 19;
+  grid-row-start: 16;
+}
+
+#cell_20x16 {
+  grid-column-start: 20;
+  grid-row-start: 16;
+}
+
+#cell_21x16 {
+  grid-column-start: 21;
+  grid-row-start: 16;
+}
+
+#cell_22x16 {
+  grid-column-start: 22;
+  grid-row-start: 16;
+}
+
+#cell_23x16 {
+  grid-column-start: 23;
+  grid-row-start: 16;
+}
+
+#cell_24x16 {
+  grid-column-start: 24;
+  grid-row-start: 16;
+}
+
+#cell_25x16 {
+  grid-column-start: 25;
+  grid-row-start: 16;
+}
+
+#cell_1x17 {
+  grid-column-start: 1;
+  grid-row-start: 17;
+}
+
+#cell_2x17 {
+  grid-column-start: 2;
+  grid-row-start: 17;
+}
+
+#cell_3x17 {
+  grid-column-start: 3;
+  grid-row-start: 17;
+}
+
+#cell_4x17 {
+  grid-column-start: 4;
+  grid-row-start: 17;
+}
+
+#cell_5x17 {
+  grid-column-start: 5;
+  grid-row-start: 17;
+}
+
+#cell_6x17 {
+  grid-column-start: 6;
+  grid-row-start: 17;
+}
+
+#cell_7x17 {
+  grid-column-start: 7;
+  grid-row-start: 17;
+}
+
+#cell_8x17 {
+  grid-column-start: 8;
+  grid-row-start: 17;
+}
+
+#cell_9x17 {
+  grid-column-start: 9;
+  grid-row-start: 17;
+}
+
+#cell_10x17 {
+  grid-column-start: 10;
+  grid-row-start: 17;
+}
+
+#cell_11x17 {
+  grid-column-start: 11;
+  grid-row-start: 17;
+}
+
+#cell_12x17 {
+  grid-column-start: 12;
+  grid-row-start: 17;
+}
+
+#cell_13x17 {
+  grid-column-start: 13;
+  grid-row-start: 17;
+}
+
+#cell_14x17 {
+  grid-column-start: 14;
+  grid-row-start: 17;
+}
+
+#cell_15x17 {
+  grid-column-start: 15;
+  grid-row-start: 17;
+}
+
+#cell_16x17 {
+  grid-column-start: 16;
+  grid-row-start: 17;
+}
+
+#cell_17x17 {
+  grid-column-start: 17;
+  grid-row-start: 17;
+}
+
+#cell_18x17 {
+  grid-column-start: 18;
+  grid-row-start: 17;
+}
+
+#cell_19x17 {
+  grid-column-start: 19;
+  grid-row-start: 17;
+}
+
+#cell_20x17 {
+  grid-column-start: 20;
+  grid-row-start: 17;
+}
+
+#cell_21x17 {
+  grid-column-start: 21;
+  grid-row-start: 17;
+}
+
+#cell_22x17 {
+  grid-column-start: 22;
+  grid-row-start: 17;
+}
+
+#cell_23x17 {
+  grid-column-start: 23;
+  grid-row-start: 17;
+}
+
+#cell_24x17 {
+  grid-column-start: 24;
+  grid-row-start: 17;
+}
+
+#cell_25x17 {
+  grid-column-start: 25;
+  grid-row-start: 17;
+}
+
+#cell_1x18 {
+  grid-column-start: 1;
+  grid-row-start: 18;
+}
+
+#cell_2x18 {
+  grid-column-start: 2;
+  grid-row-start: 18;
+}
+
+#cell_3x18 {
+  grid-column-start: 3;
+  grid-row-start: 18;
+}
+
+#cell_4x18 {
+  grid-column-start: 4;
+  grid-row-start: 18;
+}
+
+#cell_5x18 {
+  grid-column-start: 5;
+  grid-row-start: 18;
+}
+
+#cell_6x18 {
+  grid-column-start: 6;
+  grid-row-start: 18;
+}
+
+#cell_7x18 {
+  grid-column-start: 7;
+  grid-row-start: 18;
+}
+
+#cell_8x18 {
+  grid-column-start: 8;
+  grid-row-start: 18;
+}
+
+#cell_9x18 {
+  grid-column-start: 9;
+  grid-row-start: 18;
+}
+
+#cell_10x18 {
+  grid-column-start: 10;
+  grid-row-start: 18;
+}
+
+#cell_11x18 {
+  grid-column-start: 11;
+  grid-row-start: 18;
+}
+
+#cell_12x18 {
+  grid-column-start: 12;
+  grid-row-start: 18;
+}
+
+#cell_13x18 {
+  grid-column-start: 13;
+  grid-row-start: 18;
+}
+
+#cell_14x18 {
+  grid-column-start: 14;
+  grid-row-start: 18;
+}
+
+#cell_15x18 {
+  grid-column-start: 15;
+  grid-row-start: 18;
+}
+
+#cell_16x18 {
+  grid-column-start: 16;
+  grid-row-start: 18;
+}
+
+#cell_17x18 {
+  grid-column-start: 17;
+  grid-row-start: 18;
+}
+
+#cell_18x18 {
+  grid-column-start: 18;
+  grid-row-start: 18;
+}
+
+#cell_19x18 {
+  grid-column-start: 19;
+  grid-row-start: 18;
+}
+
+#cell_20x18 {
+  grid-column-start: 20;
+  grid-row-start: 18;
+}
+
+#cell_21x18 {
+  grid-column-start: 21;
+  grid-row-start: 18;
+}
+
+#cell_22x18 {
+  grid-column-start: 22;
+  grid-row-start: 18;
+}
+
+#cell_23x18 {
+  grid-column-start: 23;
+  grid-row-start: 18;
+}
+
+#cell_24x18 {
+  grid-column-start: 24;
+  grid-row-start: 18;
+}
+
+#cell_25x18 {
+  grid-column-start: 25;
+  grid-row-start: 18;
+}
+
+#cell_1x19 {
+  grid-column-start: 1;
+  grid-row-start: 19;
+}
+
+#cell_2x19 {
+  grid-column-start: 2;
+  grid-row-start: 19;
+}
+
+#cell_3x19 {
+  grid-column-start: 3;
+  grid-row-start: 19;
+}
+
+#cell_4x19 {
+  grid-column-start: 4;
+  grid-row-start: 19;
+}
+
+#cell_5x19 {
+  grid-column-start: 5;
+  grid-row-start: 19;
+}
+
+#cell_6x19 {
+  grid-column-start: 6;
+  grid-row-start: 19;
+}
+
+#cell_7x19 {
+  grid-column-start: 7;
+  grid-row-start: 19;
+}
+
+#cell_8x19 {
+  grid-column-start: 8;
+  grid-row-start: 19;
+}
+
+#cell_9x19 {
+  grid-column-start: 9;
+  grid-row-start: 19;
+}
+
+#cell_10x19 {
+  grid-column-start: 10;
+  grid-row-start: 19;
+}
+
+#cell_11x19 {
+  grid-column-start: 11;
+  grid-row-start: 19;
+}
+
+#cell_12x19 {
+  grid-column-start: 12;
+  grid-row-start: 19;
+}
+
+#cell_13x19 {
+  grid-column-start: 13;
+  grid-row-start: 19;
+}
+
+#cell_14x19 {
+  grid-column-start: 14;
+  grid-row-start: 19;
+}
+
+#cell_15x19 {
+  grid-column-start: 15;
+  grid-row-start: 19;
+}
+
+#cell_16x19 {
+  grid-column-start: 16;
+  grid-row-start: 19;
+}
+
+#cell_17x19 {
+  grid-column-start: 17;
+  grid-row-start: 19;
+}
+
+#cell_18x19 {
+  grid-column-start: 18;
+  grid-row-start: 19;
+}
+
+#cell_19x19 {
+  grid-column-start: 19;
+  grid-row-start: 19;
+}
+
+#cell_20x19 {
+  grid-column-start: 20;
+  grid-row-start: 19;
+}
+
+#cell_21x19 {
+  grid-column-start: 21;
+  grid-row-start: 19;
+}
+
+#cell_22x19 {
+  grid-column-start: 22;
+  grid-row-start: 19;
+}
+
+#cell_23x19 {
+  grid-column-start: 23;
+  grid-row-start: 19;
+}
+
+#cell_24x19 {
+  grid-column-start: 24;
+  grid-row-start: 19;
+}
+
+#cell_25x19 {
+  grid-column-start: 25;
+  grid-row-start: 19;
+}
+
+#cell_1x20 {
+  grid-column-start: 1;
+  grid-row-start: 20;
+}
+
+#cell_2x20 {
+  grid-column-start: 2;
+  grid-row-start: 20;
+}
+
+#cell_3x20 {
+  grid-column-start: 3;
+  grid-row-start: 20;
+}
+
+#cell_4x20 {
+  grid-column-start: 4;
+  grid-row-start: 20;
+}
+
+#cell_5x20 {
+  grid-column-start: 5;
+  grid-row-start: 20;
+}
+
+#cell_6x20 {
+  grid-column-start: 6;
+  grid-row-start: 20;
+}
+
+#cell_7x20 {
+  grid-column-start: 7;
+  grid-row-start: 20;
+}
+
+#cell_8x20 {
+  grid-column-start: 8;
+  grid-row-start: 20;
+}
+
+#cell_9x20 {
+  grid-column-start: 9;
+  grid-row-start: 20;
+}
+
+#cell_10x20 {
+  grid-column-start: 10;
+  grid-row-start: 20;
+}
+
+#cell_11x20 {
+  grid-column-start: 11;
+  grid-row-start: 20;
+}
+
+#cell_12x20 {
+  grid-column-start: 12;
+  grid-row-start: 20;
+}
+
+#cell_13x20 {
+  grid-column-start: 13;
+  grid-row-start: 20;
+}
+
+#cell_14x20 {
+  grid-column-start: 14;
+  grid-row-start: 20;
+}
+
+#cell_15x20 {
+  grid-column-start: 15;
+  grid-row-start: 20;
+}
+
+#cell_16x20 {
+  grid-column-start: 16;
+  grid-row-start: 20;
+}
+
+#cell_17x20 {
+  grid-column-start: 17;
+  grid-row-start: 20;
+}
+
+#cell_18x20 {
+  grid-column-start: 18;
+  grid-row-start: 20;
+}
+
+#cell_19x20 {
+  grid-column-start: 19;
+  grid-row-start: 20;
+}
+
+#cell_20x20 {
+  grid-column-start: 20;
+  grid-row-start: 20;
+}
+
+#cell_21x20 {
+  grid-column-start: 21;
+  grid-row-start: 20;
+}
+
+#cell_22x20 {
+  grid-column-start: 22;
+  grid-row-start: 20;
+}
+
+#cell_23x20 {
+  grid-column-start: 23;
+  grid-row-start: 20;
+}
+
+#cell_24x20 {
+  grid-column-start: 24;
+  grid-row-start: 20;
+}
+
+#cell_25x20 {
+  grid-column-start: 25;
+  grid-row-start: 20;
+}

@@ -1,15 +1,605 @@
 <html>
-    <head>
 
-    </head>
-    <body>
+    <head>
         <title>
             Resident Evil 2 - The Board Game Setup Helper
         </title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel='stylesheet' href='grid.css'>
+        <style>
+            .normal {
+                background-color: lightgrey;
+            }
+
+            .yellow {
+                background-color: yellow;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            .wall-top {
+                border-top: 2px solid black;
+            }
+
+            .wall-right {
+                border-right: 2px solid black;
+            }
+
+            .wall-bottom {
+                border-bottom: 2px solid black;
+            }
+
+            .wall-left {
+                border-left: 2px solid black;
+            }
+
+            .door-top {
+                border-top: 2px solid green;
+            }
+
+            .door-right {
+                border-right: 2px solid green;
+            }
+
+            .door-bottom {
+                border-bottom: 2px solid green;
+            }
+
+            .door-left {
+                border-left: 2px solid green;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="grid-container">
+            <!--25*19-->
+            <div class='grid'>
+                <div class='grid-cell' id='cell_1x1'></div>
+                <div class='grid-cell' id='cell_2x1'></div>
+                <div class='grid-cell' id='cell_3x1'></div>
+                <div class='grid-cell' id='cell_4x1'></div>
+                <div class='grid-cell' id='cell_5x1'></div>
+                <div class='grid-cell' id='cell_6x1'></div>
+                <div class='grid-cell' id='cell_7x1'></div>
+                <div class='grid-cell' id='cell_8x1'></div>
+                <div class='grid-cell' id='cell_9x1'></div>
+                <div class='grid-cell' id='cell_10x1'></div>
+                <div class='grid-cell' id='cell_11x1'></div>
+                <div class='grid-cell' id='cell_12x1'></div>
+                <div class='grid-cell' id='cell_13x1'></div>
+                <div class='grid-cell' id='cell_14x1'></div>
+                <div class='grid-cell' id='cell_15x1'></div>
+                <div class='grid-cell' id='cell_16x1'></div>
+                <div class='grid-cell' id='cell_17x1'></div>
+                <div class='grid-cell' id='cell_18x1'></div>
+                <div class='grid-cell' id='cell_19x1'></div>
+                <div class='grid-cell' id='cell_20x1'></div>
+                <div class='grid-cell' id='cell_21x1'></div>
+                <div class='grid-cell' id='cell_22x1'></div>
+                <div class='grid-cell' id='cell_23x1'></div>
+                <div class='grid-cell' id='cell_24x1'></div>
+                <div class='grid-cell' id='cell_25x1'></div>
+
+                <div class='grid-cell' id='cell_1x2'></div>
+                <div class='grid-cell' id='cell_2x2'></div>
+                <div class='grid-cell' id='cell_3x2'></div>
+                <div class='grid-cell' id='cell_4x2'></div>
+                <div class='grid-cell' id='cell_5x2'></div>
+                <div class='grid-cell' id='cell_6x2'></div>
+                <div class='grid-cell' id='cell_7x2'></div>
+                <div class='grid-cell' id='cell_8x2'></div>
+                <div class='grid-cell' id='cell_9x2'></div>
+                <div class='grid-cell' id='cell_10x2'></div>
+                <div class='grid-cell' id='cell_11x2'></div>
+                <div class='grid-cell' id='cell_12x2'></div>
+                <div class='grid-cell' id='cell_13x2'></div>
+                <div class='grid-cell' id='cell_14x2'></div>
+                <div class='grid-cell' id='cell_15x2'></div>
+                <div class='grid-cell' id='cell_16x2'></div>
+                <div class='grid-cell' id='cell_17x2'></div>
+                <div class='grid-cell' id='cell_18x2'></div>
+                <div class='grid-cell' id='cell_19x2'></div>
+                <div class='grid-cell' id='cell_20x2'></div>
+                <div class='grid-cell' id='cell_21x2'></div>
+                <div class='grid-cell' id='cell_22x2'></div>
+                <div class='grid-cell' id='cell_23x2'></div>
+                <div class='grid-cell' id='cell_24x2'></div>
+                <div class='grid-cell' id='cell_25x2'></div>
+
+                <div class='grid-cell' id='cell_1x3'></div>
+                <div class='grid-cell' id='cell_2x3'></div>
+                <div class='grid-cell' id='cell_3x3'></div>
+                <div class='grid-cell' id='cell_4x3'></div>
+                <div class='grid-cell' id='cell_5x3'></div>
+                <div class='grid-cell' id='cell_6x3'></div>
+                <div class='grid-cell' id='cell_7x3'></div>
+                <div class='grid-cell' id='cell_8x3'></div>
+                <div class='grid-cell' id='cell_9x3'></div>
+                <div class='grid-cell' id='cell_10x3'></div>
+                <div class='grid-cell' id='cell_11x3'></div>
+                <div class='grid-cell' id='cell_12x3'></div>
+                <div class='grid-cell' id='cell_13x3'></div>
+                <div class='grid-cell' id='cell_14x3'></div>
+                <div class='grid-cell' id='cell_15x3'></div>
+                <div class='grid-cell' id='cell_16x3'></div>
+                <div class='grid-cell' id='cell_17x3'></div>
+                <div class='grid-cell' id='cell_18x3'></div>
+                <div class='grid-cell' id='cell_19x3'></div>
+                <div class='grid-cell' id='cell_20x3'></div>
+                <div class='grid-cell' id='cell_21x3'></div>
+                <div class='grid-cell' id='cell_22x3'></div>
+                <div class='grid-cell' id='cell_23x3'></div>
+                <div class='grid-cell' id='cell_24x3'></div>
+                <div class='grid-cell' id='cell_25x3'></div>
+
+                <div class='grid-cell' id='cell_1x4'></div>
+                <div class='grid-cell' id='cell_2x4'></div>
+                <div class='grid-cell' id='cell_3x4'></div>
+                <div class='grid-cell' id='cell_4x4'></div>
+                <div class='grid-cell' id='cell_5x4'></div>
+                <div class='grid-cell' id='cell_6x4'></div>
+                <div class='grid-cell' id='cell_7x4'></div>
+                <div class='grid-cell' id='cell_8x4'></div>
+                <div class='grid-cell' id='cell_9x4'></div>
+                <div class='grid-cell' id='cell_10x4'></div>
+                <div class='grid-cell' id='cell_11x4'></div>
+                <div class='grid-cell' id='cell_12x4'></div>
+                <div class='grid-cell' id='cell_13x4'></div>
+                <div class='grid-cell' id='cell_14x4'></div>
+                <div class='grid-cell' id='cell_15x4'></div>
+                <div class='grid-cell' id='cell_16x4'></div>
+                <div class='grid-cell' id='cell_17x4'></div>
+                <div class='grid-cell' id='cell_18x4'></div>
+                <div class='grid-cell' id='cell_19x4'></div>
+                <div class='grid-cell' id='cell_20x4'></div>
+                <div class='grid-cell' id='cell_21x4'></div>
+                <div class='grid-cell' id='cell_22x4'></div>
+                <div class='grid-cell' id='cell_23x4'></div>
+                <div class='grid-cell' id='cell_24x4'></div>
+                <div class='grid-cell' id='cell_25x4'></div>
+
+                <div class='grid-cell' id='cell_1x5'></div>
+                <div class='grid-cell' id='cell_2x5'></div>
+                <div class='grid-cell' id='cell_3x5'></div>
+                <div class='grid-cell' id='cell_4x5'></div>
+                <div class='grid-cell' id='cell_5x5'></div>
+                <div class='grid-cell' id='cell_6x5'></div>
+                <div class='grid-cell' id='cell_7x5'></div>
+                <div class='grid-cell' id='cell_8x5'></div>
+                <div class='grid-cell' id='cell_9x5'></div>
+                <div class='grid-cell' id='cell_10x5'></div>
+                <div class='grid-cell' id='cell_11x5'></div>
+                <div class='grid-cell' id='cell_12x5'></div>
+                <div class='grid-cell' id='cell_13x5'></div>
+                <div class='grid-cell' id='cell_14x5'></div>
+                <div class='grid-cell' id='cell_15x5'></div>
+                <div class='grid-cell' id='cell_16x5'></div>
+                <div class='grid-cell' id='cell_17x5'></div>
+                <div class='grid-cell' id='cell_18x5'></div>
+                <div class='grid-cell' id='cell_19x5'></div>
+                <div class='grid-cell' id='cell_20x5'></div>
+                <div class='grid-cell' id='cell_21x5'></div>
+                <div class='grid-cell' id='cell_22x5'></div>
+                <div class='grid-cell' id='cell_23x5'></div>
+                <div class='grid-cell' id='cell_24x5'></div>
+                <div class='grid-cell' id='cell_25x5'></div>
+
+                <div class='grid-cell' id='cell_1x6'></div>
+                <div class='grid-cell' id='cell_2x6'></div>
+                <div class='grid-cell' id='cell_3x6'></div>
+                <div class='grid-cell' id='cell_4x6'></div>
+                <div class='grid-cell' id='cell_5x6'></div>
+                <div class='grid-cell' id='cell_6x6'></div>
+                <div class='grid-cell' id='cell_7x6'></div>
+                <div class='grid-cell' id='cell_8x6'></div>
+                <div class='grid-cell' id='cell_9x6'></div>
+                <div class='grid-cell' id='cell_10x6'></div>
+                <div class='grid-cell' id='cell_11x6'></div>
+                <div class='grid-cell' id='cell_12x6'></div>
+                <div class='grid-cell' id='cell_13x6'></div>
+                <div class='grid-cell' id='cell_14x6'></div>
+                <div class='grid-cell' id='cell_15x6'></div>
+                <div class='grid-cell' id='cell_16x6'></div>
+                <div class='grid-cell' id='cell_17x6'></div>
+                <div class='grid-cell' id='cell_18x6'></div>
+                <div class='grid-cell' id='cell_19x6'></div>
+                <div class='grid-cell' id='cell_20x6'></div>
+                <div class='grid-cell' id='cell_21x6'></div>
+                <div class='grid-cell' id='cell_22x6'></div>
+                <div class='grid-cell' id='cell_23x6'></div>
+                <div class='grid-cell' id='cell_24x6'></div>
+                <div class='grid-cell' id='cell_25x6'></div>
+
+                <div class='grid-cell' id='cell_1x7'></div>
+                <div class='grid-cell' id='cell_2x7'></div>
+                <div class='grid-cell' id='cell_3x7'></div>
+                <div class='grid-cell' id='cell_4x7'></div>
+                <div class='grid-cell' id='cell_5x7'></div>
+                <div class='grid-cell' id='cell_6x7'></div>
+                <div class='grid-cell' id='cell_7x7'></div>
+                <div class='grid-cell' id='cell_8x7'></div>
+                <div class='grid-cell' id='cell_9x7'></div>
+                <div class='grid-cell' id='cell_10x7'></div>
+                <div class='grid-cell' id='cell_11x7'></div>
+                <div class='grid-cell' id='cell_12x7'></div>
+                <div class='grid-cell' id='cell_13x7'></div>
+                <div class='grid-cell' id='cell_14x7'></div>
+                <div class='grid-cell' id='cell_15x7'></div>
+                <div class='grid-cell' id='cell_16x7'></div>
+                <div class='grid-cell' id='cell_17x7'></div>
+                <div class='grid-cell' id='cell_18x7'></div>
+                <div class='grid-cell' id='cell_19x7'></div>
+                <div class='grid-cell' id='cell_20x7'></div>
+                <div class='grid-cell' id='cell_21x7'></div>
+                <div class='grid-cell' id='cell_22x7'></div>
+                <div class='grid-cell' id='cell_23x7'></div>
+                <div class='grid-cell' id='cell_24x7'></div>
+                <div class='grid-cell' id='cell_25x7'></div>
+
+                <div class='grid-cell' id='cell_1x8'></div>
+                <div class='grid-cell' id='cell_2x8'></div>
+                <div class='grid-cell' id='cell_3x8'></div>
+                <div class='grid-cell' id='cell_4x8'></div>
+                <div class='grid-cell' id='cell_5x8'></div>
+                <div class='grid-cell' id='cell_6x8'></div>
+                <div class='grid-cell' id='cell_7x8'></div>
+                <div class='grid-cell' id='cell_8x8'></div>
+                <div class='grid-cell' id='cell_9x8'></div>
+                <div class='grid-cell' id='cell_10x8'></div>
+                <div class='grid-cell' id='cell_11x8'></div>
+                <div class='grid-cell' id='cell_12x8'></div>
+                <div class='grid-cell' id='cell_13x8'></div>
+                <div class='grid-cell' id='cell_14x8'></div>
+                <div class='grid-cell' id='cell_15x8'></div>
+                <div class='grid-cell' id='cell_16x8'></div>
+                <div class='grid-cell' id='cell_17x8'></div>
+                <div class='grid-cell' id='cell_18x8'></div>
+                <div class='grid-cell' id='cell_19x8'></div>
+                <div class='grid-cell' id='cell_20x8'></div>
+                <div class='grid-cell' id='cell_21x8'></div>
+                <div class='grid-cell' id='cell_22x8'></div>
+                <div class='grid-cell' id='cell_23x8'></div>
+                <div class='grid-cell' id='cell_24x8'></div>
+                <div class='grid-cell' id='cell_25x8'></div>
+
+                <div class='grid-cell' id='cell_1x9'></div>
+                <div class='grid-cell' id='cell_2x9'></div>
+                <div class='grid-cell' id='cell_3x9'></div>
+                <div class='grid-cell' id='cell_4x9'></div>
+                <div class='grid-cell' id='cell_5x9'></div>
+                <div class='grid-cell' id='cell_6x9'></div>
+                <div class='grid-cell' id='cell_7x9'></div>
+                <div class='grid-cell' id='cell_8x9'></div>
+                <div class='grid-cell' id='cell_9x9'></div>
+                <div class='grid-cell' id='cell_10x9'></div>
+                <div class='grid-cell' id='cell_11x9'></div>
+                <div class='grid-cell' id='cell_12x9'></div>
+                <div class='grid-cell' id='cell_13x9'></div>
+                <div class='grid-cell' id='cell_14x9'></div>
+                <div class='grid-cell' id='cell_15x9'></div>
+                <div class='grid-cell' id='cell_16x9'></div>
+                <div class='grid-cell' id='cell_17x9'></div>
+                <div class='grid-cell' id='cell_18x9'></div>
+                <div class='grid-cell' id='cell_19x9'></div>
+                <div class='grid-cell' id='cell_20x9'></div>
+                <div class='grid-cell' id='cell_21x9'></div>
+                <div class='grid-cell' id='cell_22x9'></div>
+                <div class='grid-cell' id='cell_23x9'></div>
+                <div class='grid-cell' id='cell_24x9'></div>
+                <div class='grid-cell' id='cell_25x9'></div>
+
+                <div class='grid-cell' id='cell_1x10'></div>
+                <div class='grid-cell' id='cell_2x10'></div>
+                <div class='grid-cell' id='cell_3x10'></div>
+                <div class='grid-cell' id='cell_4x10'></div>
+                <div class='grid-cell' id='cell_5x10'></div>
+                <div class='grid-cell' id='cell_6x10'></div>
+                <div class='grid-cell' id='cell_7x10'></div>
+                <div class='grid-cell' id='cell_8x10'></div>
+                <div class='grid-cell' id='cell_9x10'></div>
+                <div class='grid-cell' id='cell_10x10'></div>
+                <div class='grid-cell' id='cell_11x10'></div>
+                <div class='grid-cell' id='cell_12x10'></div>
+                <div class='grid-cell' id='cell_13x10'></div>
+                <div class='grid-cell' id='cell_14x10'></div>
+                <div class='grid-cell' id='cell_15x10'></div>
+                <div class='grid-cell' id='cell_16x10'></div>
+                <div class='grid-cell' id='cell_17x10'></div>
+                <div class='grid-cell' id='cell_18x10'></div>
+                <div class='grid-cell' id='cell_19x10'></div>
+                <div class='grid-cell' id='cell_20x10'></div>
+                <div class='grid-cell' id='cell_21x10'></div>
+                <div class='grid-cell' id='cell_22x10'></div>
+                <div class='grid-cell' id='cell_23x10'></div>
+                <div class='grid-cell' id='cell_24x10'></div>
+                <div class='grid-cell' id='cell_25x10'></div>
+
+                <div class='grid-cell' id='cell_1x11'></div>
+                <div class='grid-cell' id='cell_2x11'></div>
+                <div class='grid-cell' id='cell_3x11'></div>
+                <div class='grid-cell' id='cell_4x11'></div>
+                <div class='grid-cell' id='cell_5x11'></div>
+                <div class='grid-cell' id='cell_6x11'></div>
+                <div class='grid-cell' id='cell_7x11'></div>
+                <div class='grid-cell' id='cell_8x11'></div>
+                <div class='grid-cell' id='cell_9x11'></div>
+                <div class='grid-cell' id='cell_10x11'></div>
+                <div class='grid-cell' id='cell_11x11'></div>
+                <div class='grid-cell' id='cell_12x11'></div>
+                <div class='grid-cell' id='cell_13x11'></div>
+                <div class='grid-cell' id='cell_14x11'></div>
+                <div class='grid-cell' id='cell_15x11'></div>
+                <div class='grid-cell' id='cell_16x11'></div>
+                <div class='grid-cell' id='cell_17x11'></div>
+                <div class='grid-cell' id='cell_18x11'></div>
+                <div class='grid-cell' id='cell_19x11'></div>
+                <div class='grid-cell' id='cell_20x11'></div>
+                <div class='grid-cell' id='cell_21x11'></div>
+                <div class='grid-cell' id='cell_22x11'></div>
+                <div class='grid-cell' id='cell_23x11'></div>
+                <div class='grid-cell' id='cell_24x11'></div>
+                <div class='grid-cell' id='cell_25x11'></div>
+
+                <div class='grid-cell' id='cell_1x12'></div>
+                <div class='grid-cell' id='cell_2x12'></div>
+                <div class='grid-cell' id='cell_3x12'></div>
+                <div class='grid-cell' id='cell_4x12'></div>
+                <div class='grid-cell' id='cell_5x12'></div>
+                <div class='grid-cell' id='cell_6x12'></div>
+                <div class='grid-cell' id='cell_7x12'></div>
+                <div class='grid-cell' id='cell_8x12'></div>
+                <div class='grid-cell' id='cell_9x12'></div>
+                <div class='grid-cell' id='cell_10x12'></div>
+                <div class='grid-cell' id='cell_11x12'></div>
+                <div class='grid-cell' id='cell_12x12'></div>
+                <div class='grid-cell' id='cell_13x12'></div>
+                <div class='grid-cell' id='cell_14x12'></div>
+                <div class='grid-cell' id='cell_15x12'></div>
+                <div class='grid-cell' id='cell_16x12'></div>
+                <div class='grid-cell' id='cell_17x12'></div>
+                <div class='grid-cell' id='cell_18x12'></div>
+                <div class='grid-cell' id='cell_19x12'></div>
+                <div class='grid-cell' id='cell_20x12'></div>
+                <div class='grid-cell' id='cell_21x12'></div>
+                <div class='grid-cell' id='cell_22x12'></div>
+                <div class='grid-cell' id='cell_23x12'></div>
+                <div class='grid-cell' id='cell_24x12'></div>
+                <div class='grid-cell' id='cell_25x12'></div>
+
+                <div class='grid-cell' id='cell_1x13'></div>
+                <div class='grid-cell' id='cell_2x13'></div>
+                <div class='grid-cell' id='cell_3x13'></div>
+                <div class='grid-cell' id='cell_4x13'></div>
+                <div class='grid-cell' id='cell_5x13'></div>
+                <div class='grid-cell' id='cell_6x13'></div>
+                <div class='grid-cell' id='cell_7x13'></div>
+                <div class='grid-cell' id='cell_8x13'></div>
+                <div class='grid-cell' id='cell_9x13'></div>
+                <div class='grid-cell' id='cell_10x13'></div>
+                <div class='grid-cell' id='cell_11x13'></div>
+                <div class='grid-cell' id='cell_12x13'></div>
+                <div class='grid-cell' id='cell_13x13'></div>
+                <div class='grid-cell' id='cell_14x13'></div>
+                <div class='grid-cell' id='cell_15x13'></div>
+                <div class='grid-cell' id='cell_16x13'></div>
+                <div class='grid-cell' id='cell_17x13'></div>
+                <div class='grid-cell' id='cell_18x13'></div>
+                <div class='grid-cell' id='cell_19x13'></div>
+                <div class='grid-cell' id='cell_20x13'></div>
+                <div class='grid-cell' id='cell_21x13'></div>
+                <div class='grid-cell' id='cell_22x13'></div>
+                <div class='grid-cell' id='cell_23x13'></div>
+                <div class='grid-cell' id='cell_24x13'></div>
+                <div class='grid-cell' id='cell_25x13'></div>
+
+                <div class='grid-cell' id='cell_1x14'></div>
+                <div class='grid-cell' id='cell_2x14'></div>
+                <div class='grid-cell' id='cell_3x14'></div>
+                <div class='grid-cell' id='cell_4x14'></div>
+                <div class='grid-cell' id='cell_5x14'></div>
+                <div class='grid-cell' id='cell_6x14'></div>
+                <div class='grid-cell' id='cell_7x14'></div>
+                <div class='grid-cell' id='cell_8x14'></div>
+                <div class='grid-cell' id='cell_9x14'></div>
+                <div class='grid-cell' id='cell_10x14'></div>
+                <div class='grid-cell' id='cell_11x14'></div>
+                <div class='grid-cell' id='cell_12x14'></div>
+                <div class='grid-cell' id='cell_13x14'></div>
+                <div class='grid-cell' id='cell_14x14'></div>
+                <div class='grid-cell' id='cell_15x14'></div>
+                <div class='grid-cell' id='cell_16x14'></div>
+                <div class='grid-cell' id='cell_17x14'></div>
+                <div class='grid-cell' id='cell_18x14'></div>
+                <div class='grid-cell' id='cell_19x14'></div>
+                <div class='grid-cell' id='cell_20x14'></div>
+                <div class='grid-cell' id='cell_21x14'></div>
+                <div class='grid-cell' id='cell_22x14'></div>
+                <div class='grid-cell' id='cell_23x14'></div>
+                <div class='grid-cell' id='cell_24x14'></div>
+                <div class='grid-cell' id='cell_25x14'></div>
+
+                <div class='grid-cell' id='cell_1x15'></div>
+                <div class='grid-cell' id='cell_2x15'></div>
+                <div class='grid-cell' id='cell_3x15'></div>
+                <div class='grid-cell' id='cell_4x15'></div>
+                <div class='grid-cell' id='cell_5x15'></div>
+                <div class='grid-cell' id='cell_6x15'></div>
+                <div class='grid-cell' id='cell_7x15'></div>
+                <div class='grid-cell' id='cell_8x15'></div>
+                <div class='grid-cell' id='cell_9x15'></div>
+                <div class='grid-cell' id='cell_10x15'></div>
+                <div class='grid-cell' id='cell_11x15'></div>
+                <div class='grid-cell' id='cell_12x15'></div>
+                <div class='grid-cell' id='cell_13x15'></div>
+                <div class='grid-cell' id='cell_14x15'></div>
+                <div class='grid-cell' id='cell_15x15'></div>
+                <div class='grid-cell' id='cell_16x15'></div>
+                <div class='grid-cell' id='cell_17x15'></div>
+                <div class='grid-cell' id='cell_18x15'></div>
+                <div class='grid-cell' id='cell_19x15'></div>
+                <div class='grid-cell' id='cell_20x15'></div>
+                <div class='grid-cell' id='cell_21x15'></div>
+                <div class='grid-cell' id='cell_22x15'></div>
+                <div class='grid-cell' id='cell_23x15'></div>
+                <div class='grid-cell' id='cell_24x15'></div>
+                <div class='grid-cell' id='cell_25x15'></div>
+
+                <div class='grid-cell' id='cell_1x16'></div>
+                <div class='grid-cell' id='cell_2x16'></div>
+                <div class='grid-cell' id='cell_3x16'></div>
+                <div class='grid-cell' id='cell_4x16'></div>
+                <div class='grid-cell' id='cell_5x16'></div>
+                <div class='grid-cell' id='cell_6x16'></div>
+                <div class='grid-cell' id='cell_7x16'></div>
+                <div class='grid-cell' id='cell_8x16'></div>
+                <div class='grid-cell' id='cell_9x16'></div>
+                <div class='grid-cell' id='cell_10x16'></div>
+                <div class='grid-cell' id='cell_11x16'></div>
+                <div class='grid-cell' id='cell_12x16'></div>
+                <div class='grid-cell' id='cell_13x16'></div>
+                <div class='grid-cell' id='cell_14x16'></div>
+                <div class='grid-cell' id='cell_15x16'></div>
+                <div class='grid-cell' id='cell_16x16'></div>
+                <div class='grid-cell' id='cell_17x16'></div>
+                <div class='grid-cell' id='cell_18x16'></div>
+                <div class='grid-cell' id='cell_19x16'></div>
+                <div class='grid-cell' id='cell_20x16'></div>
+                <div class='grid-cell' id='cell_21x16'></div>
+                <div class='grid-cell' id='cell_22x16'></div>
+                <div class='grid-cell' id='cell_23x16'></div>
+                <div class='grid-cell' id='cell_24x16'></div>
+                <div class='grid-cell' id='cell_25x16'></div>
+
+                <div class='grid-cell' id='cell_1x17'></div>
+                <div class='grid-cell' id='cell_2x17'></div>
+                <div class='grid-cell' id='cell_3x17'></div>
+                <div class='grid-cell' id='cell_4x17'></div>
+                <div class='grid-cell' id='cell_5x17'></div>
+                <div class='grid-cell' id='cell_6x17'></div>
+                <div class='grid-cell' id='cell_7x17'></div>
+                <div class='grid-cell' id='cell_8x17'></div>
+                <div class='grid-cell' id='cell_9x17'></div>
+                <div class='grid-cell' id='cell_10x17'></div>
+                <div class='grid-cell' id='cell_11x17'></div>
+                <div class='grid-cell' id='cell_12x17'></div>
+                <div class='grid-cell' id='cell_13x17'></div>
+                <div class='grid-cell' id='cell_14x17'></div>
+                <div class='grid-cell' id='cell_15x17'></div>
+                <div class='grid-cell' id='cell_16x17'></div>
+                <div class='grid-cell' id='cell_17x17'></div>
+                <div class='grid-cell' id='cell_18x17'></div>
+                <div class='grid-cell' id='cell_19x17'></div>
+                <div class='grid-cell' id='cell_20x17'></div>
+                <div class='grid-cell' id='cell_21x17'></div>
+                <div class='grid-cell' id='cell_22x17'></div>
+                <div class='grid-cell' id='cell_23x17'></div>
+                <div class='grid-cell' id='cell_24x17'></div>
+                <div class='grid-cell' id='cell_25x17'></div>
+
+                <div class='grid-cell' id='cell_1x18'></div>
+                <div class='grid-cell' id='cell_2x18'></div>
+                <div class='grid-cell' id='cell_3x18'></div>
+                <div class='grid-cell' id='cell_4x18'></div>
+                <div class='grid-cell' id='cell_5x18'></div>
+                <div class='grid-cell' id='cell_6x18'></div>
+                <div class='grid-cell' id='cell_7x18'></div>
+                <div class='grid-cell' id='cell_8x18'></div>
+                <div class='grid-cell' id='cell_9x18'></div>
+                <div class='grid-cell' id='cell_10x18'></div>
+                <div class='grid-cell' id='cell_11x18'></div>
+                <div class='grid-cell' id='cell_12x18'></div>
+                <div class='grid-cell' id='cell_13x18'></div>
+                <div class='grid-cell' id='cell_14x18'></div>
+                <div class='grid-cell' id='cell_15x18'></div>
+                <div class='grid-cell' id='cell_16x18'></div>
+                <div class='grid-cell' id='cell_17x18'></div>
+                <div class='grid-cell' id='cell_18x18'></div>
+                <div class='grid-cell' id='cell_19x18'></div>
+                <div class='grid-cell' id='cell_20x18'></div>
+                <div class='grid-cell' id='cell_21x18'></div>
+                <div class='grid-cell' id='cell_22x18'></div>
+                <div class='grid-cell' id='cell_23x18'></div>
+                <div class='grid-cell' id='cell_24x18'></div>
+                <div class='grid-cell' id='cell_25x18'></div>
+
+                <div class='grid-cell' id='cell_1x19'></div>
+                <div class='grid-cell' id='cell_2x19'></div>
+                <div class='grid-cell' id='cell_3x19'></div>
+                <div class='grid-cell' id='cell_4x19'></div>
+                <div class='grid-cell' id='cell_5x19'></div>
+                <div class='grid-cell' id='cell_6x19'></div>
+                <div class='grid-cell' id='cell_7x19'></div>
+                <div class='grid-cell' id='cell_8x19'></div>
+                <div class='grid-cell' id='cell_9x19'></div>
+                <div class='grid-cell' id='cell_10x19'></div>
+                <div class='grid-cell' id='cell_11x19'></div>
+                <div class='grid-cell' id='cell_12x19'></div>
+                <div class='grid-cell' id='cell_13x19'></div>
+                <div class='grid-cell' id='cell_14x19'></div>
+                <div class='grid-cell' id='cell_15x19'></div>
+                <div class='grid-cell' id='cell_16x19'></div>
+                <div class='grid-cell' id='cell_17x19'></div>
+                <div class='grid-cell' id='cell_18x19'></div>
+                <div class='grid-cell' id='cell_19x19'></div>
+                <div class='grid-cell' id='cell_20x19'></div>
+                <div class='grid-cell' id='cell_21x19'></div>
+                <div class='grid-cell' id='cell_22x19'></div>
+                <div class='grid-cell' id='cell_23x19'></div>
+                <div class='grid-cell' id='cell_24x19'></div>
+                <div class='grid-cell' id='cell_25x19'></div>
+
+                <div class='grid-cell' id='cell_1x20'></div>
+                <div class='grid-cell' id='cell_2x20'></div>
+                <div class='grid-cell' id='cell_3x20'></div>
+                <div class='grid-cell' id='cell_4x20'></div>
+                <div class='grid-cell' id='cell_5x20'></div>
+                <div class='grid-cell' id='cell_6x20'></div>
+                <div class='grid-cell' id='cell_7x20'></div>
+                <div class='grid-cell' id='cell_8x20'></div>
+                <div class='grid-cell' id='cell_9x20'></div>
+                <div class='grid-cell' id='cell_10x20'></div>
+                <div class='grid-cell' id='cell_11x20'></div>
+                <div class='grid-cell' id='cell_12x20'></div>
+                <div class='grid-cell' id='cell_13x20'></div>
+                <div class='grid-cell' id='cell_14x20'></div>
+                <div class='grid-cell' id='cell_15x20'></div>
+                <div class='grid-cell' id='cell_16x20'></div>
+                <div class='grid-cell' id='cell_17x20'></div>
+                <div class='grid-cell' id='cell_18x20'></div>
+                <div class='grid-cell' id='cell_19x20'></div>
+                <div class='grid-cell' id='cell_20x20'></div>
+                <div class='grid-cell' id='cell_21x20'></div>
+                <div class='grid-cell' id='cell_22x20'></div>
+                <div class='grid-cell' id='cell_23x20'></div>
+                <div class='grid-cell' id='cell_24x20'></div>
+                <div class='grid-cell' id='cell_25x20'></div>
+            </div>
+        </div>
         <label for="scenarioSelect">Select a Scenario</label>
         <select name="scenarioSelect" id="scenarioSelect">
-          <option value="1">Scenario 1</option>
-          <option value="2">Scenario 2</option>
+            <option value="1">Scenario 1</option>
+            <option value="2">Scenario 2</option>
         </select>
     </body>
+
+    <script>
+        var shapeDefs = {
+            '2x1': {
+                down: 0,
+                right: 1
+            }
+        }
+
+        function createShape(x, y) {
+            document.querySelector('#cell_' + x + 'x' + y).classList.add('yellow', 'door-left');
+            shapeDefs['2x1'].down;
+        }
+
+        createShape(20, 12);
+    </script>
+
 </html>
