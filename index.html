@@ -115,7 +115,7 @@
                             '2p': true
                         },
                         rooms: [
-                            RoomGenerator[RoomDefs.P](12, 8, RoomTypes.Danger, [
+                            RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Danger, [
                                 {
                                     index: 0,
                                     config: {
@@ -131,6 +131,24 @@
                                         p1StartingPoint: true
                                     }
                                 }
+                            ]),
+                            RoomGenerator[RoomDefs.SmallSquare](10, 8, RoomTypes.Normal, [
+                                {
+                                    index: 1,
+                                    config: {
+                                        walls: [Direction.Top]
+                                    }
+                                },
+                                {
+                                    index: 2,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Left,
+                                            connectingRoomIndex: 2
+                                        }],
+                                        walls: [Direction.Bottom, Direction.Right]
+                                    }
+                                }
                             ])
                         ]
                     }
@@ -138,7 +156,8 @@
             }
         }
 
-        function buildRoom(config) {
+        function buildRoom(rooms, index) {
+            var config = rooms[index];
             config.tiles.forEach(tileConfig => {
                 var cell = document.querySelector('#cell_' + tileConfig.position.x + 'x' + tileConfig.position.y);
                 cell.classList.add(config.type);
@@ -153,7 +172,7 @@
                     tileConfig.doors.forEach(door => {
                         cell.classList.add('door-' + door.direction);
                         cell.addEventListener('click', () => {
-                            console.log('opening room ' + door.connectingRoomIndex);
+                            buildRoom(rooms, door.connectingRoomIndex);
                         });
                     });
                 }
@@ -162,7 +181,7 @@
 
         console.log(RoomTypes);
         console.log(scenarioDefs[2]);
-        buildRoom(scenarioDefs[2].floors[1].rooms[0]);
+        buildRoom(scenarioDefs[2].floors[1].rooms, 0);
     </script>
 
 </html>

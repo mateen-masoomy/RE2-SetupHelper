@@ -41,7 +41,8 @@ var RoomConfigDefs = {
 
 function createDefaultConfig(count) {
     var tileConfigs = [].fill({
-        doors: []
+        doors: [],
+        walls: []
     }, 0, count - 1);
 
     return {
