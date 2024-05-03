@@ -16,8 +16,8 @@
                                 45deg,
                                 #FFF650,
                                 #FFF650 10px,
-                                #FFFFFF 10px,
-                                #FFFFFF 20px
+                                lightgrey 10px,
+                                lightgrey 20px
                             );
             }
 
@@ -26,8 +26,8 @@
                                 45deg,
                                 #CC3620,
                                 #CC3620 10px,
-                                #FFFFFF 10px,
-                                #FFFFFF 20px
+                                lightgrey 10px,
+                                lightgrey 20px
                             );
             }
 
@@ -136,6 +136,10 @@
                                 {
                                     index: 1,
                                     config: {
+                                        doors: [{
+                                            direction: Directions.Left,
+                                            connectingRoomIndex: 0
+                                        }],
                                         walls: [Directions.Top]
                                     }
                                 },
@@ -179,6 +183,20 @@
             })
         }
 
+        // Add rectangle tile
+        // add tile description
+        // add tile requirements
+        // add locked doors
+        // add enemy markers
+        // add stairs
+        // add tension deck requirements
+        // add description
+        // add special rules
+        // add encounter dice tables
+        // add additional cards and tokens
+        // add item randomizer
+        // add starting items
+        // add proper colours: green, yellow, amber
         console.log(RoomTypes);
         console.log(scenarioDefs[2]);
         buildRoom(scenarioDefs[2].floors[1].rooms, 0);
