@@ -115,7 +115,7 @@
                             '2p': true
                         },
                         rooms: [
-                            RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Normal, [
+                            RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Caution, [
                                 {
                                     index: 0,
                                     config: {
@@ -141,7 +141,7 @@
         function buildRoom(config) {
             config.tiles.forEach(tileConfig => {
                 var cell = document.querySelector('#cell_' + tileConfig.position.x + 'x' + tileConfig.position.y);
-                cell.classList.add(tileConfig.type);
+                cell.classList.add(config.type);
 
                 if (tileConfig.walls) {
                     tileConfig.walls.forEach(wallDirection => {
