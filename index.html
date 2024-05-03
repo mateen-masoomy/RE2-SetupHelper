@@ -14,10 +14,10 @@
             .caution {
                 background: repeating-linear-gradient(
                                 45deg,
-                                #FAEE1D,
-                                #FAEE1D 10px,
-                                #FAEE1D00 10px,
-                                #FAEE1D00 20px
+                                #FFF650,
+                                #FFF650 10px,
+                                #FFFFFF 10px,
+                                #FFFFFF 20px
                             );
             }
 
@@ -26,41 +26,41 @@
                                 45deg,
                                 #CC3620,
                                 #CC3620 10px,
-                                #CC362000 10px,
-                                #CC362000 20px
+                                #FFFFFF 10px,
+                                #FFFFFF 20px
                             );
             }
 
             .wall-top {
-                border-top: 2px solid black;
+                border-top: 5px solid black;
             }
 
             .wall-right {
-                border-right: 2px solid black;
+                border-right: 5px solid black;
             }
 
             .wall-bottom {
-                border-bottom: 2px solid black;
+                border-bottom: 5px solid black;
             }
 
             .wall-left {
-                border-left: 2px solid black;
+                border-left: 5px solid black;
             }
 
             .door-top {
-                border-top: 2px solid green;
+                border-top: 5px solid green;
             }
 
             .door-right {
-                border-right: 2px solid green;
+                border-right: 5px solid green;
             }
 
             .door-bottom {
-                border-bottom: 2px solid green;
+                border-bottom: 5px solid green;
             }
 
             .door-left {
-                border-left: 2px solid green;
+                border-left: 5px solid green;
             }
 
         </style>
@@ -115,7 +115,7 @@
                             '2p': true
                         },
                         rooms: [
-                            RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Caution, [
+                            RoomGenerator[RoomDefs.P](12, 8, RoomTypes.Danger, [
                                 {
                                     index: 0,
                                     config: {
