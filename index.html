@@ -143,17 +143,24 @@
                 var cell = document.querySelector('#cell_' + tileConfig.position.x + 'x' + tileConfig.position.y);
                 cell.classList.add(tileConfig.type);
 
+                if (tileConfig.walls) {
+                    tileConfig.walls.forEach(wallDirection => {
+                        cell.classList.add('wall-' + wallDirection);
+                    });
+                }
+
                 if (tileConfig.doors) {
                     tileConfig.doors.forEach(door => {
                         cell.classList.add('door-' + door.direction);
                         cell.addEventListener('click', () => {
                             console.log('opening room ' + door.connectingRoomIndex);
                         });
-                    })
+                    });
                 }
             })
         }
 
+        console.log(RoomTypes);
         console.log(scenarioDefs[2]);
         buildRoom(scenarioDefs[2].floors[1].rooms[0]);
     </script>
