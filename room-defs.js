@@ -12,6 +12,7 @@ var RoomDefs = {
   P: 'p',
   P_90: 'p90',
   P_180: 'p180',
+  P_180_Flip: 'p180Flip',
   P_270: 'p270',
 
   L: 'l',
@@ -724,6 +725,71 @@ var RoomGenerator = {
       tiles: [...small.tiles, ...square.tiles],
     };
   },
+  [RoomDefs.P_180_Flip]: function (x, y, type, configMap) {
+    var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+
+    var tempMap = [
+      {
+        index: 0,
+        config: {
+          ...config.tiles[0],
+        },
+      },
+      {
+        index: 1,
+        config: {
+          walls: [Directions.Left, Directions.Right],
+          ...config.tiles[1],
+        },
+      },
+    ];
+
+    var small = RoomGenerator[RoomDefs.SmallTall](
+      x,
+      y,
+      type,
+      JSON.parse(JSON.stringify(tempMap))
+    );
+
+    tempMap = [
+      {
+        index: 0,
+        config: {
+          ...config.tiles[2],
+        },
+      },
+      {
+        index: 1,
+        config: {
+          walls: [Directions.Right],
+          ...config.tiles[3],
+        },
+      },
+      {
+        index: 2,
+        config: {
+          ...config.tiles[4],
+        },
+      },
+      {
+        index: 3,
+        config: {
+          ...config.tiles[5],
+        },
+      },
+    ];
+
+    var square = RoomGenerator[RoomDefs.SmallSquare](
+      x ,
+      y + 2,
+      type,
+      JSON.parse(JSON.stringify(tempMap))
+    );
+    return {
+      type: config.type,
+      tiles: [...small.tiles, ...square.tiles],
+    };
+  },
   [RoomDefs.P_270]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
@@ -737,6 +803,7 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
+          walls: [Directions.Top],
           ...config.tiles[1],
         },
       },
@@ -749,7 +816,6 @@ var RoomGenerator = {
       {
         index: 3,
         config: {
-          walls: [Directions.Bottom],
           ...config.tiles[3],
         },
       },
