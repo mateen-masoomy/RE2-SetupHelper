@@ -559,6 +559,193 @@
                                         numberOfIcons: 2
                                     }
                                 }
+                            ]),
+                            RoomGenerator[RoomDefs.SmallSquare](9, 6, RoomTypes.Amber, [
+                                {
+                                    index: 0,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Top,
+                                        }],
+                                    }
+                                },
+                                {
+                                    index: 1,
+                                    config: {
+                                        walls: [Directions.Top, Directions.Right, Directions.Bottom]
+                                    }
+                                },
+                                {
+                                    index: 3,
+                                    config: {
+                                        item: 'b'
+                                    }
+                                }
+                            ])
+                        ]
+                    },
+                    [2]: {
+                        isStartingFloor: {
+                            '1p': false,
+                            '2p': true
+                        },
+                        rooms: [
+                            RoomGenerator[RoomDefs.L_90](16, 10, RoomTypes.Green, [
+                                {
+                                    index: 1,
+                                    config: {
+                                        enemy: EnemyTypes.Zombie
+                                    }
+                                },
+                                {
+                                    index: 3,
+                                    config: {
+                                        p2StartingPoint: true
+                                    }
+                                },
+                                {
+                                    index: 4,
+                                    config: {
+                                        doors:[{
+                                            direction: Directions.Left,
+                                            connectingRoomIndex: 1
+                                        }]
+                                    }
+                                },
+                                {
+                                    index: 6,
+                                    config: {
+                                        enemy: EnemyTypes.Zombie
+                                    }
+                                }
+                            ]),
+                            RoomGenerator[RoomTypes.MediumSquare](13, 10, RoomTypes.Yellow, [
+                                {
+                                    index: 0,
+                                    config: {
+                                        item: 'a'
+                                    }
+                                },
+                                {
+                                    index: 5,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Right,
+                                            connectingRoomIndex: 0
+                                        }]
+                                    }
+                                },
+                                {
+                                    index: 6,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Bottom,
+                                            connectingRoomIndex: 2
+                                        }]
+                                    }
+                                }
+                            ]),
+                            RoomGenerator[RoomDefs.P_180](12, 9, RoomTypes.Green, [
+                                {
+                                    index: 0,
+                                    config: {
+                                        item: 'a'
+                                    }
+                                },
+                                {
+                                    index: 1,
+                                    config: {
+                                        enemies: [
+                                            EnemyType.Zombie,
+                                            EnemyType.Zombie
+                                        ],
+                                        numberOfIcons: 2
+                                    }
+                                },
+                                {
+                                    index: 3,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Top,
+                                            connectingRoomIndex: 1
+                                        }]
+                                    }
+                                },
+                                {
+                                    index: 4,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Left,
+                                            connectingRoomIndex: 3
+                                        }]
+                                    }
+                                }
+                            ]),
+                            RoomGenerator[RoomDefs.L](8, 9, RoomTypes.Yellow, [
+                                {
+                                    index: 0,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Top,
+                                            connectingRoomIndex: 4
+                                        }]
+                                    }
+                                },
+                                {
+                                    index: 1,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Right,
+                                            connectingRoomIndex: 5,
+                                            keyRequired: 'S.T.A.R.S Key'
+                                        }]
+                                    }
+                                },
+                                {
+                                    index: 6,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Right,
+                                            connectingRoomIndex: 2,
+                                        }]
+                                    }
+                                }
+                            ]),
+                            RoomGenerator[RoomDefs.P_270](8, 7, RoomTypes.Amber, [
+                                {
+                                    index: 0,
+                                    config: {
+                                        item: 'a'
+                                    }
+                                },
+                                {
+                                    index: 2,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Bottom,
+                                            connectingRoomIndex: 3
+                                        }]
+                                    }
+                                },
+                                {
+                                    index: 5,
+                                    config: {
+                                        stairs: {
+                                            connectingFloor: 1,
+                                            connectingRoomIndex: 6
+                                        }
+                                    }
+                                }
+                            ]),
+                            RoomGenerator[RoomDefs.MediumSquare](9, 9, RoomTypes.Green, [
+                                {
+                                    index: 3,
+                                    config: {
+                                        doors: [{
+                                            direction: Directions.Left
+                                        }]
+                                    }
+                                }
                             ])
                         ]
                     }
@@ -619,8 +806,20 @@
                     });
                 }
 
+                if (tileConfig.p2StartingPoint) {
+                    cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">2</span></span>';
+                    cell.querySelector('.fa-stack').addEventListener('click', () => {
+                        document.querySelector('.notifier').innerHTML = '<span class="emphasis">Player 2</span> starting position';
+                        document.querySelector('.notifier-container').classList.removr('hidden');
+                    })
+                }
+
                 if (tileConfig.enemy) {
                     generateEnemy(cell, tileConfig.enemy);
+                }
+
+                if (tileConfig.enemies) {
+                    tileConfig.enemies.forEach(enemy => generateEnemy(cell, enemy));
                 }
 
                 if (tileConfig.item) {
@@ -655,8 +854,7 @@
                 if (tileConfig.stairs) {
                     cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
                     cell.addEventListener('click', () => {
-                        document.querySelector('.notifier').innerHTML = 'Take stairs to floor ' + tileConfig.stairs.connectingFloor + ' room ' + tileConfig.stairs.connectingRoomIndex;
-                        document.querySelector('.notifier-container').classList.remove('hidden');
+                        buildRoom(itemIndexes, items, scenarioDefs[2].floors[tileConfig.stairs.connectingFloor], tileConfig.connectingRoomIndex);
                     });
                 }
 
