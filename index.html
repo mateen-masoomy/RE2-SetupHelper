@@ -606,7 +606,7 @@
                                 {
                                     index: 4,
                                     config: {
-                                        doors:[{
+                                        doors: [{
                                             direction: Directions.Left,
                                             connectingRoomIndex: 1
                                         }]
@@ -619,7 +619,7 @@
                                     }
                                 }
                             ]),
-                            RoomGenerator[RoomTypes.MediumSquare](13, 10, RoomTypes.Yellow, [
+                            RoomGenerator[RoomDefs.MediumSquare](13, 10, RoomTypes.Yellow, [
                                 {
                                     index: 0,
                                     config: {
@@ -656,8 +656,8 @@
                                     index: 1,
                                     config: {
                                         enemies: [
-                                            EnemyType.Zombie,
-                                            EnemyType.Zombie
+                                            EnemyTypes.Zombie,
+                                            EnemyTypes.Zombie
                                         ],
                                         numberOfIcons: 2
                                     }
@@ -776,27 +776,27 @@
                     tileConfig.doors.forEach(door => {
                         cell.classList.add('door-' + door.direction);
                         if (typeof door.connectingRoomIndex !== 'undefined') {
-                        cell.addEventListener('click', () => {
-                            if (door.keyRequired) {
-                                if (!foundItems.includes(door.keyRequired)) {
-                                    cell.classList.remove('door-' + door.direction);
-                                    cell.classList.add('locked-door-' + door.direction);
+                            cell.addEventListener('click', () => {
+                                if (door.keyRequired) {
+                                    if (!foundItems.includes(door.keyRequired)) {
+                                        cell.classList.remove('door-' + door.direction);
+                                        cell.classList.add('locked-door-' + door.direction);
 
-                                    document.querySelector('.notifier').innerHTML = 'Locked: <span class="emphasis">' + door.keyRequired + '</span> required.';
-                                    document.querySelector('.notifier-container').classList.remove('hidden');
-                                } else {
-                                    if (!door.unlocked) {
-                                        document.querySelector('.notifier').innerHTML = 'Unlocked with <span class="emphasis">' + door.keyRequired + '</span>';
+                                        document.querySelector('.notifier').innerHTML = 'Locked: <span class="emphasis">' + door.keyRequired + '</span> required.';
                                         document.querySelector('.notifier-container').classList.remove('hidden');
-                                        door.unlocked = true;
+                                    } else {
+                                        if (!door.unlocked) {
+                                            document.querySelector('.notifier').innerHTML = 'Unlocked with <span class="emphasis">' + door.keyRequired + '</span>';
+                                            document.querySelector('.notifier-container').classList.remove('hidden');
+                                            door.unlocked = true;
+                                        }
+                                        cell.classList.add('door-' + door.direction);
+                                        cell.classList.remove('locked-door-' + door.direction);
+                                        buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
                                     }
-                                    cell.classList.add('door-' + door.direction);
-                                    cell.classList.remove('locked-door-' + door.direction);
-                                    buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
-                                }
-                            } else buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
-                        });
-                    }
+                                } else buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
+                            });
+                        }
                     });
                 }
 
