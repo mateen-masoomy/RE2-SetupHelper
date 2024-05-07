@@ -775,6 +775,7 @@
                 if (tileConfig.doors) {
                     tileConfig.doors.forEach(door => {
                         cell.classList.add('door-' + door.direction);
+                        if (typeof door.connectingRoomIndex !== 'undefined') {
                         cell.addEventListener('click', () => {
                             if (door.keyRequired) {
                                 if (!foundItems.includes(door.keyRequired)) {
@@ -795,6 +796,7 @@
                                 }
                             } else buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
                         });
+                    }
                     });
                 }
 
