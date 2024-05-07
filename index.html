@@ -510,7 +510,7 @@
                                     config: {
                                         stairs: {
                                             connectingFloor: 2,
-                                            connectingRoomIndex: 5
+                                            connectingRoomIndex: 4
                                         }
                                     }
                                 },
@@ -856,7 +856,7 @@
                 if (tileConfig.stairs) {
                     cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
                     cell.addEventListener('click', () => {
-                        buildRoom(itemIndexes, items, scenarioDefs[2].floors[tileConfig.stairs.connectingFloor], tileConfig.connectingRoomIndex);
+                        buildRoom(itemIndexes, items, scenarioDefs[2].floors[tileConfig.stairs.connectingFloor].rooms, tileConfig.stairs.connectingRoomIndex);
                     });
                 }
 
