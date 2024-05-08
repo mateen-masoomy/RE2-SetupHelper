@@ -1,953 +1,581 @@
 <html>
+  <head>
+    <title>Resident Evil 2 - The Board Game Setup Helper</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script
+      src="https://kit.fontawesome.com/78bd09203f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="grid.css" />
+    <style>
+      .main-content {
+          width: 100%;
+          height: 100%;
+          overflow-y: scroll;
+          font-size: 1.5vw;
+      }
 
-    <head>
-        <title>
-            Resident Evil 2 - The Board Game Setup Helper
-        </title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <script src="https://kit.fontawesome.com/78bd09203f.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-        <link rel='stylesheet' href='grid.css'>
-        <style>
-            .main-content {
-                width: 100%;
-                height: 100%;
-                overflow-y: scroll;
-                font-size: 1.5vw;
+      .green {
+          background-color: #65a76e;
+      }
+
+      .yellow {
+          background: repeating-linear-gradient(45deg,
+                  #ceaf4b,
+                  #ceaf4b 10%,
+                  #777777 10%,
+                  #777777 20%);
+      }
+
+      .amber {
+          background: repeating-linear-gradient(45deg,
+                  #CC3620,
+                  #CC3620 10%,
+                  #777777 10%,
+                  #777777 20%);
+      }
+
+      i {
+          font-size: 1.1em;
+          color: white;
+      }
+
+      .fa-stack {
+          filter: drop-shadow(0px 2px 3px #00000080);
+      }
+
+      .fa-stack .fa-inverse {
+          font-family: Anton;
+          color: #222;
+          position: relative;
+          cursor: default;
+      }
+
+      .enemy .fa-stack-2x {
+          color: #222;
+      }
+
+      .enemy .fa-inverse {
+          color: #ccc;
+      }
+
+      .contrast {
+          color: #111;
+      }
+
+      .icons-2 {
+          overflow: visible;
+          position: relative;
+      }
+
+      .icons-2>span:first-child {
+          font-size: .65em;
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
+
+      .icons-2>span:last-child {
+          font-size: .65em;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+      }
+
+      .wall-top {
+          border-top: .2em solid black;
+      }
+
+      .wall-right {
+          border-right: .2em solid black;
+      }
+
+      .wall-bottom {
+          border-bottom: .2em solid black;
+      }
+
+      .wall-left {
+          border-left: .2em solid black;
+      }
+
+      .door-top {
+          cursor: pointer;
+          border-top: .2em solid #cccccc;
+      }
+
+      .door-right {
+          cursor: pointer;
+          border-right: .2em solid #cccccc;
+      }
+
+      .door-bottom {
+          cursor: pointer;
+          border-bottom: .2em solid #cccccc;
+      }
+
+      .door-left {
+          cursor: pointer;
+          border-left: .2em solid #cccccc;
+      }
+
+      .locked-door-top {
+          cursor: pointer;
+          border-top: .2em solid #b16464;
+      }
+
+      .locked-door-right {
+          cursor: pointer;
+          border-right: .2em solid #b16464;
+      }
+
+      .locked-door-bottom {
+          cursor: pointer;
+          border-bottom: .2em solid #b16464;
+      }
+
+      .locked-door-left {
+          cursor: pointer;
+          border-left: .2em solid #b16464;
+      }
+
+      @media only screen and (max-width: 900px) {
+          .main-content {
+              font-size: 1vw;
+          }
+
+          .icons-2>span:first-child {
+              font-size: .9em;
+              position: absolute;
+              left: 0;
+              top: 0;
+          }
+
+          .icons-2>span:last-child {
+              font-size: .9em;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+          }
+
+          .wall-top {
+              border-top: .32em solid black;
+          }
+
+          .wall-right {
+              border-right: .32em solid black;
+          }
+
+          .wall-bottom {
+              border-bottom: .32em solid black;
+          }
+
+          .wall-left {
+              border-left: .32em solid black;
+          }
+
+          .door-top {
+              cursor: pointer;
+              border-top: .32em solid #cccccc;
+          }
+
+          .door-right {
+              cursor: pointer;
+              border-right: .32em solid #cccccc;
+          }
+
+          .door-bottom {
+              cursor: pointer;
+              border-bottom: .32em solid #cccccc;
+          }
+
+          .door-left {
+              cursor: pointer;
+              border-left: .32em solid #cccccc;
+          }
+
+          .locked-door-top {
+              cursor: pointer;
+              border-top: .32em solid #b16464;
+          }
+
+          .locked-door-right {
+              cursor: pointer;
+              border-right: .32em solid #b16464;
+          }
+
+          .locked-door-bottom {
+              cursor: pointer;
+              border-bottom: .32em solid #b16464;
+          }
+
+          .locked-door-left {
+              cursor: pointer;
+              border-left: .32em solid #b16464;
+          }
+      }
+
+      .notifier-container {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #00000020;
+      }
+
+      .notifier {
+          font-family: Anton;
+          padding: 20px 30px;
+          border-radius: 10px;
+          background-color: white;
+          box-shadow: 0px 2px 5px black;
+      }
+
+      .notifier .icons {
+          font-size: 2em;
+      }
+
+      .notifier .fa-stack {
+          margin-right: 20px;
+      }
+
+      .notifier .fa-stack:last-child {
+          margin-right: 0;
+      }
+
+      .notifier .fa-stack-2x {
+          color: #111;
+      }
+
+      .notifier .fa-stack-1x {
+          color: white;
+      }
+
+      .emphasis {
+          color: #9b0c0c;
+      }
+
+      .hidden {
+          display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main-content">
+      <div class="grid-container">
+        <div class="grid"></div>
+      </div>
+      <label for="scenarioSelect">Select a Scenario</label>
+      <select name="scenarioSelect" id="scenarioSelect">
+        <option value="1">Scenario 1</option>
+        <option value="2">Scenario 2</option>
+      </select>
+    </div>
+    <div class="notifier-container hidden">
+      <div class="notifier"></div>
+    </div>
+  </body>
+
+  <script>
+
+    /**
+     * The scenario definitions
+     * @type {Object.<number, Scenario>}
+     */
+    var scenarioDefs = {};
+  </script>
+
+  <script src="./room-defs.js"></script>
+  <script src="./enemies.js"></script>
+  <script src="./scenarios/scenario-2.js"></script>
+
+  <script>
+    (function () {
+      var grid = document.querySelector(".grid");
+      for (var col = 25; col > 0; col--) {
+        for (var row = 20; row > 0; row--) {
+          var div = document.createElement("div");
+          div.id = "cell_" + col + "x" + row;
+          div.classList.add("grid-cell");
+          grid.appendChild(div);
+        }
+      }
+
+      document
+        .querySelector(".notifier-container")
+        .addEventListener("click", function () {
+          this.classList.add("hidden");
+        });
+    })();
+
+    var foundItems = [];
+
+    /**
+     * Build Room
+     * @description Render a room on the grid
+     * @param {Object} itemIndexes          - The indexes of all items
+     * @param {number[]} itemIndexes.a      - The indexes of the A items
+     * @param {number[]} itemIndexes.b      - The indexes of the B items
+     * @param {Object} items                - The items collection
+     * @param {string[]} items.a            - The collection of all A items for the scenario
+     * @param {string[]} items.b            - The collection of all B items for the scenario
+     * @param {Room[]} rooms - The collection of rooms for the floor
+     * @param {number} index                - The index of the room to build
+     */
+    function buildRoom(itemIndexes, items, rooms, index) {
+      var config = rooms[index];
+
+      config.tiles.forEach((tileConfig) => {
+        var cell = document.querySelector(
+          "#cell_" + tileConfig.position.x + "x" + tileConfig.position.y
+        );
+        cell.classList.add(config.type);
+
+        cell.innerHTML = "";
+
+        var multiIcons = [];
+
+        if (tileConfig.walls) {
+          tileConfig.walls.forEach((wallDirection) => {
+            cell.classList.add("wall-" + wallDirection);
+          });
+        }
+
+        if (tileConfig.doors) {
+          tileConfig.doors.forEach((door) => {
+            cell.classList.add("door-" + door.direction);
+            if (typeof door.connectingRoomIndex !== "undefined") {
+              cell.addEventListener("click", () => {
+                if (door.keyRequired) {
+                  if (!foundItems.includes(door.keyRequired)) {
+                    cell.classList.remove("door-" + door.direction);
+                    cell.classList.add("locked-door-" + door.direction);
+
+                    document.querySelector(".notifier").innerHTML =
+                      'Locked: <span class="emphasis">' +
+                      door.keyRequired +
+                      "</span> required.";
+                    document
+                      .querySelector(".notifier-container")
+                      .classList.remove("hidden");
+                  } else {
+                    if (!door.unlocked) {
+                      document.querySelector(".notifier").innerHTML =
+                        'Unlocked with <span class="emphasis">' +
+                        door.keyRequired +
+                        "</span>";
+                      document
+                        .querySelector(".notifier-container")
+                        .classList.remove("hidden");
+                      door.unlocked = true;
+                    }
+                    cell.classList.add("door-" + door.direction);
+                    cell.classList.remove("locked-door-" + door.direction);
+                    buildRoom(
+                      itemIndexes,
+                      items,
+                      rooms,
+                      door.connectingRoomIndex
+                    );
+                  }
+                } else
+                  buildRoom(
+                    itemIndexes,
+                    items,
+                    rooms,
+                    door.connectingRoomIndex
+                  );
+              });
             }
+          });
+        }
 
-            .green {
-                background-color: #65a76e;
-            }
+        if (tileConfig.p1StartingPoint) {
+          cell.innerHTML +=
+            '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">1</span></span>';
+          cell.querySelector(".fa-stack").addEventListener("click", () => {
+            document.querySelector(".notifier").innerHTML =
+              '<span class="emphasis">Player 1</span> start position';
+            document
+              .querySelector(".notifier-container")
+              .classList.remove("hidden");
+          });
+        }
 
-            .yellow {
-                background: repeating-linear-gradient(45deg,
-                        #ceaf4b,
-                        #ceaf4b 10%,
-                        #777777 10%,
-                        #777777 20%);
-            }
+        if (tileConfig.p2StartingPoint) {
+          cell.innerHTML +=
+            '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">2</span></span>';
+          cell.querySelector(".fa-stack").addEventListener("click", () => {
+            document.querySelector(".notifier").innerHTML =
+              '<span class="emphasis">Player 2</span> starting position';
+            document
+              .querySelector(".notifier-container")
+              .classList.removr("hidden");
+          });
+        }
 
-            .amber {
-                background: repeating-linear-gradient(45deg,
-                        #CC3620,
-                        #CC3620 10%,
-                        #777777 10%,
-                        #777777 20%);
-            }
+        if (tileConfig.enemies) {
+          tileConfig.enemies.forEach((enemy) => generateEnemy(cell, enemy));
+        }
 
-            i {
-                font-size: 1.1em;
-                color: white;
-            }
+        if (tileConfig.item) {
+          cell.innerHTML +=
+            '<span class="fa-stack item"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span></span>';
+          var itemIndex = itemIndexes[tileConfig.item].pop();
+          var item = items[tileConfig.item][itemIndex];
 
-            .fa-stack {
-                filter: drop-shadow(0px 2px 3px #00000080);
-            }
-
-            .fa-stack .fa-inverse {
-                font-family: Anton;
-                color: #222;
-                position: relative;
-                cursor: default;
-            }
-
-            .enemy .fa-stack-2x {
-                color: #222;
-            }
-
-            .enemy .fa-inverse {
-                color: #ccc;
-            }
-
-            .contrast {
-                color: #111;
-            }
-
-            .icons-2 {
-                overflow: visible;
-                position: relative;
-            }
-
-            .icons-2>span:first-child {
-                font-size: .65em;
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
-
-            .icons-2>span:last-child {
-                font-size: .65em;
-                position: absolute;
-                right: 0;
-                bottom: 0;
-            }
-
-            .wall-top {
-                border-top: .2em solid black;
-            }
-
-            .wall-right {
-                border-right: .2em solid black;
-            }
-
-            .wall-bottom {
-                border-bottom: .2em solid black;
-            }
-
-            .wall-left {
-                border-left: .2em solid black;
-            }
-
-            .door-top {
-                cursor: pointer;
-                border-top: .2em solid #cccccc;
-            }
-
-            .door-right {
-                cursor: pointer;
-                border-right: .2em solid #cccccc;
-            }
-
-            .door-bottom {
-                cursor: pointer;
-                border-bottom: .2em solid #cccccc;
-            }
-
-            .door-left {
-                cursor: pointer;
-                border-left: .2em solid #cccccc;
-            }
-
-            .locked-door-top {
-                cursor: pointer;
-                border-top: .2em solid #b16464;
-            }
-
-            .locked-door-right {
-                cursor: pointer;
-                border-right: .2em solid #b16464;
-            }
-
-            .locked-door-bottom {
-                cursor: pointer;
-                border-bottom: .2em solid #b16464;
-            }
-
-            .locked-door-left {
-                cursor: pointer;
-                border-left: .2em solid #b16464;
-            }
-
-            @media only screen and (max-width: 900px) {
-                .main-content {
-                    font-size: 1vw;
-                }
-
-                .icons-2>span:first-child {
-                    font-size: .9em;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
-
-                .icons-2>span:last-child {
-                    font-size: .9em;
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                }
-
-                .wall-top {
-                    border-top: .32em solid black;
-                }
-
-                .wall-right {
-                    border-right: .32em solid black;
-                }
-
-                .wall-bottom {
-                    border-bottom: .32em solid black;
-                }
-
-                .wall-left {
-                    border-left: .32em solid black;
-                }
-
-                .door-top {
-                    cursor: pointer;
-                    border-top: .32em solid #cccccc;
-                }
-
-                .door-right {
-                    cursor: pointer;
-                    border-right: .32em solid #cccccc;
-                }
-
-                .door-bottom {
-                    cursor: pointer;
-                    border-bottom: .32em solid #cccccc;
-                }
-
-                .door-left {
-                    cursor: pointer;
-                    border-left: .32em solid #cccccc;
-                }
-
-                .locked-door-top {
-                    cursor: pointer;
-                    border-top: .32em solid #b16464;
-                }
-
-                .locked-door-right {
-                    cursor: pointer;
-                    border-right: .32em solid #b16464;
-                }
-
-                .locked-door-bottom {
-                    cursor: pointer;
-                    border-bottom: .32em solid #b16464;
-                }
-
-                .locked-door-left {
-                    cursor: pointer;
-                    border-left: .32em solid #b16464;
-                }
-            }
-
-            .notifier-container {
-                position: absolute;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #00000020;
-            }
-
-            .notifier {
-                font-family: Anton;
-                padding: 20px 30px;
-                border-radius: 10px;
-                background-color: white;
-                box-shadow: 0px 2px 5px black;
-            }
-
-            .notifier .icons {
-                font-size: 2em;
-            }
-
-            .notifier .fa-stack {
-                margin-right: 20px;
-            }
-
-            .notifier .fa-stack:last-child {
-                margin-right: 0;
-            }
-
-            .notifier .fa-stack-2x {
-                color: #111;
-            }
-
-            .notifier .fa-stack-1x {
-                color: white;
-            }
-
-            .emphasis {
-                color: #9b0c0c;
-            }
-
-            .hidden {
-                display: none;
-            }
-
-        </style>
-    </head>
-
-    <body>
-        <div class='main-content'>
-            <div class="grid-container">
-                <div class='grid'></div>
-            </div>
-            <label for="scenarioSelect">Select a Scenario</label>
-            <select name="scenarioSelect" id="scenarioSelect">
-                <option value="1">Scenario 1</option>
-                <option value="2">Scenario 2</option>
-            </select>
-        </div>
-        <div class='notifier-container hidden'>
-            <div class='notifier'></div>
-        </div>
-    </body>
-
-    <script src="./room-defs.js"></script>
-    <script>
-        (function () {
-            var grid = document.querySelector('.grid');
-            for (var col = 25; col > 0; col--) {
-                for (var row = 20; row > 0; row--) {
-                    var div = document.createElement('div');
-                    div.id = 'cell_' + col + 'x' + row;
-                    div.classList.add('grid-cell');
-                    grid.appendChild(div);
-                }
-            }
-
-            document.querySelector('.notifier-container').addEventListener('click', function () {
-                this.classList.add('hidden');
+          if (!tileConfig.numberOfIcons) {
+            cell.querySelector(".fa-stack").addEventListener("click", () => {
+              if (!foundItems.includes(item)) foundItems.push(item);
+              document.querySelector(".notifier").innerHTML = item;
+              document
+                .querySelector(".notifier-container")
+                .classList.remove("hidden");
             });
-        })();
+          } else {
+            var el = document.createElement("span");
 
-        var EnemyTypes = {
-            Zombie: 'zombie',
-            Licker: 'licker'
-        };
+            el.classList.add("fa-stack");
+            el.classList.add("item");
+            el.innerHTML =
+              '<i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span>';
+            el.addEventListener("click", (ev) => {
+              ev.stopImmediatePropagation();
+              ev.stopPropagation();
+              if (!foundItems.includes(item)) foundItems.push(item);
+              document.querySelector(".notifier").innerHTML = item;
+              document
+                .querySelector(".notifier-container")
+                .classList.remove("hidden");
+            });
 
-        var scenarioDefs = {
-            [2]: {
-                items: {
-                    'a': [
-                        'Handgun Bullets',
-                        'Handgun Bullets',
-                        'Handgun Bullets',
-                        'Green Herb',
-                        'Green Herb',
-                        'Spade Key',
-                    ],
-                    'b': [
-                        'Blowgun',
-                        'Red Herb',
-                        'S.T.A.R.S. Key'
-                    ]
-                },
-                floors: {
-                    [1]: {
-                        isStartingFloor: {
-                            '1p': true,
-                            '2p': true
-                        },
-                        rooms: [
-                            RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Green, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left,
-                                            connectingRoomIndex: 1
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        p1StartingPoint: true
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.MediumWide](9, 8, RoomTypes.Yellow, [
-                                {
-                                    index: 2,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            connectingRoomIndex: 0
-                                        }],
-                                        walls: [Directions.Top]
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left,
-                                            connectingRoomIndex: 2
-                                        }],
-                                        walls: [Directions.Bottom, Directions.Right]
-                                    }
-                                },
-                            ]),
-                            RoomGenerator[RoomDefs.L](5, 6, RoomTypes.Green, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Top,
-                                            connectingRoomIndex: 3
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            keyRequired: 'Spade Key',
-                                            connectingRoomIndex: 4
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 2,
-                                    config: {
-                                        enemy: EnemyTypes.Licker
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            connectingRoomIndex: 1
-                                        }]
-                                    }
-                                },
-                            ]),
-                            RoomGenerator[RoomDefs.L_90](5, 2, RoomTypes.Yellow, [
-                                {
-                                    index: 2,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Bottom,
-                                            connectingRoomIndex: 5
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            connectingRoomIndex: 6
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Bottom,
-                                            connectingRoomIndex: 2
-                                        }]
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.MediumSquare](6, 6, RoomTypes.Yellow, [
-                                {
-                                    index: 2,
-                                    config: {
-                                        item: 'b'
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left,
-                                            connectingRoomIndex: 2
-                                        }],
-                                        walls: [Directions.Right]
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        walls: [Directions.Left, Directions.Bottom, Directions.Right]
-                                    }
-                                },
-                                {
-                                    index: 7,
-                                    config: {
-                                        item: 'b'
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.MediumSquare](6, 3, RoomTypes.Amber, [
-                                {
-                                    index: 1,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Top,
-                                            connectingRoomIndex: 3
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 2,
-                                    config: {
-                                        item: 'a'
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        item: 'a',
-                                        walls: [Directions.Top, Directions.Bottom, Directions.Left]
-                                    }
-                                },
-                                {
-                                    index: 7,
-                                    config: {
-                                        walls: [Directions.Top, Directions.Bottom]
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.P](9, 2, RoomTypes.Green, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left,
-                                            connectingRoomIndex: 3
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        stairs: {
-                                            connectingFloor: 2,
-                                            connectingRoomIndex: 4
-                                        }
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        enemy: EnemyTypes.Zombie,
-                                        doors: [{
-                                            direction: Directions.Bottom,
-                                            connectingRoomIndex: 7
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 4,
-                                    config: {
-                                        enemy: EnemyTypes.Zombie
-                                    }
-                                },
-                                {
-                                    index: 5,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Bottom,
-                                            keyRequired: 'Spade Key',
-                                            connectingRoomIndex: 8
-                                        }]
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.SmallTall](10, 4, RoomTypes.Green, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Top,
-                                            connectingRoomIndex: 6
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        itemBox: true,
-                                        item: 'a',
-                                        numberOfIcons: 2
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.SmallSquare](9, 6, RoomTypes.Amber, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Top,
-                                        }],
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        walls: [Directions.Top, Directions.Right, Directions.Bottom]
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        item: 'b'
-                                    }
-                                }
-                            ])
-                        ]
-                    },
-                    [2]: {
-                        isStartingFloor: {
-                            '1p': false,
-                            '2p': true
-                        },
-                        rooms: [
-                            RoomGenerator[RoomDefs.L_90](13, 13, RoomTypes.Green, [
-                                {
-                                    index: 1,
-                                    config: {
-                                        enemy: EnemyTypes.Zombie
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        p2StartingPoint: true
-                                    }
-                                },
-                                {
-                                    index: 4,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left,
-                                            connectingRoomIndex: 1
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        enemy: EnemyTypes.Zombie
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.MediumSquare](10, 13, RoomTypes.Yellow, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        item: 'a'
-                                    }
-                                },
-                                {
-                                    index: 5,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            connectingRoomIndex: 0
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Bottom,
-                                            connectingRoomIndex: 2
-                                        }]
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.P_180](9, 14, RoomTypes.Green, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        item: 'a'
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        enemies: [
-                                            EnemyTypes.Zombie,
-                                            EnemyTypes.Zombie
-                                        ],
-                                        numberOfIcons: 2
-                                    }
-                                },
-                                {
-                                    index: 3,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Top,
-                                            connectingRoomIndex: 1
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 4,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left,
-                                            connectingRoomIndex: 3
-                                        }]
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.L](5, 14, RoomTypes.Yellow, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Top,
-                                            connectingRoomIndex: 4
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 1,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            connectingRoomIndex: 5,
-                                            keyRequired: 'S.T.A.R.S. Key'
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 6,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Right,
-                                            connectingRoomIndex: 2,
-                                        }]
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.P_270](5, 12, RoomTypes.Amber, [
-                                {
-                                    index: 0,
-                                    config: {
-                                        item: 'a'
-                                    }
-                                },
-                                {
-                                    index: 2,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Bottom,
-                                            connectingRoomIndex: 3
-                                        }]
-                                    }
-                                },
-                                {
-                                    index: 5,
-                                    config: {
-                                        stairs: {
-                                            connectingFloor: 1,
-                                            connectingRoomIndex: 6
-                                        }
-                                    }
-                                }
-                            ]),
-                            RoomGenerator[RoomDefs.MediumSquare](6, 14, RoomTypes.Green, [
-                                {
-                                    index: 3,
-                                    config: {
-                                        doors: [{
-                                            direction: Directions.Left
-                                        }]
-                                    }
-                                }
-                            ])
-                        ]
-                    }
-                }
-            }
+            multiIcons.push(el);
+          }
         }
 
-        var foundItems = [];
-
-        function buildRoom(itemIndexes, items, rooms, index) {
-            var config = rooms[index];
-
-            config.tiles.forEach(tileConfig => {
-                var cell = document.querySelector('#cell_' + tileConfig.position.x + 'x' + tileConfig.position.y);
-                cell.classList.add(config.type);
-
-                cell.innerHTML = '';
-
-                var multiIcons = [];
-
-                if (tileConfig.walls) {
-                    tileConfig.walls.forEach(wallDirection => {
-                        cell.classList.add('wall-' + wallDirection);
-                    });
-                }
-
-                if (tileConfig.doors) {
-                    tileConfig.doors.forEach(door => {
-                        cell.classList.add('door-' + door.direction);
-                        if (typeof door.connectingRoomIndex !== 'undefined') {
-                            cell.addEventListener('click', () => {
-                                if (door.keyRequired) {
-                                    if (!foundItems.includes(door.keyRequired)) {
-                                        cell.classList.remove('door-' + door.direction);
-                                        cell.classList.add('locked-door-' + door.direction);
-
-                                        document.querySelector('.notifier').innerHTML = 'Locked: <span class="emphasis">' + door.keyRequired + '</span> required.';
-                                        document.querySelector('.notifier-container').classList.remove('hidden');
-                                    } else {
-                                        if (!door.unlocked) {
-                                            document.querySelector('.notifier').innerHTML = 'Unlocked with <span class="emphasis">' + door.keyRequired + '</span>';
-                                            document.querySelector('.notifier-container').classList.remove('hidden');
-                                            door.unlocked = true;
-                                        }
-                                        cell.classList.add('door-' + door.direction);
-                                        cell.classList.remove('locked-door-' + door.direction);
-                                        buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
-                                    }
-                                } else buildRoom(itemIndexes, items, rooms, door.connectingRoomIndex);
-                            });
-                        }
-                    });
-                }
-
-                if (tileConfig.p1StartingPoint) {
-                    cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">1</span></span>';
-                    cell.querySelector('.fa-stack').addEventListener('click', () => {
-                        document.querySelector('.notifier').innerHTML = '<span class="emphasis">Player 1</span> start position';
-                        document.querySelector('.notifier-container').classList.remove('hidden');
-                    });
-                }
-
-                if (tileConfig.p2StartingPoint) {
-                    cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">2</span></span>';
-                    cell.querySelector('.fa-stack').addEventListener('click', () => {
-                        document.querySelector('.notifier').innerHTML = '<span class="emphasis">Player 2</span> starting position';
-                        document.querySelector('.notifier-container').classList.removr('hidden');
-                    })
-                }
-
-                if (tileConfig.enemy) {
-                    generateEnemy(cell, tileConfig.enemy);
-                }
-
-                if (tileConfig.enemies) {
-                    tileConfig.enemies.forEach(enemy => generateEnemy(cell, enemy));
-                }
-
-                if (tileConfig.item) {
-                    cell.innerHTML += '<span class="fa-stack item"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span></span>';
-                    var itemIndex = itemIndexes[tileConfig.item].pop();
-                    var item = items[tileConfig.item][itemIndex];
-
-                    if (!tileConfig.numberOfIcons) {
-                        cell.querySelector('.fa-stack').addEventListener('click', () => {
-                            if (!foundItems.includes(item)) foundItems.push(item);
-                            document.querySelector('.notifier').innerHTML = item;
-                            document.querySelector('.notifier-container').classList.remove('hidden');
-                        })
-                    } else {
-                        var el = document.createElement('span');
-
-                        el.classList.add('fa-stack');
-                        el.classList.add('item');
-                        el.innerHTML = '<i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span>';
-                        el.addEventListener('click', (ev) => {
-                            ev.stopImmediatePropagation();
-                            ev.stopPropagation();
-                            if (!foundItems.includes(item)) foundItems.push(item);
-                            document.querySelector('.notifier').innerHTML = item;
-                            document.querySelector('.notifier-container').classList.remove('hidden');
-                        });
-
-                        multiIcons.push(el);
-                    }
-                }
-
-                if (tileConfig.stairs) {
-                    cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
-                    cell.addEventListener('click', () => {
-                        buildRoom(itemIndexes, items, scenarioDefs[2].floors[tileConfig.stairs.connectingFloor].rooms, tileConfig.stairs.connectingRoomIndex);
-                    });
-                }
-
-                if (tileConfig.itemBox) {
-                    cell.innerHTML += '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i></span>';
-                    if (!tileConfig.numberOfIcons) {
-                        cell.querySelector('.fa-stack').addEventListener('click', () => {
-                            document.querySelector('.notifier').innerHTML = '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
-                            document.querySelector('.notifier-container').classList.remove('hidden');
-                        })
-                    } else {
-                        var el = document.createElement('span');
-
-                        el.classList.add(['fa-stack']);
-                        el.innerHTML = '<i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i>';
-                        el.addEventListener('click', (ev) => {
-                            ev.stopImmediatePropagation();
-                            ev.stopPropagation();
-                            document.querySelector('.notifier').innerHTML = '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
-                            document.querySelector('.notifier-container').classList.remove('hidden');
-                        });
-
-                        multiIcons.push(el);
-                    }
-                }
-
-                if (tileConfig.numberOfIcons) {
-                    cell.classList.add('icons-' + tileConfig.numberOfIcons);
-                    cell.addEventListener('click', (ev) => {
-                        ev.stopPropagation();
-                        ev.preventDefault();
-                        var notifier = document.querySelector('.notifier');
-                        notifier.innerHTML = '<span class="icons"></span>';
-                        console.log(multiIcons);
-                        multiIcons.forEach(icon => notifier.querySelector('.icons').appendChild(icon))
-
-                        document.querySelector('.notifier-container').classList.remove('hidden');
-                    });
-                }
-            })
+        if (tileConfig.stairs) {
+          cell.innerHTML +=
+            '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
+          cell.addEventListener("click", () => {
+            buildRoom(
+              itemIndexes,
+              items,
+              scenarioDefs[2].floors[tileConfig.stairs.connectingFloor].rooms,
+              tileConfig.stairs.connectingRoomIndex
+            );
+          });
         }
 
-        function generateEnemy(cell, enemyType) {
-            switch (enemyType) {
-                case EnemyTypes.Zombie:
-                    cell.innerHTML += '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">Z</span></span>';
-                    break;
-                case EnemyTypes.Licker:
-                    cell.innerHTML += '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">L</span></span>';
-                    break;
-            }
+        if (tileConfig.itemBox) {
+          cell.innerHTML +=
+            '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i></span>';
+          if (!tileConfig.numberOfIcons) {
+            cell.querySelector(".fa-stack").addEventListener("click", () => {
+              document.querySelector(".notifier").innerHTML =
+                '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
+              document
+                .querySelector(".notifier-container")
+                .classList.remove("hidden");
+            });
+          } else {
+            var el = document.createElement("span");
+
+            el.classList.add(["fa-stack"]);
+            el.innerHTML =
+              '<i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i>';
+            el.addEventListener("click", (ev) => {
+              ev.stopImmediatePropagation();
+              ev.stopPropagation();
+              document.querySelector(".notifier").innerHTML =
+                '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
+              document
+                .querySelector(".notifier-container")
+                .classList.remove("hidden");
+            });
+
+            multiIcons.push(el);
+          }
         }
 
-        // Add rectangle tile
-        // add tile description
-        // add tile requirements
-        // add locked doors
-        // add enemy markers
-        // add stairs
-        // add tension deck requirements
-        // add description
-        // add special rules
-        // add encounter dice tables
-        // add additional cards and tokens
-        // add item randomizer
-        // add starting items
+        if (tileConfig.numberOfIcons) {
+          cell.classList.add("icons-" + tileConfig.numberOfIcons);
+          cell.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            ev.preventDefault();
+            var notifier = document.querySelector(".notifier");
+            notifier.innerHTML = '<span class="icons"></span>';
+            console.log(multiIcons);
+            multiIcons.forEach((icon) =>
+              notifier.querySelector(".icons").appendChild(icon)
+            );
 
-        function shuffle(array) {
-            var copy = JSON.parse(JSON.stringify(array));
-            let currentIndex = copy.length;
-
-            // While there remain elements to shuffle...
-            while (currentIndex != 0) {
-
-                // Pick a remaining element...
-                let randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-
-                // And swap it with the current element.
-                [copy[currentIndex], copy[randomIndex]] = [
-                    copy[randomIndex], copy[currentIndex]];
-            }
-
-            return copy;
+            document
+              .querySelector(".notifier-container")
+              .classList.remove("hidden");
+          });
         }
+      });
+    }
 
-        var itemIndexes = {
-            a: shuffle(scenarioDefs[2].items.a.map((val, index) => index)),
-            b: shuffle(scenarioDefs[2].items.b.map((val, index) => index))
-        }
-        buildRoom(itemIndexes, scenarioDefs[2].items, scenarioDefs[2].floors[1].rooms, 0);
-    </script>
+    function generateEnemy(cell, enemyType) {
+      switch (enemyType) {
+        case EnemyTypes.Zombie:
+          cell.innerHTML +=
+            '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">Z</span></span>';
+          break;
+        case EnemyTypes.Licker:
+          cell.innerHTML +=
+            '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">L</span></span>';
+          break;
+      }
+    }
 
+    // display scenario data
+    // make the scenario picker work
+    // configure for 1-4 players
+    // add tile labels
+    // add floor labels
+    // add starting items
+
+    function shuffle(array) {
+      var copy = JSON.parse(JSON.stringify(array));
+      let currentIndex = copy.length;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [copy[currentIndex], copy[randomIndex]] = [
+          copy[randomIndex],
+          copy[currentIndex],
+        ];
+      }
+
+      return copy;
+    }
+
+    var itemIndexes = {
+      a: shuffle(scenarioDefs[2].items.a.map((val, index) => index)),
+      b: shuffle(scenarioDefs[2].items.b.map((val, index) => index)),
+    };
+    buildRoom(
+      itemIndexes,
+      scenarioDefs[2].items,
+      scenarioDefs[2].floors[1].rooms,
+      0
+    );
+  </script>
 </html>

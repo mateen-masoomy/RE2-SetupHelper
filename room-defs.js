@@ -44,6 +44,16 @@ var RoomConfigDefs = {
   L: 'l',
 };
 
+var TileDescriptions = {
+  Small: '1x2 Tile',
+  Medium: '2x3 Tile',
+  SmallSquare: '2x2 Tile',
+  MediumSquare: '3x3 Tile',
+  LargeSquare: '4x4 Tile',
+  P: '6 Space P Tile',
+  L: '7 Space L Tile'
+}
+
 function createDefaultConfig(count) {
   var tileConfigs = Array.from({ length: count - 1 }, () => ({}));
 
