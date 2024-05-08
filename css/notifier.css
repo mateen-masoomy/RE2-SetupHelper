@@ -1,0 +1,47 @@
+.notifier-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000020;
+}
+
+.notifier {
+    font-family: Anton;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 2px 5px black;
+}
+
+.notifier .icons {
+    font-size: 2em;
+}
+
+.notifier .fa-stack {
+    margin-right: 20px;
+}
+
+.notifier .fa-stack:last-child {
+    margin-right: 0;
+}
+
+.notifier .fa-stack-2x {
+    color: #111;
+}
+
+.notifier .fa-stack-1x {
+    color: white;
+}
+
+.emphasis {
+    color: #9b0c0c;
+}
+
+.hidden {
+    display: none;
+}

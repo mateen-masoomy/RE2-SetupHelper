@@ -1,0 +1,205 @@
+.main-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    font-size: 1.5vw;
+}
+
+.green {
+    background-color: #65a76e;
+}
+
+.yellow {
+    background: repeating-linear-gradient(45deg,
+            #ceaf4b,
+            #ceaf4b 10%,
+            #777777 10%,
+            #777777 20%);
+}
+
+.amber {
+    background: repeating-linear-gradient(45deg,
+            #CC3620,
+            #CC3620 10%,
+            #777777 10%,
+            #777777 20%);
+}
+
+i {
+    font-size: 1.1em;
+    color: white;
+}
+
+.fa-stack {
+    filter: drop-shadow(0px 2px 3px #00000080);
+}
+
+.fa-stack .fa-inverse {
+    font-family: Anton;
+    color: #222;
+    position: relative;
+    cursor: default;
+}
+
+.enemy .fa-stack-2x {
+    color: #222;
+}
+
+.enemy .fa-inverse {
+    color: #ccc;
+}
+
+.contrast {
+    color: #111;
+}
+
+.icons-2 {
+    overflow: visible;
+    position: relative;
+}
+
+.icons-2>span:first-child {
+    font-size: .65em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.icons-2>span:last-child {
+    font-size: .65em;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.wall-top {
+    border-top: .2em solid black;
+}
+
+.wall-right {
+    border-right: .2em solid black;
+}
+
+.wall-bottom {
+    border-bottom: .2em solid black;
+}
+
+.wall-left {
+    border-left: .2em solid black;
+}
+
+.door-top {
+    cursor: pointer;
+    border-top: .2em solid #cccccc;
+}
+
+.door-right {
+    cursor: pointer;
+    border-right: .2em solid #cccccc;
+}
+
+.door-bottom {
+    cursor: pointer;
+    border-bottom: .2em solid #cccccc;
+}
+
+.door-left {
+    cursor: pointer;
+    border-left: .2em solid #cccccc;
+}
+
+.locked-door-top {
+    cursor: pointer;
+    border-top: .2em solid #b16464;
+}
+
+.locked-door-right {
+    cursor: pointer;
+    border-right: .2em solid #b16464;
+}
+
+.locked-door-bottom {
+    cursor: pointer;
+    border-bottom: .2em solid #b16464;
+}
+
+.locked-door-left {
+    cursor: pointer;
+    border-left: .2em solid #b16464;
+}
+
+@media only screen and (max-width: 900px) {
+    .main-content {
+        font-size: 1vw;
+    }
+
+    .icons-2>span:first-child {
+        font-size: .9em;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .icons-2>span:last-child {
+        font-size: .9em;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .wall-top {
+        border-top: .32em solid black;
+    }
+
+    .wall-right {
+        border-right: .32em solid black;
+    }
+
+    .wall-bottom {
+        border-bottom: .32em solid black;
+    }
+
+    .wall-left {
+        border-left: .32em solid black;
+    }
+
+    .door-top {
+        cursor: pointer;
+        border-top: .32em solid #cccccc;
+    }
+
+    .door-right {
+        cursor: pointer;
+        border-right: .32em solid #cccccc;
+    }
+
+    .door-bottom {
+        cursor: pointer;
+        border-bottom: .32em solid #cccccc;
+    }
+
+    .door-left {
+        cursor: pointer;
+        border-left: .32em solid #cccccc;
+    }
+
+    .locked-door-top {
+        cursor: pointer;
+        border-top: .32em solid #b16464;
+    }
+
+    .locked-door-right {
+        cursor: pointer;
+        border-right: .32em solid #b16464;
+    }
+
+    .locked-door-bottom {
+        cursor: pointer;
+        border-bottom: .32em solid #b16464;
+    }
+
+    .locked-door-left {
+        cursor: pointer;
+        border-left: .32em solid #b16464;
+    }
+}
