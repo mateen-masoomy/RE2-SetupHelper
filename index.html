@@ -16,18 +16,22 @@
     <link rel="stylesheet" href="./css/grid.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/notifier.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
   </head>
 
   <body>
+    <header>
+      <select name="scenarioSelect" id="scenarioSelect">
+        <option value="1">Scenario 1</option>
+        <option value="2">Scenario 2</option>
+      </select>
+    </header>
     <div class="main-content">
       <div class="grid-container">
         <div class="grid"></div>
       </div>
       <label for="scenarioSelect">Select a Scenario</label>
-      <select name="scenarioSelect" id="scenarioSelect">
-        <option value="1">Scenario 1</option>
-        <option value="2">Scenario 2</option>
-      </select>
+      
     </div>
     <div class="notifier-container hidden">
       <div class="notifier"></div>
