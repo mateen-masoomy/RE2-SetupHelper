@@ -24,20 +24,28 @@ var ScenarioBuilder = (function () {
   var foundItems = [];
 
   /**
+   * The current scenario
+   * @type {Scenario}
+   */
+  var currentScenario;
+
+  /**
    * Build a scenario
    * @param {Scenario} scenario The scenario to build
    * @param {number} numberOfPlayers The number of players
    */
   var buildScenario = (scenario, numberOfPlayers) => {
+    currentScenario = scenario;
+    
     itemIndexes = {
       a: shuffle(scenario.items.a.map((val, index) => index)),
       b: shuffle(scenario.items.b.map((val, index) => index)),
     };
 
-    buildRoom(scenario.floors[scenario.startingRooms.p1.floor], scenario.startingRooms.p1.roomIndex);
+    buildRoom(scenario.floors, scenario.startingRooms.p1.floor, scenario.startingRooms.p1.roomIndex);
 
     if (numberOfPlayers > 1) {
-      buildRoom(scenario.floors[scenario.startingRooms.p2.floor], scenario.startingRooms.p2.roomIndex);
+      buildRoom(scenario.floors, scenario.startingRooms.p2.floor, scenario.startingRooms.p2.roomIndex);
     }
   }
   
@@ -45,11 +53,16 @@ var ScenarioBuilder = (function () {
   /**
    * Build Room
    * @description Render a room on the grid
-   * @param {Floor} floor - The collection of rooms for the floor
+   * @param {Object.<string, Floor>} floors - The collection of rooms for the floor
+   * @param {number} floorNumber The floor number
    * @param {number} index                - The index of the room to build
    */
-  function buildRoom(floor, index) {
-    var config = floor.rooms[index];
+  function buildRoom(floors, floorNumber, index) {
+    /**
+     * The config for the room
+     * @type {Room}
+     */
+    var config = floors.floor[floorNumber].rooms[index];
 
     config.tiles.forEach((tileConfig) => {
       var cell = document.querySelector(
@@ -98,12 +111,13 @@ var ScenarioBuilder = (function () {
                   cell.classList.add("door-" + door.direction);
                   cell.classList.remove("locked-door-" + door.direction);
                   buildRoom(
-                    rooms,
+                    floors,
+                    floorNumber,
                     door.connectingRoomIndex
                   );
                 }
               } else
-                buildRoom(rooms, door.connectingRoomIndex);
+                buildRoom(floors, floorNumber, door.connectingRoomIndex);
             });
           }
         });
@@ -177,7 +191,8 @@ var ScenarioBuilder = (function () {
           '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
         cell.addEventListener("click", () => {
           buildRoom(
-            scenarioDefs[2].floors[tileConfig.stairs.connectingFloor].rooms,
+            floors,
+            tileConfig.stairs.connectingFloor,
             tileConfig.stairs.connectingRoomIndex
           );
         });
