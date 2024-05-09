@@ -70,7 +70,9 @@
           this.classList.add("hidden");
         });
 
-        ScenarioBuilder.BuildScenario(scenarioDefs[2]);
+        document.querySelector('#scenarioSelect').addEventListener('change', function() {
+          ScenarioBuilder.BuildScenario(scenarioDefs[this.value]);
+        });
     })();
   </script>
 </html>

@@ -36,7 +36,7 @@ var ScenarioBuilder = (function () {
    */
   var buildScenario = (scenario, numberOfPlayers) => {
     currentScenario = scenario;
-    
+
     itemIndexes = {
       a: shuffle(scenario.items.a.map((val, index) => index)),
       b: shuffle(scenario.items.b.map((val, index) => index)),
@@ -58,11 +58,7 @@ var ScenarioBuilder = (function () {
    * @param {number} index                - The index of the room to build
    */
   function buildRoom(floors, floorNumber, index) {
-    /**
-     * The config for the room
-     * @type {Room}
-     */
-    var config = floors.floor[floorNumber].rooms[index];
+    var config = floors[floorNumber].rooms[index];
 
     config.tiles.forEach((tileConfig) => {
       var cell = document.querySelector(
