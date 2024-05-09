@@ -428,7 +428,7 @@
                 },
               },
             ]),
-            RoomGenerator[RoomDefs.P_180](9, 14, RoomTypes.Green, [
+            RoomGenerator[RoomDefs.P_180_Flip](9, 14, RoomTypes.Green, [
               {
                 index: 0,
                 config: {
