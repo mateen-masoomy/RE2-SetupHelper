@@ -34,16 +34,23 @@
      *
      * @typedef Floor
      * @type {object}
-     * @property {Object} isStartingFloor   - Starting floor configuration
-     * @property {boolean} isStartingFloor.p1  - Whether player 1 starts on this floor
-     * @property {boolean} isStartingFloor.p2  - Whether player 2 starts on this floor
+     * @property {string} label The label for the floor
      * @property {Room[]} rooms             - The rooms this floor includes
      * 
-     * @typedef specialRule
+     * @typedef SpecialRule
      * @type {object}
      * @property {string} name              - The name of the rule
      * @property {string} description       - The description of the rule
      * 
+     * @typedef ItemIndexes
+     * @type {object}
+     * @property {number[]} a
+     * @property {number[]} b
+     * 
+     * @typedef Items
+     * @type {object}
+     * @property {string[]} a
+     * @property {string[]} b
      *
      * @typedef Scenario
      * @type {object}
@@ -59,11 +66,9 @@
      * @property {string} tilesRequired.p
      * @property {string} tilesRequired.l
      * @property {string} location                          - The location of this scenario
-     * @property {specialRule[]} specialRules               - Special rules in play for this scenario
+     * @property {SpecialRule[]} specialRules               - Special rules in play for this scenario
      * @property {string[]} startingItems                   - The starting items for this scenario
-     * @property {Object} items                             - The scenario's items
-     * @property {string[]} items.a                         - The scenario's A items
-     * @property {string[]} items.b                         - The scenario's B items
+     * @property {Items} items                             - The scenario's items
      * @property {object} rollTables                        - The rolltables for yellow and amber rooms
      * @property {string[]} rollTables.yellow               - The yellow encounter roll table
      * @property {string[]} rollTables.amber                - The amber encounter roll table
@@ -72,6 +77,13 @@
      * @property {string[]} tensionDeck.amber               - The amber tension deck cards
      * @property {string[]} tensionDeck.red                 - The red tension deck cards
      * @property {string[]} additionalCardsAndTokens        - Additional cards and tokens required for this scenario
+     * @property {object} startingRooms
+     * @property {object} startingRooms.p1
+     * @property {number} startingRooms.p1.floor
+     * @property {number} startingRooms.p1.roomIndex
+     * @property {object} startingRooms.p2
+     * @property {number} startingRooms.p2.floor
+     * @property {number} startingRooms.p2.roomIndex
      * @property {Object.<string, Floor>} floors            - The scenario's floors
      *
      */

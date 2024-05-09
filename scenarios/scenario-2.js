@@ -59,12 +59,18 @@
         ],
         b: ["Blowgun", "Red Herb", "S.T.A.R.S. Key"],
       },
+      startingRooms: {
+        p1: {
+          floor: 1,
+          roomIndex: 0
+        },
+        p2: {
+          floor: 2,
+          roomIndex: 0
+        }
+      },
       floors: {
         [1]: {
-          isStartingFloor: {
-            p1: true,
-            p2: true,
-          },
           rooms: [
             RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Green, [
               {
@@ -360,10 +366,6 @@
           ],
         },
         [2]: {
-          isStartingFloor: {
-            p1: false,
-            p2: true,
-          },
           rooms: [
             RoomGenerator[RoomDefs.L_90](13, 13, RoomTypes.Green, [
               {
