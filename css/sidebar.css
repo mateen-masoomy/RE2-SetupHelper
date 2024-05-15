@@ -41,3 +41,15 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+  .sidebar select {
+    background-color:white;
+    color:#222;
+    height:50px;
+    font-size:.75em;
+}
+
+.sidebar select option {
+    padding-top:10px;
+    padding-bottom:10px;
+}

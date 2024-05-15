@@ -1,16 +1,21 @@
 header {
+    position:relative;
     padding: 15px 10px 0px 10px;
     background-color: #222;
 }
 
-header select {
-    background-color:white;
-    color:#222;
-    height:50px;
-    font-size:.75em;
+header .sidebar-toggle {
+    position:absolute;
+    left:10px;
+    top:10px;
+    border: 0;
+    background-color:inherit;
+    border-radius:50%;
+    width:20px;
+    height: 20px;
+    cursor: pointer;
 }
 
-header select option {
-    padding-top:10px;
-    padding-bottom:10px;
+header .sidebar-toggle:hover {
+    background-color:#555;
 }
