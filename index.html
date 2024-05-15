@@ -22,26 +22,34 @@
 
   <body>
     <div id="sidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
-      <div class="custom-select">
-        <select name="scenarioSelect" id="scenarioSelect">
-          <option value="" disabled selected>Select a scenario</option>
-          <option value="1">Scenario 1</option>
-          <option value="2">Scenario 2</option>
-        </select>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
+        >&times;</a
+      >
+      <div class="sidebar-content">
+        <div class="custom-select">
+          <select name="scenarioSelect" id="scenarioSelect">
+            <option value="" disabled selected>Select a scenario</option>
+            <option value="1">Scenario 1</option>
+            <option value="2">Scenario 2</option>
+          </select>
+        </div>
       </div>
     </div>
 
     <div class="main-content">
       <header>
-        <div class="sidebar-toggle" onclick="openSidebar()"><i class="fa-solid fa-bars"></i></div>
-        <h1>Resident Evil <span class="emphasis">2</span>: The Board Game Helper</h1>
+        <div class="sidebar-toggle" onclick="openSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <h1>
+          <span class="emphasis">R</span>esident
+          <span class="emphasis">E</span>vil 2: The Board Game Helper
+        </h1>
       </header>
 
       <div class="grid-container">
         <div class="grid"></div>
       </div>
-      
     </div>
     <div class="notifier-container hidden">
       <div class="notifier"></div>
@@ -80,7 +88,9 @@
           this.classList.add("hidden");
         });
 
-        document.querySelector('#scenarioSelect').addEventListener('change', function() {
+      document
+        .querySelector("#scenarioSelect")
+        .addEventListener("change", function () {
           ScenarioBuilder.BuildScenario(scenarioDefs[this.value]);
         });
     })();

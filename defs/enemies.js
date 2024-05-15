@@ -1,4 +1,4 @@
 var EnemyTypes = {
-    Zombie: 'zombie',
-    Licker: 'licker'
+  Zombie: "zombie",
+  Licker: "licker",
 };

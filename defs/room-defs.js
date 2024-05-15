@@ -1,58 +1,58 @@
 var RoomDefs = {
-  SmallWide: '2x1',
-  SmallTall: '1x2',
+  SmallWide: "2x1",
+  SmallTall: "1x2",
 
-  MediumWide: '3x2',
-  MediumTall: '2x3',
+  MediumWide: "3x2",
+  MediumTall: "2x3",
 
-  SmallSquare: '2x2',
-  MediumSquare: '3x3',
-  LargeSquare: '4x4',
+  SmallSquare: "2x2",
+  MediumSquare: "3x3",
+  LargeSquare: "4x4",
 
-  P: 'p',
-  P_90: 'p90',
-  P_180: 'p180',
-  P_180_Flip: 'p180Flip',
-  P_270: 'p270',
+  P: "p",
+  P_90: "p90",
+  P_180: "p180",
+  P_180_Flip: "p180Flip",
+  P_270: "p270",
 
-  L: 'l',
-  L_90: 'l90',
-  L_180: 'l180',
-  L_270: 'l270',
+  L: "l",
+  L_90: "l90",
+  L_180: "l180",
+  L_270: "l270",
 };
 
 var Directions = {
-  Top: 'top',
-  Right: 'right',
-  Bottom: 'bottom',
-  Left: 'left',
+  Top: "top",
+  Right: "right",
+  Bottom: "bottom",
+  Left: "left",
 };
 
 var RoomTypes = {
-  Green: 'green',
-  Yellow: 'yellow',
-  Amber: 'amber',
+  Green: "green",
+  Yellow: "yellow",
+  Amber: "amber",
 };
 
 var RoomConfigDefs = {
-  Small: 'small',
-  Medium: 'medium',
-  SmallSquare: '2x2',
-  MediumSquare: '3x3',
-  LargeSquare: '4x4',
-  P: 'p',
-  L: 'l',
+  Small: "small",
+  Medium: "medium",
+  SmallSquare: "2x2",
+  MediumSquare: "3x3",
+  LargeSquare: "4x4",
+  P: "p",
+  L: "l",
 };
 
 var TileDescriptions = {
-  Small: '1x2 Tile',
-  Medium: '2x3 Tile',
-  SmallSquare: '2x2 Tile',
-  MediumSquare: '3x3 Tile',
-  LargeSquare: '4x4 Tile',
-  P: '6 Space P Tile',
-  L: '7 Space L Tile'
-}
+  Small: "1x2 Tile",
+  Medium: "2x3 Tile",
+  SmallSquare: "2x2 Tile",
+  MediumSquare: "3x3 Tile",
+  LargeSquare: "4x4 Tile",
+  P: "6 Space P Tile",
+  L: "7 Space L Tile",
+};
 
 function createDefaultConfig(count) {
   var tileConfigs = Array.from({ length: count - 1 }, () => ({}));
@@ -790,7 +790,7 @@ var RoomGenerator = {
     ];
 
     var square = RoomGenerator[RoomDefs.SmallSquare](
-      x ,
+      x,
       y + 2,
       type,
       JSON.parse(JSON.stringify(tempMap))
