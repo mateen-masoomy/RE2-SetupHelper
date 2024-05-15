@@ -27,10 +27,13 @@ header .sidebar-toggle {
     border: 0;
     background-color: inherit;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
     color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header .sidebar-toggle:hover {
