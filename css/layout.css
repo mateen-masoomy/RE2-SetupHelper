@@ -1,7 +1,23 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
 header {
     position:relative;
     padding: 15px 10px 0px 10px;
     background-color: #222;
+}
+
+header h1 {
+    margin-left:80px;
+    margin-bottom:0;
+    padding-bottom:10px;
+    color:white;
+}
+
+header h1 emphasis {
+    color:#CC3620;
 }
 
 header .sidebar-toggle {
@@ -14,8 +30,10 @@ header .sidebar-toggle {
     width:20px;
     height: 20px;
     cursor: pointer;
+    color:inherit;
 }
 
 header .sidebar-toggle:hover {
-    background-color:#555;
+    background-color:#444;
+    color:white;
 }
