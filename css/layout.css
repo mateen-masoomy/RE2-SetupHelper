@@ -30,6 +30,7 @@ header {
   padding: 15px 10px 0px 10px;
   background-color: #111;
   font-family: 'Oswald';
+  white-space: nowrap;
 }
 
 header h1 {
