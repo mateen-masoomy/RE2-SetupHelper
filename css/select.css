@@ -1,61 +1,74 @@
 /* The container must be positioned relative: */
 .custom-select {
-    position: relative;
+  position: relative;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.scenario-select {
+  width: 555px;
 }
 
 .custom-select select {
-    display: none;
-    /*hide original SELECT element: */
+  display: none;
+  /*hide original SELECT element: */
 }
 
 .select-selected {
-    background-color: white;
+  background-color: white;
 }
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
-    position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  content: '';
+  border: 6px solid transparent;
+  border-color: #111 transparent transparent transparent;
 }
 
 /* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    top: 7px;
+  top: 11px;
+  border-color: transparent transparent #111 transparent;
 }
 
 /* style the items (options), including the selected item: */
 .select-items div,
 .select-selected {
-    color: black;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer;
+  color: black;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
 }
 
 /* Style items (options): */
 .select-items {
-    position: absolute;
-    background-color: white;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background-color: white;
+  z-index: 99;
 }
 
 /* Hide the items when the select box is closed: */
 .select-hide {
-    display: none;
+  display: none;
 }
 
 .select-items div:hover,
 .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 800px) {
+  .scenario-select {
+    width: calc(100% - 45px);
+  }
 }

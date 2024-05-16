@@ -3,18 +3,18 @@
    * @type Scenario
    */
   var scenario = {
-    name: "THE S.T.A.R.S. OFFICE",
+    name: 'THE S.T.A.R.S. OFFICE',
     intro: `With eerily quiet halls, it seems the Raccoon City Police Department won't be the sanctuary you once hoped for.
               The streets outside are overrun, though, so your only choice is to explore deeper within the RPD building and
               try to meet up with any other survivors. With hesitant steps, the search begins...`,
     description: `In this scenario the characters must find the S.T.A.R.S. Key, and make their way to the S.T.A.R.S. Office
                     on the 2nd Floor. The players successfully complete this scenario if all characters are on the tile marked
                     as the S.T.A.R.S. Office and there are no enemies on that tile.`,
-    location: "This scenario takes place in the Raccoon City Police Department",
+    location: 'This scenario takes place in the Raccoon City Police Department',
     specialRules: [
       {
-        name: "SAFE HAVEN",
-        description: `A character on the S.T.A.R.S. Office tile does not have to drwa a card during the Tension Phase.`,
+        name: 'SAFE HAVEN',
+        description: `A character on the S.T.A.R.S. Office tile does not have to draw a card during the Tension Phase.`,
       },
     ],
     tilesRequired: {
@@ -27,33 +27,33 @@
     },
     rollTables: {
       yellow: [
-        "Roll on the amber encounter table instead.",
-        "2x Zombie at the closest hazard symbol",
-        "1x Zombie",
-        "Snatching Talons - The active character must pass an evade roll or their Action Phase ends immediately",
-        "Unsettling Feeling - The active character draws an extra card during the Tension Phase.",
-        "Empty",
+        'Roll on the amber encounter table instead.',
+        '2x Zombie at the closest hazard symbol',
+        '1x Zombie',
+        'Snatching Talons - The active character must pass an evade roll or their Action Phase ends immediately',
+        'Unsettling Feeling - The active character draws an extra card during the Tension Phase.',
+        'Empty',
       ],
       amber: [
-        "2x Zombie Dog",
-        "2x Zombie at the closest hazard symbol",
-        "2x Zombie",
-        "1x Zombie, Unsettling Feeling - The active character draws an extra card during the Tension Phase.",
-        "1x Zombie",
-        "Empty",
+        '2x Zombie Dog',
+        '2x Zombie at the closest hazard symbol',
+        '2x Zombie',
+        '1x Zombie, Unsettling Feeling - The active character draws an extra card during the Tension Phase.',
+        '1x Zombie',
+        'Empty',
       ],
     },
-    startingItems: ["1-4 Knife", "1-4 Handgun", "2x First Aid Spray"],
+    startingItems: ['1-4 Knife', '1-4 Handgun', '2x First Aid Spray'],
     items: {
       a: [
-        "Handgun Bullets",
-        "Handgun Bullets",
-        "Handgun Bullets",
-        "Green Herb",
-        "Green Herb",
-        "Spade Key",
+        'Handgun Bullets',
+        'Handgun Bullets',
+        'Handgun Bullets',
+        'Green Herb',
+        'Green Herb',
+        'Spade Key',
       ],
-      b: ["Blowgun", "Red Herb", "S.T.A.R.S. Key"],
+      b: ['Blowgun', 'Red Herb', 'S.T.A.R.S. Key'],
     },
     startingRooms: {
       p1: {
@@ -67,6 +67,13 @@
     },
     floors: {
       [1]: {
+        label: {
+          position: {
+            x: 5,
+            y: 1,
+          },
+          text: 'First Floor',
+        },
         rooms: [
           RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Green, [
             {
@@ -131,7 +138,7 @@
                 doors: [
                   {
                     direction: Directions.Right,
-                    keyRequired: "Spade Key",
+                    keyRequired: 'Spade Key',
                     connectingRoomIndex: 4,
                   },
                 ],
@@ -194,7 +201,7 @@
             {
               index: 2,
               config: {
-                item: "b",
+                item: 'b',
               },
             },
             {
@@ -218,7 +225,7 @@
             {
               index: 7,
               config: {
-                item: "b",
+                item: 'b',
               },
             },
           ]),
@@ -237,13 +244,13 @@
             {
               index: 2,
               config: {
-                item: "a",
+                item: 'a',
               },
             },
             {
               index: 6,
               config: {
-                item: "a",
+                item: 'a',
                 walls: [Directions.Top, Directions.Bottom, Directions.Left],
               },
             },
@@ -299,7 +306,7 @@
                 doors: [
                   {
                     direction: Directions.Bottom,
-                    keyRequired: "Spade Key",
+                    keyRequired: 'Spade Key',
                     connectingRoomIndex: 8,
                   },
                 ],
@@ -322,7 +329,7 @@
               index: 1,
               config: {
                 itemBox: true,
-                item: "a",
+                item: 'a',
                 numberOfIcons: 2,
               },
             },
@@ -347,13 +354,20 @@
             {
               index: 3,
               config: {
-                item: "b",
+                item: 'b',
               },
             },
           ]),
         ],
       },
       [2]: {
+        label: {
+          position: {
+            x: 5,
+            y: 11,
+          },
+          text: 'Second Floor',
+        },
         rooms: [
           RoomGenerator[RoomDefs.L_90](13, 13, RoomTypes.Green, [
             {
@@ -390,7 +404,7 @@
             {
               index: 0,
               config: {
-                item: "a",
+                item: 'a',
               },
             },
             {
@@ -420,7 +434,7 @@
             {
               index: 0,
               config: {
-                item: "a",
+                item: 'a',
               },
             },
             {
@@ -472,7 +486,7 @@
                   {
                     direction: Directions.Right,
                     connectingRoomIndex: 5,
-                    keyRequired: "S.T.A.R.S. Key",
+                    keyRequired: 'S.T.A.R.S. Key',
                   },
                 ],
               },
@@ -493,7 +507,7 @@
             {
               index: 0,
               config: {
-                item: "a",
+                item: 'a',
               },
             },
             {
@@ -526,6 +540,12 @@
                     direction: Directions.Left,
                   },
                 ],
+              },
+            },
+            {
+              index: 4,
+              config: {
+                label: 'S.T.A.R.S. Room',
               },
             },
           ]),

@@ -21,6 +21,7 @@
  * @property {number} stairs.connectingRoomIndex    - The room index to connect to
  * @property {boolean} itemBox                         - Whether the tile contains an item box
  * @property {number?} numberOfIcons                 - The number of icons on the tile
+ * @property {string?} label
  *
  * @typedef TileDefinition
  * @type {object}
@@ -34,7 +35,11 @@
  *
  * @typedef Floor
  * @type {object}
- * @property {string} label The label for the floor
+ * @property {object} label The label for the floor
+ * @property {object} label.position
+ * @property {number} label.position.x
+ * @property {number} label.position.y
+ * @property {string} label.text
  * @property {Room[]} rooms             - The rooms this floor includes
  *
  * @typedef SpecialRule

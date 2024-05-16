@@ -1,205 +1,238 @@
 .main-content {
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    font-size: 1.5vw;
+  height: calc(100% - 80px);
+  width: 100%;
+  overflow-y: scroll;
+  font-size: 1.5vw;
+  margin-top: 80px;
 }
 
 .green {
-    background-color: #65a76e;
+  background-color: #65a76e;
 }
 
 .yellow {
-    background: repeating-linear-gradient(45deg,
-            #ceaf4b,
-            #ceaf4b 10%,
-            #777777 10%,
-            #777777 20%);
+  background: repeating-linear-gradient(
+    45deg,
+    #ceaf4b,
+    #ceaf4b 10%,
+    #777777 10%,
+    #777777 20%
+  );
 }
 
 .amber {
-    background: repeating-linear-gradient(45deg,
-            #CC3620,
-            #CC3620 10%,
-            #777777 10%,
-            #777777 20%);
+  background: repeating-linear-gradient(
+    45deg,
+    #cc3620,
+    #cc3620 10%,
+    #777777 10%,
+    #777777 20%
+  );
+}
+
+.label-cell {
+  overflow: visible;
+}
+
+.board-label {
+  width: auto;
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+}
+.floor-label {
+  font-size: 2em;
+  background-color: white;
+  padding: 0px 20px;
+}
+.room-label {
+  left: 50%;
+  font-size: 0.8em;
+  font-weight: bold;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+  background-color: white;
+  border-radius: 15px;
+  padding: 0px 20px;
+  box-shadow: 0 2px 5px #111;
 }
 
 i {
-    font-size: 1.1em;
-    color: white;
+  font-size: 1.1em;
+  color: white;
 }
 
 .fa-stack {
-    filter: drop-shadow(0px 2px 3px #00000080);
+  filter: drop-shadow(0px 2px 3px #00000080);
 }
 
 .fa-stack .fa-inverse {
-    font-family: Anton;
-    color: #222;
-    position: relative;
-    cursor: default;
+  position: relative;
+  font-family: Anton;
+  color: #222;
+  cursor: default;
 }
 
 .enemy .fa-stack-2x {
-    color: #222;
+  color: #222;
 }
 
 .enemy .fa-inverse {
-    color: #ccc;
+  color: #ccc;
 }
 
 .contrast {
-    color: #111;
+  color: #111;
 }
 
 .icons-2 {
-    overflow: visible;
-    position: relative;
+  position: relative;
+  overflow: visible;
 }
 
-.icons-2>span:first-child {
-    font-size: .65em;
-    position: absolute;
-    left: 0;
-    top: 0;
+.icons-2 > span:first-child {
+  position: absolute;
+  top: 5px;
+  left: -4px;
+  font-size: 0.8em;
 }
 
-.icons-2>span:last-child {
-    font-size: .65em;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+.icons-2 > span:last-child {
+  position: absolute;
+  right: -4px;
+  bottom: 1px;
+  font-size: 0.8em;
 }
 
 .wall-top {
-    border-top: .2em solid black;
+  border-top: 0.2em solid black;
 }
 
 .wall-right {
-    border-right: .2em solid black;
+  border-right: 0.2em solid black;
 }
 
 .wall-bottom {
-    border-bottom: .2em solid black;
+  border-bottom: 0.2em solid black;
 }
 
 .wall-left {
-    border-left: .2em solid black;
+  border-left: 0.2em solid black;
 }
 
 .door-top {
-    cursor: pointer;
-    border-top: .2em solid #cccccc;
+  cursor: pointer;
+  border-top: 0.2em solid #cccccc;
 }
 
 .door-right {
-    cursor: pointer;
-    border-right: .2em solid #cccccc;
+  cursor: pointer;
+  border-right: 0.2em solid #cccccc;
 }
 
 .door-bottom {
-    cursor: pointer;
-    border-bottom: .2em solid #cccccc;
+  cursor: pointer;
+  border-bottom: 0.2em solid #cccccc;
 }
 
 .door-left {
-    cursor: pointer;
-    border-left: .2em solid #cccccc;
+  cursor: pointer;
+  border-left: 0.2em solid #cccccc;
 }
 
 .locked-door-top {
-    cursor: pointer;
-    border-top: .2em solid #b16464;
+  cursor: pointer;
+  border-top: 0.2em solid #b16464;
 }
 
 .locked-door-right {
-    cursor: pointer;
-    border-right: .2em solid #b16464;
+  cursor: pointer;
+  border-right: 0.2em solid #b16464;
 }
 
 .locked-door-bottom {
-    cursor: pointer;
-    border-bottom: .2em solid #b16464;
+  cursor: pointer;
+  border-bottom: 0.2em solid #b16464;
 }
 
 .locked-door-left {
-    cursor: pointer;
-    border-left: .2em solid #b16464;
+  cursor: pointer;
+  border-left: 0.2em solid #b16464;
 }
 
 @media only screen and (max-width: 900px) {
-    .main-content {
-        font-size: 1vw;
-    }
+  .main-content {
+    font-size: 1.5vw;
+  }
 
-    .icons-2>span:first-child {
-        font-size: .9em;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+  .icons-2 > span:first-child {
+    position: absolute;
+    top: 3;
+    left: -1;
+    font-size: 0.7em;
+  }
 
-    .icons-2>span:last-child {
-        font-size: .9em;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    }
+  .icons-2 > span:last-child {
+    position: absolute;
+    right: -1px;
+    bottom: 1px;
+    font-size: 0.7em;
+  }
 
-    .wall-top {
-        border-top: .32em solid black;
-    }
+  .wall-top {
+    border-top: 0.32em solid black;
+  }
 
-    .wall-right {
-        border-right: .32em solid black;
-    }
+  .wall-right {
+    border-right: 0.32em solid black;
+  }
 
-    .wall-bottom {
-        border-bottom: .32em solid black;
-    }
+  .wall-bottom {
+    border-bottom: 0.32em solid black;
+  }
 
-    .wall-left {
-        border-left: .32em solid black;
-    }
+  .wall-left {
+    border-left: 0.32em solid black;
+  }
 
-    .door-top {
-        cursor: pointer;
-        border-top: .32em solid #cccccc;
-    }
+  .door-top {
+    cursor: pointer;
+    border-top: 0.32em solid #cccccc;
+  }
 
-    .door-right {
-        cursor: pointer;
-        border-right: .32em solid #cccccc;
-    }
+  .door-right {
+    cursor: pointer;
+    border-right: 0.32em solid #cccccc;
+  }
 
-    .door-bottom {
-        cursor: pointer;
-        border-bottom: .32em solid #cccccc;
-    }
+  .door-bottom {
+    cursor: pointer;
+    border-bottom: 0.32em solid #cccccc;
+  }
 
-    .door-left {
-        cursor: pointer;
-        border-left: .32em solid #cccccc;
-    }
+  .door-left {
+    cursor: pointer;
+    border-left: 0.32em solid #cccccc;
+  }
 
-    .locked-door-top {
-        cursor: pointer;
-        border-top: .32em solid #b16464;
-    }
+  .locked-door-top {
+    cursor: pointer;
+    border-top: 0.32em solid #b16464;
+  }
 
-    .locked-door-right {
-        cursor: pointer;
-        border-right: .32em solid #b16464;
-    }
+  .locked-door-right {
+    cursor: pointer;
+    border-right: 0.32em solid #b16464;
+  }
 
-    .locked-door-bottom {
-        cursor: pointer;
-        border-bottom: .32em solid #b16464;
-    }
+  .locked-door-bottom {
+    cursor: pointer;
+    border-bottom: 0.32em solid #b16464;
+  }
 
-    .locked-door-left {
-        cursor: pointer;
-        border-left: .32em solid #b16464;
-    }
+  .locked-door-left {
+    cursor: pointer;
+    border-left: 0.32em solid #b16464;
+  }
 }

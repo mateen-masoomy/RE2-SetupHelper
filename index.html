@@ -1,100 +1,126 @@
 <html>
-  <head>
-    <title>Resident Evil 2 - The Board Game Setup Helper</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <script
-      src="https://kit.fontawesome.com/78bd09203f.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css//milligram/milligram.min.css" />
-    <link rel="stylesheet" href="./css/sidebar.css" />
-    <link rel="stylesheet" href="./css/grid.css" />
-    <link rel="stylesheet" href="./css/board.css" />
-    <link rel="stylesheet" href="./css/notifier.css" />
-    <link rel="stylesheet" href="./css/layout.css" />
-  </head>
 
-  <body>
-    <div id="sidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
-        >&times;</a
-      >
-      <div class="sidebar-content">
-        <div class="custom-select">
-          <select name="scenarioSelect" id="scenarioSelect">
-            <option value="" disabled selected>Select a scenario</option>
-            <option value="1">Scenario 1</option>
-            <option value="2">Scenario 2</option>
-          </select>
+    <head>
+        <title>Resident Evil 2 - The Board Game Setup Helper</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script src="https://kit.fontawesome.com/78bd09203f.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/fonts.css" />
+        <link rel="stylesheet" href="./css/milligram/milligram.min.css" />
+        <link rel="stylesheet" href="./css/select.css" />
+        <link rel="stylesheet" href="./css/sidebar.css" />
+        <link rel="stylesheet" href="./css/grid.css" />
+        <link rel="stylesheet" href="./css/board.css" />
+        <link rel="stylesheet" href="./css/notifier.css" />
+        <link rel="stylesheet" href="./css/layout.css" />
+    </head>
+
+    <body class="sidebar-active">
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+                <div class="custom-select scenario-select">
+                    <select name="scenarioSelect" id="scenarioSelect">
+                        <option value="" disabled selected>Select a scenario</option>
+                        <option value="1">Scenario 1</option>
+                        <option value="2">Scenario 2</option>
+                    </select>
+                </div>
+                <div class="scenario-select-bottom-border"></div>
+                <div class="scenario-details">
+                    <h2 class="name"></h2>
+                    <div class="players-selection">
+                        <input type="radio" id="onePlayer" name="numberOfPlayers" value="1" checked
+                            onchange="changePlayers(1)">
+                        <label for="onePlayer">1 Player</label>
+                        <input type="radio" id="twoPlayers" name="numberOfPlayers" value="2"
+                            onchange="changePlayers(2)">
+                        <label for="twoPlayers">2 Players</label>
+                        <input type="radio" id="threePlayers" name="numberOfPlayers" value="3"
+                            onchange="changePlayers(3)">
+                        <label for="threePlayers">3 Players</label>
+                        <input type="radio" id="fourPlayers" name="numberOfPlayers" value="4"
+                            onchange="changePlayers(4)">
+                        <label for="fourPlayers">4 Players</label>
+                    </div>
+                    <p class="introduction"></p>
+                    <p class="description"></p>
+                    <p class="location"></p>
+                    <div class="tiles-required"></div>
+                    <div class="special-rules"></div>
+                    <div class="starting-items"></div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="main-content">
-      <header>
-        <div class="sidebar-toggle" onclick="openSidebar()">
-          <i class="fa-solid fa-bars"></i>
+        <header>
+            <div class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-times"></i>
+            </div>
+            <h1>
+                <span class="emphasis">R</span>esident
+                <span class="emphasis">E</span>vil 2: TBG Helper
+            </h1>
+        </header>
+
+        <div class="sidebar-overlay" onclick="hideSidebar()"></div>
+
+        <div class="main-content">
+            <div class="grid-container">
+                <div class="grid"></div>
+            </div>
         </div>
-        <h1>
-          <span class="emphasis">R</span>esident
-          <span class="emphasis">E</span>vil 2: TBG Helper
-        </h1>
-      </header>
+        <div class="notifier-container hidden">
+            <div class="notifier"></div>
+        </div>
+    </body>
 
-      <div class="grid-container">
-        <div class="grid"></div>
-      </div>
-    </div>
-    <div class="notifier-container hidden">
-      <div class="notifier"></div>
-    </div>
-  </body>
+    <script>
+        /**
+         * The scenario definitions
+         * @type {Object.<number, Scenario>}
+         */
+        var scenarioDefs = {};
+    </script>
 
-  <script>
-    /**
-     * The scenario definitions
-     * @type {Object.<number, Scenario>}
-     */
-    var scenarioDefs = {};
-  </script>
+    <script src="./utility/sidebar.js"></script>
+    <script src="./utility/select.js"></script>
+    <script src="./defs/room-defs.js"></script>
+    <script src="./defs/enemies.js"></script>
+    <script src="./scenarios/scenario-2.js"></script>
+    <script src="./scenario-builder/scenario-builder.js"></script>
 
-  <script src="./utility/sidebar.js"></script>
-  <script src="./utility/select.js"></script>
-  <script src="./defs/room-defs.js"></script>
-  <script src="./defs/enemies.js"></script>
-  <script src="./scenarios/scenario-2.js"></script>
-  <script src="./scenario-builder/scenario-builder.js"></script>
+    <script>
+        var scenarioBuilder = new ScenarioBuilder();
 
-  <script>
-    (function () {
-      var grid = document.querySelector(".grid");
-      for (var col = 25; col > 0; col--) {
-        for (var row = 20; row > 0; row--) {
-          var div = document.createElement("div");
-          div.id = "cell_" + col + "x" + row;
-          div.classList.add("grid-cell");
-          grid.appendChild(div);
+        (function () {
+            var grid = document.querySelector(".grid");
+            for (var col = 20; col > 0; col--) {
+                for (var row = 20; row > 0; row--) {
+                    var div = document.createElement("div");
+                    div.id = "cell_" + col + "x" + row;
+                    div.classList.add("grid-cell");
+                    grid.appendChild(div);
+                }
+            }
+
+            document
+                .querySelector(".notifier-container")
+                .addEventListener("click", function () {
+                    this.classList.add("hidden");
+                });
+
+            document
+                .querySelector("#scenarioSelect")
+                .addEventListener("change", function () {
+                    document.querySelector('.scenario-details').style.display = 'block'
+                    scenarioBuilder.buildScenario(scenarioDefs[this.value]);
+                });
+        })();
+
+        function changePlayers(numberOfPlayers) {
+            if (scenarioBuilder.currentScenario)
+                scenarioBuilder.buildScenario(scenarioBuilder.currentScenario, numberOfPlayers);
         }
-      }
+    </script>
 
-      document
-        .querySelector(".notifier-container")
-        .addEventListener("click", function () {
-          this.classList.add("hidden");
-        });
-
-      document
-        .querySelector("#scenarioSelect")
-        .addEventListener("change", function () {
-          ScenarioBuilder.BuildScenario(scenarioDefs[this.value]);
-        });
-    })();
-  </script>
 </html>

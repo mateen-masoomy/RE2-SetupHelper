@@ -1,58 +1,72 @@
 var RoomDefs = {
-  SmallWide: "2x1",
-  SmallTall: "1x2",
+  SmallWide: '2x1',
+  SmallTall: '1x2',
 
-  MediumWide: "3x2",
-  MediumTall: "2x3",
+  MediumWide: '3x2',
+  MediumTall: '2x3',
 
-  SmallSquare: "2x2",
-  MediumSquare: "3x3",
-  LargeSquare: "4x4",
+  SmallSquare: '2x2',
+  MediumSquare: '3x3',
+  LargeSquare: '4x4',
 
-  P: "p",
-  P_90: "p90",
-  P_180: "p180",
-  P_180_Flip: "p180Flip",
-  P_270: "p270",
+  P: 'p',
+  P_90: 'p90',
+  P_180: 'p180',
+  P_180_Flip: 'p180Flip',
+  P_270: 'p270',
 
-  L: "l",
-  L_90: "l90",
-  L_180: "l180",
-  L_270: "l270",
+  L: 'l',
+  L_90: 'l90',
+  L_180: 'l180',
+  L_270: 'l270',
 };
 
 var Directions = {
-  Top: "top",
-  Right: "right",
-  Bottom: "bottom",
-  Left: "left",
+  Top: 'top',
+  Right: 'right',
+  Bottom: 'bottom',
+  Left: 'left',
 };
 
 var RoomTypes = {
-  Green: "green",
-  Yellow: "yellow",
-  Amber: "amber",
+  Green: 'green',
+  Yellow: 'yellow',
+  Amber: 'amber',
 };
 
 var RoomConfigDefs = {
-  Small: "small",
-  Medium: "medium",
-  SmallSquare: "2x2",
-  MediumSquare: "3x3",
-  LargeSquare: "4x4",
-  P: "p",
-  L: "l",
+  Small: 'small',
+  Medium: 'medium',
+  SmallSquare: '2x2',
+  MediumSquare: '3x3',
+  LargeSquare: '4x4',
+  P: 'p',
+  L: 'l',
 };
 
 var TileDescriptions = {
-  Small: "1x2 Tile",
-  Medium: "2x3 Tile",
-  SmallSquare: "2x2 Tile",
-  MediumSquare: "3x3 Tile",
-  LargeSquare: "4x4 Tile",
-  P: "6 Space P Tile",
-  L: "7 Space L Tile",
+  Small: '[1x2] Rectangle Tile',
+  Medium: '[2x3] Rectangle Tile',
+  SmallSquare: '[2x2] Square Tile',
+  MediumSquare: '[3x3] Square Tile',
+  LargeSquare: '[4x4] Square Tile',
+  P: '[6 Space] P Tile',
+  L: '[7 Space] L Tile',
 };
+
+var TileImagePaths = {
+  Small: makeTileImageString('1x2-rectangle'),
+  Medium: makeTileImageString('2x3-rectangle'),
+  SmallSquare: makeTileImageString('2x2-square'),
+  MediumSquare: makeTileImageString('3x3-square'),
+  LargeSquare: makeTileImageString('4x4-square'),
+  P: makeTileImageString('p'),
+  L: makeTileImageString('l'),
+};
+
+function makeTileImageString(tileType) {
+  return `./assets/${tileType}.png`;
+}
 
 function createDefaultConfig(count) {
   var tileConfigs = Array.from({ length: count - 1 }, () => ({}));
@@ -765,6 +779,7 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
+          walls: [Directions.Left],
           ...config.tiles[2],
         },
       },

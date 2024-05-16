@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   background-color: darkgray;
-  padding-top: 80%;
+  padding-top: 100%;
   box-sizing: border-box;
   border: 1px solid darkgrey;
 }
@@ -14,13 +14,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  grid-template-columns: repeat(25, 1fr);
+  grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
-  grid-gap: 1px;
+  gap: 1px;
 }
 
 .grid-cell {
   display: flex;
+  position: relative;
   background-color: white;
   align-items: center;
   justify-content: center;

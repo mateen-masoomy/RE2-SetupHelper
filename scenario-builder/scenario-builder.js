@@ -4,46 +4,57 @@
  * @typedef {import("../types/scenario.types").Items} Items
  */
 
-var ScenarioBuilder = (function () {
+class ScenarioBuilder {
   /**
    * The collection of item indexes
    * @type {ItemIndexes}
    */
-  var itemIndexes;
+  #itemIndexes;
 
   /**
    * The collection of found items
    * @type {string[]}
    */
-  var foundItems = [];
+  #foundItems = [];
+
+  /**
+   * The number of players
+   * @type {number}
+   */
+  #numberOfPlayers;
 
   /**
    * The current scenario
    * @type {Scenario}
    */
-  var currentScenario;
+  currentScenario;
 
   /**
    * Build a scenario
    * @param {Scenario} scenario The scenario to build
    * @param {number} numberOfPlayers The number of players
    */
-  var buildScenario = (scenario, numberOfPlayers) => {
-    currentScenario = scenario;
+  buildScenario = (scenario, numberOfPlayers) => {
+    this.#clearGrid();
 
-    itemIndexes = {
-      a: shuffle(scenario.items.a.map((val, index) => index)),
-      b: shuffle(scenario.items.b.map((val, index) => index)),
+    this.currentScenario = JSON.parse(JSON.stringify(scenario));
+    this.#numberOfPlayers = numberOfPlayers;
+
+    this.#itemIndexes = {
+      a: this.#shuffle(scenario.items.a.map((val, index) => index)),
+      b: this.#shuffle(scenario.items.b.map((val, index) => index)),
     };
 
-    buildRoom(
+    this.#buildDetails(scenario);
+
+    this.#buildRoom(
       scenario.floors,
       scenario.startingRooms.p1.floor,
       scenario.startingRooms.p1.roomIndex
     );
 
     if (numberOfPlayers > 1) {
-      buildRoom(
+      this.#buildRoom(
         scenario.floors,
         scenario.startingRooms.p2.floor,
         scenario.startingRooms.p2.roomIndex
@@ -58,58 +69,87 @@ var ScenarioBuilder = (function () {
    * @param {number} floorNumber The floor number
    * @param {number} index                - The index of the room to build
    */
-  function buildRoom(floors, floorNumber, index) {
-    var config = floors[floorNumber].rooms[index];
+  #buildRoom(floors, floorNumber, index) {
+    var floor = floors[floorNumber];
+    var config = floor.rooms[index];
+
+    var labelCell = document.querySelector(
+      '#cell_' + floor.label.position.x + 'x' + floor.label.position.y
+    );
+    labelCell.classList.add('label-cell');
+
+    var labelEl = document.createElement('div');
+    labelEl.classList.add('board-label');
+    labelEl.classList.add('floor-label');
+    labelEl.textContent = floor.label.text;
+
+    labelCell.appendChild(labelEl);
 
     config.tiles.forEach((tileConfig) => {
       var cell = document.querySelector(
-        "#cell_" + tileConfig.position.x + "x" + tileConfig.position.y
+        '#cell_' + tileConfig.position.x + 'x' + tileConfig.position.y
       );
       cell.classList.add(config.type);
 
-      cell.innerHTML = "";
+      cell.innerHTML = '';
 
       var multiIcons = [];
 
+      if (tileConfig.label) {
+        cell.classList.add('label-cell');
+
+        var cellLabelEl = document.createElement('div');
+        cellLabelEl.classList.add('board-label');
+        cellLabelEl.classList.add('room-label');
+        cellLabelEl.textContent = tileConfig.label;
+
+        cell.appendChild(cellLabelEl);
+      }
+
       if (tileConfig.walls) {
         tileConfig.walls.forEach((wallDirection) => {
-          cell.classList.add("wall-" + wallDirection);
+          cell.classList.add('wall-' + wallDirection);
         });
       }
 
       if (tileConfig.doors) {
         tileConfig.doors.forEach((door) => {
-          cell.classList.add("door-" + door.direction);
-          if (typeof door.connectingRoomIndex !== "undefined") {
-            cell.addEventListener("click", () => {
+          cell.classList.add('door-' + door.direction);
+          if (typeof door.connectingRoomIndex !== 'undefined') {
+            cell.addEventListener('click', () => {
               if (door.keyRequired) {
-                if (!foundItems.includes(door.keyRequired)) {
-                  cell.classList.remove("door-" + door.direction);
-                  cell.classList.add("locked-door-" + door.direction);
+                if (!this.#foundItems.includes(door.keyRequired)) {
+                  cell.classList.remove('door-' + door.direction);
+                  cell.classList.add('locked-door-' + door.direction);
 
-                  document.querySelector(".notifier").innerHTML =
+                  document.querySelector('.notifier').innerHTML =
                     'Locked: <span class="emphasis">' +
                     door.keyRequired +
-                    "</span> required.";
+                    '</span> required.';
                   document
-                    .querySelector(".notifier-container")
-                    .classList.remove("hidden");
+                    .querySelector('.notifier-container')
+                    .classList.remove('hidden');
                 } else {
                   if (!door.unlocked) {
-                    document.querySelector(".notifier").innerHTML =
+                    document.querySelector('.notifier').innerHTML =
                       'Unlocked with <span class="emphasis">' +
                       door.keyRequired +
-                      "</span>";
+                      '</span>';
                     document
-                      .querySelector(".notifier-container")
-                      .classList.remove("hidden");
+                      .querySelector('.notifier-container')
+                      .classList.remove('hidden');
                     door.unlocked = true;
                   }
-                  cell.classList.add("door-" + door.direction);
-                  cell.classList.remove("locked-door-" + door.direction);
-                  buildRoom(floors, floorNumber, door.connectingRoomIndex);
+                  cell.classList.add('door-' + door.direction);
+                  cell.classList.remove('locked-door-' + door.direction);
+                  this.#buildRoom(
+                    floors,
+                    floorNumber,
+                    door.connectingRoomIndex
+                  );
                 }
-              } else buildRoom(floors, floorNumber, door.connectingRoomIndex);
+              } else
+                this.#buildRoom(floors, floorNumber, door.connectingRoomIndex);
             });
           }
         });
@@ -118,60 +158,70 @@ var ScenarioBuilder = (function () {
       if (tileConfig.p1StartingPoint) {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">1</span></span>';
-        cell.querySelector(".fa-stack").addEventListener("click", () => {
-          document.querySelector(".notifier").innerHTML =
-            '<span class="emphasis">Player 1</span> start position';
+        cell.querySelector('.fa-stack').addEventListener('click', () => {
+          document.querySelector(
+            '.notifier'
+          ).innerHTML = `<span class="emphasis">${
+            this.#numberOfPlayers > 2 ? 'Players 1 and 3' : 'Player 1'
+          }</span> start position`;
           document
-            .querySelector(".notifier-container")
-            .classList.remove("hidden");
+            .querySelector('.notifier-container')
+            .classList.remove('hidden');
         });
       }
 
       if (tileConfig.p2StartingPoint) {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">2</span></span>';
-        cell.querySelector(".fa-stack").addEventListener("click", () => {
-          document.querySelector(".notifier").innerHTML =
-            '<span class="emphasis">Player 2</span> starting position';
+        cell.querySelector('.fa-stack').addEventListener('click', () => {
+          document.querySelector(
+            '.notifier'
+          ).innerHTML = `<span class="emphasis">${
+            this.#numberOfPlayers === 4 ? 'Players 2 and 4' : 'Player 2'
+          }</span> starting position`;
           document
-            .querySelector(".notifier-container")
-            .classList.removr("hidden");
+            .querySelector('.notifier-container')
+            .classList.remove('hidden');
         });
       }
 
       if (tileConfig.enemies) {
-        tileConfig.enemies.forEach((enemy) => generateEnemy(cell, enemy));
+        tileConfig.enemies.forEach((enemy) => this.#generateEnemy(cell, enemy));
       }
 
       if (tileConfig.item) {
         cell.innerHTML +=
           '<span class="fa-stack item"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span></span>';
-        var itemIndex = itemIndexes[tileConfig.item].pop();
-        var item = currentScenario.items[tileConfig.item][itemIndex];
+        console.log(JSON.stringify(this.#itemIndexes));
+        console.log(tileConfig.item);
+        var itemIndex = this.#itemIndexes[tileConfig.item].pop();
+        console.log(itemIndex);
+        console.log(this.currentScenario.items);
+        var item = this.currentScenario.items[tileConfig.item][itemIndex];
 
         if (!tileConfig.numberOfIcons) {
-          cell.querySelector(".fa-stack").addEventListener("click", () => {
-            if (!foundItems.includes(item)) foundItems.push(item);
-            document.querySelector(".notifier").innerHTML = item;
+          cell.querySelector('.fa-stack').addEventListener('click', () => {
+            if (!this.#foundItems.includes(item)) this.#foundItems.push(item);
+            document.querySelector('.notifier').innerHTML = item;
             document
-              .querySelector(".notifier-container")
-              .classList.remove("hidden");
+              .querySelector('.notifier-container')
+              .classList.remove('hidden');
           });
         } else {
-          var el = document.createElement("span");
+          var el = document.createElement('span');
 
-          el.classList.add("fa-stack");
-          el.classList.add("item");
+          el.classList.add('fa-stack');
+          el.classList.add('item');
           el.innerHTML =
             '<i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span>';
-          el.addEventListener("click", (ev) => {
+          el.addEventListener('click', (ev) => {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
-            if (!foundItems.includes(item)) foundItems.push(item);
-            document.querySelector(".notifier").innerHTML = item;
+            if (!this.#foundItems.includes(item)) this.#foundItems.push(item);
+            document.querySelector('.notifier').innerHTML = item;
             document
-              .querySelector(".notifier-container")
-              .classList.remove("hidden");
+              .querySelector('.notifier-container')
+              .classList.remove('hidden');
           });
 
           multiIcons.push(el);
@@ -181,8 +231,8 @@ var ScenarioBuilder = (function () {
       if (tileConfig.stairs) {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
-        cell.addEventListener("click", () => {
-          buildRoom(
+        cell.addEventListener('click', () => {
+          this.#buildRoom(
             floors,
             tileConfig.stairs.connectingFloor,
             tileConfig.stairs.connectingRoomIndex
@@ -194,27 +244,27 @@ var ScenarioBuilder = (function () {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i></span>';
         if (!tileConfig.numberOfIcons) {
-          cell.querySelector(".fa-stack").addEventListener("click", () => {
-            document.querySelector(".notifier").innerHTML =
+          cell.querySelector('.fa-stack').addEventListener('click', () => {
+            document.querySelector('.notifier').innerHTML =
               '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
             document
-              .querySelector(".notifier-container")
-              .classList.remove("hidden");
+              .querySelector('.notifier-container')
+              .classList.remove('hidden');
           });
         } else {
-          var el = document.createElement("span");
+          var el = document.createElement('span');
 
-          el.classList.add(["fa-stack"]);
+          el.classList.add(['fa-stack']);
           el.innerHTML =
             '<i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i>';
-          el.addEventListener("click", (ev) => {
+          el.addEventListener('click', (ev) => {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
-            document.querySelector(".notifier").innerHTML =
+            document.querySelector('.notifier').innerHTML =
               '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
             document
-              .querySelector(".notifier-container")
-              .classList.remove("hidden");
+              .querySelector('.notifier-container')
+              .classList.remove('hidden');
           });
 
           multiIcons.push(el);
@@ -222,26 +272,26 @@ var ScenarioBuilder = (function () {
       }
 
       if (tileConfig.numberOfIcons) {
-        cell.classList.add("icons-" + tileConfig.numberOfIcons);
-        cell.addEventListener("click", (ev) => {
+        cell.classList.add('icons-' + tileConfig.numberOfIcons);
+        cell.addEventListener('click', (ev) => {
           ev.stopPropagation();
           ev.preventDefault();
-          var notifier = document.querySelector(".notifier");
+          var notifier = document.querySelector('.notifier');
           notifier.innerHTML = '<span class="icons"></span>';
           console.log(multiIcons);
           multiIcons.forEach((icon) =>
-            notifier.querySelector(".icons").appendChild(icon)
+            notifier.querySelector('.icons').appendChild(icon)
           );
 
           document
-            .querySelector(".notifier-container")
-            .classList.remove("hidden");
+            .querySelector('.notifier-container')
+            .classList.remove('hidden');
         });
       }
     });
   }
 
-  function generateEnemy(cell, enemyType) {
+  #generateEnemy = (cell, enemyType) => {
     switch (enemyType) {
       case EnemyTypes.Zombie:
         cell.innerHTML +=
@@ -252,20 +302,13 @@ var ScenarioBuilder = (function () {
           '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">L</span></span>';
         break;
     }
-  }
+  };
 
-  // display scenario data
-  // make the scenario picker work
-  // configure for 1-4 players
-  // add tile labels
-  // add floor labels
-  // add starting items
-
-  function shuffle(array) {
+  #shuffle = (array) => {
     var copy = JSON.parse(JSON.stringify(array));
     let currentIndex = copy.length;
 
-    // While there remain elements to shuffle...
+    // While there remain elements to this.#shuffle...
     while (currentIndex != 0) {
       // Pick a remaining element...
       let randomIndex = Math.floor(Math.random() * currentIndex);
@@ -279,9 +322,76 @@ var ScenarioBuilder = (function () {
     }
 
     return copy;
-  }
-
-  return {
-    BuildScenario: buildScenario,
   };
-})();
+
+  /**
+   * Build the scenario details
+   * @param {Scenario} scenario The scenario to build details for
+   */
+  #buildDetails = (scenario) => {
+    document.querySelector('.name').innerHTML = scenario.name;
+    document.querySelector('.introduction').textContent = scenario.intro;
+    document.querySelector('.description').textContent = scenario.description;
+    document.querySelector('.location').textContent = scenario.location;
+
+    var tilesRequired = document.querySelector('.tiles-required');
+    tilesRequired.innerHTML =
+      '<div class="scenario-section-header">Tiles Required</div>';
+    for (var requiredTileType in scenario.tilesRequired) {
+      var requiredTile = scenario.tilesRequired[requiredTileType];
+      var tile = document.createElement('div');
+      tile.classList.add('required-tile');
+
+      var tileDefName =
+        requiredTileType.charAt(0).toUpperCase() + requiredTileType.slice(1);
+      var img = document.createElement('img');
+      img.src = TileImagePaths[tileDefName];
+      img.classList.add('tile-image');
+      tile.appendChild(img);
+
+      var tileName = document.createElement('div');
+      tileName.classList.add('tile-name');
+      tileName.textContent = requiredTile;
+      tile.appendChild(tileName);
+
+      tilesRequired.appendChild(tile);
+    }
+
+    if (scenario.specialRules.length) {
+      var specialRules = document.querySelector('.special-rules');
+      specialRules.innerHTML =
+        '<div class="scenario-section-header">Special Rules</div>';
+      scenario.specialRules.forEach((rule) => {
+        var name = document.createElement('div');
+        name.classList.add('rule-name');
+        name.textContent = `${rule.name}`;
+        specialRules.appendChild(name);
+        var description = document.createElement('div');
+        description.classList.add('rule-description');
+        description.textContent = rule.description;
+        specialRules.appendChild(description);
+      });
+    }
+
+    if (scenario.startingItems.length) {
+      var startingItems = document.querySelector('.starting-items');
+      startingItems.innerHTML =
+        '<div class="scenario-section-header">Starting Items</div>';
+      scenario.startingItems.forEach((startingItem) => {
+        var name = document.createElement('div');
+        name.classList.add('starting-item-name');
+        name.textContent = startingItem;
+        startingItems.appendChild(name);
+      });
+    }
+  };
+
+  #clearGrid = () => {
+    document.querySelectorAll('.grid-cell').forEach((cell) => {
+      cell.className = 'grid-cell';
+      cell.textContent = '';
+      var newCell = cell.cloneNode(true);
+      cell.parentNode.replaceChild(newCell, cell);
+    });
+  };
+}
