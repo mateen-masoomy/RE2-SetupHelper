@@ -90,7 +90,7 @@
     <script src="./scenario-builder/scenario-builder.js"></script>
 
     <script>
-        //var scenarioBuilder = new ScenarioBuilder();
+        var scenarioBuilder = new ScenarioBuilder();
 
         (function () {
             var grid = document.querySelector(".grid");
@@ -113,13 +113,13 @@
                 .querySelector("#scenarioSelect")
                 .addEventListener("change", function () {
                     document.querySelector('.scenario-details').style.display = 'block'
-                    ScenarioBuilder.buildScenario(scenarioDefs[this.value]);
+                    scenarioBuilder.buildScenario(scenarioDefs[this.value]);
                 });
         })();
 
         function changePlayers(numberOfPlayers) {
-            if (ScenarioBuilder.currentScenario)
-                ScenarioBuilder.buildScenario(ScenarioBuilder.currentScenario, numberOfPlayers);
+            if (scenarioBuilder.currentScenario)
+                scenarioBuilder.buildScenario(scenarioBuilder.currentScenario, numberOfPlayers);
         }
     </script>
 
