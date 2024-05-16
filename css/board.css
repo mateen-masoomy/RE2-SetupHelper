@@ -4,9 +4,11 @@
   overflow-y: scroll;
   font-size: 1.5vw;
   margin-top: 80px;
+  background-color: #f0f0f0;
 }
 
 .green {
+  background: none;
   background-color: #65a76e;
 }
 
@@ -17,7 +19,7 @@
     #ceaf4b 10%,
     #777777 10%,
     #777777 20%
-  );
+  ) !important;
 }
 
 .amber {
@@ -27,7 +29,7 @@
     #cc3620 10%,
     #777777 10%,
     #777777 20%
-  );
+  ) !important;
 }
 
 .label-cell {
@@ -42,8 +44,9 @@
 }
 .floor-label {
   font-size: 2em;
-  background-color: white;
+  background: inherit;
   padding: 0px 20px;
+  font-weight: bold;
 }
 .room-label {
   left: 50%;

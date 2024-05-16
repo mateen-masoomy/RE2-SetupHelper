@@ -1,10 +1,10 @@
 .grid-container {
   width: 100%;
   position: relative;
-  background-color: darkgray;
+  background-color: #222;
   padding-top: 100%;
   box-sizing: border-box;
-  border: 1px solid darkgrey;
+  border: 1px solid #222;
 }
 
 .grid {
@@ -22,10 +22,36 @@
 .grid-cell {
   display: flex;
   position: relative;
-  background-color: white;
+  background-attachment: fixed;
+  background-position: top left;
+  background-size: cover;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+@media only screen and (min-width: 1921px) {
+  .grid-cell {
+    background-image: url(../assets/grid-bg.png);
+  }
+}
+
+@media only screen and (min-width: 1367px) {
+  .grid-cell {
+    background-image: url(../assets/grid-bg-med.png);
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .grid-cell {
+    background-image: url(../assets/grid-bg-sm.png);
+  }
+}
+
+@media only screen and (min-width: 1px) {
+  .grid-cell {
+    background-image: url(../assets/grid-bg-xs.png);
+  }
 }
 
 #cell_1x1 {

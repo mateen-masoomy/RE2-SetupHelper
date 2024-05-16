@@ -384,6 +384,14 @@ class ScenarioBuilder {
         startingItems.appendChild(name);
       });
     }
+
+    scenario.rollTables.yellow.forEach((yellowEntry, index) => {
+      document.querySelector(`.yellow-${index + 1}`).textContent = yellowEntry;
+    });
+
+    scenario.rollTables.amber.forEach((amberEntry, index) => {
+      document.querySelector(`.amber-${index + 1}`).textContent = amberEntry;
+    });
   };
 
   #clearGrid = () => {

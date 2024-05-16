@@ -1,12 +1,12 @@
 .notifier-container {
-  position: absolute;
   display: flex;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   align-items: center;
   justify-content: center;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
   background-color: #00000020;
 }
 
