@@ -89,6 +89,10 @@ header .sidebar-toggle:hover {
   width: 20px;
 }
 
+.sidebar tbody tr {
+  border-bottom-color: #efefef;
+}
+
 .dot {
   display: inline-block;
   height: 18px;
