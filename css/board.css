@@ -43,7 +43,7 @@
   white-space: nowrap;
 }
 .floor-label {
-  font-size: 2em;
+  font-size: 1.95em;
   background: inherit;
   padding: 0px 20px;
   font-weight: bold;
@@ -57,7 +57,7 @@
   pointer-events: none;
   background-color: white;
   border-radius: 15px;
-  padding: 0px 20px;
+  padding: 0px .2em;
   box-shadow: 0 2px 5px #111;
 }
 
