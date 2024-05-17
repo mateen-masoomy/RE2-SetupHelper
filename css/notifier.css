@@ -38,6 +38,10 @@
   color: white;
 }
 
+.notifier .enemy .fa-stack-1x {
+  color: #af2510;
+}
+
 .hidden {
   display: none;
 }

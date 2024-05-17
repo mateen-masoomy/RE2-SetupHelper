@@ -292,6 +292,7 @@
                     connectingRoomIndex: 7,
                   },
                 ],
+                numberOfIcons: 2,
               },
             },
             {

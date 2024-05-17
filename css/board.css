@@ -43,22 +43,27 @@
   white-space: nowrap;
 }
 .floor-label {
-  font-size: 1.95em;
+  display: flex;
+  height: 100%;
+  width: 500%;
+  font-size: 1.5em;
   background: inherit;
   padding: 0px 20px;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
 }
 .room-label {
   left: 50%;
   font-size: 0.8em;
-  font-weight: bold;
   transform: translateX(-50%);
   z-index: 1;
   pointer-events: none;
   background-color: white;
   border-radius: 15px;
-  padding: 0px .2em;
+  padding: 0.1em 0.6em;
   box-shadow: 0 2px 5px #111;
+  font-family: 'Anton';
 }
 
 i {
@@ -68,21 +73,21 @@ i {
 
 .fa-stack {
   filter: drop-shadow(0px 2px 3px #00000080);
+  cursor: pointer;
 }
 
 .fa-stack .fa-inverse {
   position: relative;
   font-family: Anton;
-  color: #222;
-  cursor: default;
+  color: #111;
 }
 
 .enemy .fa-stack-2x {
-  color: #222;
+  color: #111;
 }
 
 .enemy .fa-inverse {
-  color: #ccc;
+  color: #af2510;
 }
 
 .contrast {

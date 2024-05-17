@@ -71,6 +71,7 @@
  * @property {string} tilesRequired.p
  * @property {string} tilesRequired.l
  * @property {string} location                          - The location of this scenario
+ * @property {string[]?} notes
  * @property {SpecialRule[]} specialRules               - Special rules in play for this scenario
  * @property {string[]} startingItems                   - The starting items for this scenario
  * @property {Items} items                             - The scenario's items

@@ -158,3 +158,29 @@
   object-fit: contain;
   object-position: left;
 }
+
+.sidebar table {
+  color: white;
+}
+
+.sidebar table .umbrella-logo {
+  height: 20px;
+  width: 20px;
+}
+
+.sidebar table td,
+.sidebar table th {
+  border: none;
+}
+
+.dot {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-right: 10px;
+}

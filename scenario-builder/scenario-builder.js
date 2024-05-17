@@ -73,17 +73,19 @@ class ScenarioBuilder {
     var floor = floors[floorNumber];
     var config = floor.rooms[index];
 
-    var labelCell = document.querySelector(
+    var floorLabelCell = document.querySelector(
       '#cell_' + floor.label.position.x + 'x' + floor.label.position.y
     );
-    labelCell.classList.add('label-cell');
+    floorLabelCell.classList.add('label-cell');
 
-    var labelEl = document.createElement('div');
-    labelEl.classList.add('board-label');
-    labelEl.classList.add('floor-label');
-    labelEl.textContent = floor.label.text;
+    var floorLabelEl = document.createElement('div');
+    floorLabelEl.classList.add('board-label');
+    floorLabelEl.classList.add('floor-label');
+    floorLabelEl.textContent = floor.label.text;
 
-    labelCell.appendChild(labelEl);
+    floorLabelCell.appendChild(floorLabelEl);
+
+    var notifier = document.querySelector('.notifier');
 
     config.tiles.forEach((tileConfig) => {
       var cell = document.querySelector(
@@ -116,28 +118,24 @@ class ScenarioBuilder {
         tileConfig.doors.forEach((door) => {
           cell.classList.add('door-' + door.direction);
           if (typeof door.connectingRoomIndex !== 'undefined') {
-            cell.addEventListener('click', () => {
+            var openDoor = () => {
               if (door.keyRequired) {
                 if (!this.#foundItems.includes(door.keyRequired)) {
                   cell.classList.remove('door-' + door.direction);
                   cell.classList.add('locked-door-' + door.direction);
 
-                  document.querySelector('.notifier').innerHTML =
+                  notifier.innerHTML =
                     'Locked: <span class="emphasis">' +
                     door.keyRequired +
                     '</span> required.';
-                  document
-                    .querySelector('.notifier-container')
-                    .classList.remove('hidden');
+                  this.#showNotifierContainer();
                 } else {
                   if (!door.unlocked) {
-                    document.querySelector('.notifier').innerHTML =
+                    notifier.innerHTML =
                       'Unlocked with <span class="emphasis">' +
                       door.keyRequired +
                       '</span>';
-                    document
-                      .querySelector('.notifier-container')
-                      .classList.remove('hidden');
+                    this.#showNotifierContainer();
                     door.unlocked = true;
                   }
                   cell.classList.add('door-' + door.direction);
@@ -150,7 +148,32 @@ class ScenarioBuilder {
                 }
               } else
                 this.#buildRoom(floors, floorNumber, door.connectingRoomIndex);
-            });
+            };
+
+            if (!tileConfig.numberOfIcons) {
+              cell.addEventListener('click', () => openDoor());
+            } else {
+              var doorIcon = document.createElement('span');
+              doorIcon.classList.add('fa-stack', 'door-icon');
+              var doorIcon2x = document.createElement('i');
+              doorIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
+              doorIcon.appendChild(doorIcon2x);
+
+              var doorIcon1x = document.createElement('i');
+              doorIcon1x.classList.add(
+                'fa-solid',
+                'fa-door-open',
+                'fa-stack-1x',
+                'contrast'
+              );
+              doorIcon.appendChild(doorIcon1x);
+              cell.appendChild(doorIcon);
+
+              var notifierDoorIcon = doorIcon.cloneNode(true);
+              notifierDoorIcon.addEventListener('click', () => openDoor());
+
+              multiIcons.push(notifierDoorIcon);
+            }
           }
         });
       }
@@ -159,14 +182,10 @@ class ScenarioBuilder {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">1</span></span>';
         cell.querySelector('.fa-stack').addEventListener('click', () => {
-          document.querySelector(
-            '.notifier'
-          ).innerHTML = `<span class="emphasis">${
+          notifier.innerHTML = `<span class="emphasis">${
             this.#numberOfPlayers > 2 ? 'Players 1 and 3' : 'Player 1'
           }</span> start position`;
-          document
-            .querySelector('.notifier-container')
-            .classList.remove('hidden');
+          this.#showNotifierContainer();
         });
       }
 
@@ -174,38 +193,48 @@ class ScenarioBuilder {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-shield fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">2</span></span>';
         cell.querySelector('.fa-stack').addEventListener('click', () => {
-          document.querySelector(
-            '.notifier'
-          ).innerHTML = `<span class="emphasis">${
+          notifier.innerHTML = `<span class="emphasis">${
             this.#numberOfPlayers === 4 ? 'Players 2 and 4' : 'Player 2'
           }</span> starting position`;
-          document
-            .querySelector('.notifier-container')
-            .classList.remove('hidden');
+          this.#showNotifierContainer();
         });
       }
 
       if (tileConfig.enemies) {
-        tileConfig.enemies.forEach((enemy) => this.#generateEnemy(cell, enemy));
+        tileConfig.enemies.forEach((enemy) => {
+          var enemyIcon = this.#generateEnemy(enemy);
+          cell.appendChild(enemyIcon);
+          var enemyHTML = `Enemy: <span class="emphasis">${
+            enemy.charAt(0).toUpperCase() + enemy.slice(1)
+          }</span>`;
+
+          if (tileConfig.numberOfIcons) {
+            var notifierEnemyIcon = enemyIcon.cloneNode(true);
+            notifierEnemyIcon.addEventListener('click', (ev) => {
+              ev.stopPropagation();
+              ev.stopImmediatePropagation();
+              notifier.innerHTML = enemyHTML;
+            });
+            multiIcons.push(notifierEnemyIcon);
+          } else
+            enemyIcon.addEventListener('click', () => {
+              notifier.innerHTML = enemyHTML;
+              this.#showNotifierContainer();
+            });
+        });
       }
 
       if (tileConfig.item) {
         cell.innerHTML +=
           '<span class="fa-stack item"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span></span>';
-        console.log(JSON.stringify(this.#itemIndexes));
-        console.log(tileConfig.item);
         var itemIndex = this.#itemIndexes[tileConfig.item].pop();
-        console.log(itemIndex);
-        console.log(this.currentScenario.items);
         var item = this.currentScenario.items[tileConfig.item][itemIndex];
 
         if (!tileConfig.numberOfIcons) {
           cell.querySelector('.fa-stack').addEventListener('click', () => {
             if (!this.#foundItems.includes(item)) this.#foundItems.push(item);
-            document.querySelector('.notifier').innerHTML = item;
-            document
-              .querySelector('.notifier-container')
-              .classList.remove('hidden');
+            notifier.innerHTML = item;
+            this.#showNotifierContainer();
           });
         } else {
           var el = document.createElement('span');
@@ -218,10 +247,8 @@ class ScenarioBuilder {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
             if (!this.#foundItems.includes(item)) this.#foundItems.push(item);
-            document.querySelector('.notifier').innerHTML = item;
-            document
-              .querySelector('.notifier-container')
-              .classList.remove('hidden');
+            notifier.innerHTML = item;
+            this.#showNotifierContainer();
           });
 
           multiIcons.push(el);
@@ -229,14 +256,39 @@ class ScenarioBuilder {
       }
 
       if (tileConfig.stairs) {
-        cell.innerHTML +=
-          '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-stairs fa-stack-1x contrast"></i></span>';
+        var stairsIcon = document.createElement('span');
+        stairsIcon.classList.add('fa-stack', 'stairs');
+
+        var stairsIcon2x = document.createElement('i');
+        stairsIcon2x.classList.add('fa-solid', 'fa-square', 'fa-stack-2x');
+        stairsIcon.appendChild(stairsIcon2x);
+
+        var stairsIcon1x = document.createElement('i');
+        stairsIcon1x.classList.add(
+          'fa-solid',
+          'fa-stairs',
+          'fa-stack-1x',
+          'contrast'
+        );
+        stairsIcon.appendChild(stairsIcon1x);
+
+        cell.appendChild(stairsIcon);
+
         cell.addEventListener('click', () => {
           this.#buildRoom(
             floors,
             tileConfig.stairs.connectingFloor,
             tileConfig.stairs.connectingRoomIndex
           );
+
+          notifier.innerHTML = `${
+            tileConfig.stairs.connectingFloor > floorNumber
+              ? 'Ascend'
+              : 'Descend'
+          } to <span class="emphasis">${
+            floors[tileConfig.stairs.connectingFloor].label.text
+          }`;
+          this.#showNotifierContainer();
         });
       }
 
@@ -245,11 +297,9 @@ class ScenarioBuilder {
           '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i></span>';
         if (!tileConfig.numberOfIcons) {
           cell.querySelector('.fa-stack').addEventListener('click', () => {
-            document.querySelector('.notifier').innerHTML =
+            notifier.innerHTML =
               '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
-            document
-              .querySelector('.notifier-container')
-              .classList.remove('hidden');
+            this.#showNotifierContainer();
           });
         } else {
           var el = document.createElement('span');
@@ -260,11 +310,9 @@ class ScenarioBuilder {
           el.addEventListener('click', (ev) => {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
-            document.querySelector('.notifier').innerHTML =
+            notifier.innerHTML =
               '<span class="emphasis">Item Box</span>: Trade Items From Inventory';
-            document
-              .querySelector('.notifier-container')
-              .classList.remove('hidden');
+            this.#showNotifierContainer();
           });
 
           multiIcons.push(el);
@@ -276,34 +324,61 @@ class ScenarioBuilder {
         cell.addEventListener('click', (ev) => {
           ev.stopPropagation();
           ev.preventDefault();
-          var notifier = document.querySelector('.notifier');
+
           notifier.innerHTML = '<span class="icons"></span>';
-          console.log(multiIcons);
+
           multiIcons.forEach((icon) =>
             notifier.querySelector('.icons').appendChild(icon)
           );
 
-          document
-            .querySelector('.notifier-container')
-            .classList.remove('hidden');
+          this.#showNotifierContainer();
         });
       }
     });
   }
 
-  #generateEnemy = (cell, enemyType) => {
+  /**
+   * Generates an enemy icon object
+   * @param {string} enemyType
+   * @returns {HTMLSpanElement} The enemy icon
+   */
+  #generateEnemy = (enemyType) => {
+    var enemyContainer = document.createElement('span');
+    enemyContainer.classList.add('fa-stack');
+    enemyContainer.classList.add('enemy');
+
+    var icon2x = document.createElement('i');
+    icon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
+    enemyContainer.appendChild(icon2x);
+
+    var icon1x = document.createElement('i');
+    icon1x.classList.add('fa-solid', 'fa-stack-1x', 'fa-inverse');
+
     switch (enemyType) {
       case EnemyTypes.Zombie:
-        cell.innerHTML +=
-          '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">Z</span></span>';
+        icon1x.textContent = 'Z';
         break;
       case EnemyTypes.Licker:
-        cell.innerHTML +=
-          '<span class="fa-stack enemy"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">L</span></span>';
+        icon1x.textContent = 'L';
         break;
     }
+
+    enemyContainer.appendChild(icon1x);
+    return enemyContainer;
   };
 
+  /**
+   * Shows the notifier container
+   */
+  #showNotifierContainer = () => {
+    document.querySelector('.notifier-container').classList.remove('hidden');
+  };
+
+  /**
+   * Shuffles the array
+   * @param {Array<T>} array
+   * @returns {Array<T>} The shuffled array
+   */
   #shuffle = (array) => {
     var copy = JSON.parse(JSON.stringify(array));
     let currentIndex = copy.length;
