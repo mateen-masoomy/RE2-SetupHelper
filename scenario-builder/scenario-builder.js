@@ -41,8 +41,12 @@ class ScenarioBuilder {
     this.#numberOfPlayers = numberOfPlayers;
 
     this.#itemIndexes = {
-      a: this.#shuffle(scenario.items.a.map((val, index) => index)),
-      b: this.#shuffle(scenario.items.b.map((val, index) => index)),
+      [ITEM_TYPES.A]: this.#shuffle(
+        scenario.items.a.map((val, index) => index)
+      ),
+      [ITEM_TYPES.B]: this.#shuffle(
+        scenario.items.b.map((val, index) => index)
+      ),
     };
 
     this.#buildDetails(scenario);
@@ -232,8 +236,12 @@ class ScenarioBuilder {
 
         if (!tileConfig.numberOfIcons) {
           cell.querySelector('.fa-stack').addEventListener('click', () => {
-            if (!this.#foundItems.includes(item)) this.#foundItems.push(item);
-            notifier.innerHTML = item;
+            if (!this.#foundItems.includes(item)) {
+              this.#foundItems.push(item);
+              notifier.innerHTML = `You found <span class="emphasis">${item}</span>`;
+            } else {
+              notifier.innerHTML = `Item already found (${item})`;
+            }
             this.#showNotifierContainer();
           });
         } else {
@@ -246,8 +254,12 @@ class ScenarioBuilder {
           el.addEventListener('click', (ev) => {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
-            if (!this.#foundItems.includes(item)) this.#foundItems.push(item);
-            notifier.innerHTML = item;
+            if (!this.#foundItems.includes(item)) {
+              this.#foundItems.push(item);
+              notifier.innerHTML = `You found <span class="emphasis">${item}</span>`;
+            } else {
+              notifier.innerHTML = `Item already found (${item})`;
+            }
             this.#showNotifierContainer();
           });
 
@@ -292,7 +304,7 @@ class ScenarioBuilder {
         });
       }
 
-      if (tileConfig.itemBox) {
+      if (tileConfig.hasItemBox) {
         cell.innerHTML +=
           '<span class="fa-stack"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-box fa-stack-1x contrast"></i></span>';
         if (!tileConfig.numberOfIcons) {
@@ -317,6 +329,114 @@ class ScenarioBuilder {
 
           multiIcons.push(el);
         }
+      }
+
+      if (tileConfig.hasCorpse) {
+        var corpseIcon = document.createElement('span');
+        corpseIcon.classList.add('fa-stack', 'corpse');
+
+        var corpseIcon2x = document.createElement('i');
+        corpseIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
+        corpseIcon.appendChild(corpseIcon2x);
+
+        var corpseIcon1x = document.createElement('i');
+        corpseIcon1x.classList.add(
+          'fa-solid',
+          'fa-person',
+          'fa-stack-1x',
+          'contrast'
+        );
+        corpseIcon.appendChild(corpseIcon1x);
+
+        cell.appendChild(corpseIcon);
+
+        var corpseHTML = `<span class="emphasis">Corpse</span>: If turn ends here, roll encounter die and replace with ${EnemyTypes.Zombie} on <img src="./assets/re-logo.png" class="umbrella-logo" />`;
+
+        if (tileConfig.numberOfIcons) {
+          var notifierCorpseIcon = corpseIcon.cloneNode(true);
+          notifierCorpseIcon.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            ev.stopImmediatePropagation();
+            notifier.innerHTML = corpseHTML;
+          });
+          multiIcons.push(notifierCorpseIcon);
+        } else
+          corpseIcon.addEventListener('click', () => {
+            notifier.innerHTML = corpseHTML;
+            this.#showNotifierContainer();
+          });
+      }
+
+      if (tileConfig.hasTypewriter) {
+        var typewriterIcon = document.createElement('span');
+        typewriterIcon.classList.add('fa-stack', 'typewriter');
+
+        var typewriterIcon2x = document.createElement('i');
+        typewriterIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
+        typewriterIcon.appendChild(typewriterIcon2x);
+
+        var typewriterIcon1x = document.createElement('i');
+        typewriterIcon1x.classList.add(
+          'fa-regular',
+          'fa-keyboard',
+          'fa-stack-1x',
+          'contrast'
+        );
+        typewriterIcon.appendChild(typewriterIcon1x);
+
+        cell.appendChild(typewriterIcon);
+
+        var typewriterHTML = `<span class='emphasis'>Typewriter</span>: Discard an ${ITEMS.InkRibbon} to refresh the tension deck (1 use only)`;
+
+        if (tileConfig.numberOfIcons) {
+          var notifierTypewriterIcon = typewriterIcon.cloneNode(true);
+          notifierTypewriterIcon.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            ev.stopImmediatePropagation();
+            notifier.innerHTML = typewriterHTML;
+          });
+          multiIcons.push(notifierTypewriterIcon);
+        } else
+          typewriterIcon.addEventListener('click', () => {
+            notifier.innerHTML = typewriterHTML;
+            this.#showNotifierContainer();
+          });
+      }
+
+      if (tileConfig.isScenarioObjective) {
+        var objectiveIcon = document.createElement('span');
+        objectiveIcon.classList.add('fa-stack', 'scenario-objective');
+
+        var objectiveIcon2x = document.createElement('i');
+        objectiveIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
+        objectiveIcon.appendChild(objectiveIcon2x);
+
+        var objectiveIcon1x = document.createElement('i');
+        objectiveIcon1x.classList.add(
+          'fa-solid',
+          'fa-flag',
+          'fa-stack-1x',
+          'contrast'
+        );
+        objectiveIcon.appendChild(objectiveIcon1x);
+
+        cell.appendChild(objectiveIcon);
+
+        var objectiveHTML = `Scenario Objective`;
+
+        if (tileConfig.numberOfIcons) {
+          var notifierObjectiveIcon = objectiveIcon.cloneNode(true);
+          notifierObjectiveIcon.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            ev.stopImmediatePropagation();
+            notifier.innerHTML = objectiveHTML;
+          });
+          multiIcons.push(notifierObjectiveIcon);
+        } else
+          objectiveIcon.addEventListener('click', () => {
+            notifier.innerHTML = objectiveHTML;
+            this.#showNotifierContainer();
+          });
       }
 
       if (tileConfig.numberOfIcons) {
@@ -461,11 +581,11 @@ class ScenarioBuilder {
     }
 
     scenario.rollTables.yellow.forEach((yellowEntry, index) => {
-      document.querySelector(`.yellow-${index + 1}`).textContent = yellowEntry;
+      document.querySelector(`.yellow-${index + 1}`).innerHTML = yellowEntry;
     });
 
     scenario.rollTables.amber.forEach((amberEntry, index) => {
-      document.querySelector(`.amber-${index + 1}`).textContent = amberEntry;
+      document.querySelector(`.amber-${index + 1}`).innerHTML = amberEntry;
     });
   };
 

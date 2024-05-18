@@ -19,9 +19,12 @@
  * @property {object} stairs                       - The stairs configuration
  * @property {number} stairs.connectingFloor        - The floor number to connect to
  * @property {number} stairs.connectingRoomIndex    - The room index to connect to
- * @property {boolean} itemBox                         - Whether the tile contains an item box
+ * @property {boolean} hasItemBox Whether the tile has an item box
  * @property {number?} numberOfIcons                 - The number of icons on the tile
  * @property {string?} label
+ * @property {boolean?} hasCorpse Whether the tile has a corpse
+ * @property {boolean?} hasTypewriter Whether the tile has a typewriter
+ * @property {boolean?} isScenarioObjective Wether the tile is the scenario objective
  *
  * @typedef TileDefinition
  * @type {object}

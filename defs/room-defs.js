@@ -108,6 +108,18 @@ var RoomConfigGenerator = {
     createConfig(type, createDefaultConfig(7), configMap),
 };
 
+/**
+ * @callback RoomGenerator
+ * @param {number} x The x coordinate
+ * @param {number} y The y coordinate
+ * @param {string} type The room type
+ * @param {TileDefinition[]} configMap The tile config map
+ * @returns {object} The room
+ */
+/**
+ * Room Generators
+ * @type {Object.<string, RoomGenerator}
+ */
 var RoomGenerator = {
   [RoomDefs.SmallWide]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
@@ -236,7 +248,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top],
+        walls: [Directions.Top, Directions.Right],
         ...config.tiles[1],
       },
       {
@@ -244,7 +256,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Top, Directions.Right],
+        walls: [Directions.Left],
         ...config.tiles[2],
       },
       {
@@ -252,7 +264,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 1,
         },
-        walls: [Directions.Bottom, Directions.Left],
+        walls: [Directions.Right],
         ...config.tiles[3],
       },
       {
@@ -260,7 +272,7 @@ var RoomGenerator = {
           x: x,
           y: y + 2,
         },
-        walls: [Directions.Bottom],
+        walls: [Directions.Left, Directions.Bottom],
         ...config.tiles[4],
       },
       {
@@ -786,7 +798,7 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Right],
+          walls: [Directions.Right, Directions.Top],
           ...config.tiles[3],
         },
       },

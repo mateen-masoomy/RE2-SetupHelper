@@ -31,9 +31,9 @@
       },
       startingItems: [],
       items: {
-        a: [
+        [ITEM_TYPES.A]: [
         ],
-        b: [],
+        [ITEM_TYPES.B]: [],
       },
       startingRooms: {
         p1: {

@@ -17,6 +17,22 @@
         description: `A character on the S.T.A.R.S. Office tile does not have to draw a card during the Tension Phase.`,
       },
     ],
+    tensionDeck: {
+      green: [makeMultiple(30, TENSION_DECK.GreenCard)],
+      amber: [
+        makeMultiple(2, TENSION_DECK.EchoesInTheDarkness),
+        makeMultiple(2, TENSION_DECK.NoEscape),
+        makeMultiple(2, TENSION_DECK.PrehensileGrasp),
+      ],
+      red: [
+        makeMultiple(1, TENSION_DECK.UndeadAmbush),
+        makeMultiple(1, TENSION_DECK.BloodcurdlingHowl),
+      ],
+    },
+    additionalCardsAndTokens: [
+      makeMultiple(2, CARDS_AND_TOKENS.EchoesInTheDarknessToken),
+      makeMultiple(2, CARDS_AND_TOKENS.PrehensileGraspToken),
+    ],
     tilesRequired: {
       small: `2 ${TileDescriptions.Small}s`,
       medium: `1 ${TileDescriptions.Medium}`,
@@ -27,33 +43,43 @@
     },
     rollTables: {
       yellow: [
-        'Roll on the amber encounter table instead.',
-        '2x Zombie at the closest hazard symbol',
-        '1x Zombie',
-        'Snatching Talons - The active character must pass an evade roll or their Action Phase ends immediately',
-        'Unsettling Feeling - The active character draws an extra card during the Tension Phase.',
-        'Empty',
+        ROLL_TABLE.RollOnAmberEncounterTable,
+        `${makeMultiple(2, EnemyTypes.Zombie)} ${
+          STRINGS.AtClosestBiohazardSymbol
+        }`,
+        makeMultiple(1, EnemyTypes.Zombie),
+        ROLL_TABLE.SnatchingTalons,
+        ROLL_TABLE.UnsettlingFeeling,
+        ROLL_TABLE.Empty,
       ],
       amber: [
-        '2x Zombie Dog',
-        '2x Zombie at the closest hazard symbol',
-        '2x Zombie',
-        '1x Zombie, Unsettling Feeling - The active character draws an extra card during the Tension Phase.',
-        '1x Zombie',
-        'Empty',
+        makeMultiple(2, EnemyTypes.ZombieDog),
+        `${makeMultiple(2, EnemyTypes.Zombie)} ${
+          STRINGS.AtClosestBiohazardSymbol
+        }`,
+        makeMultiple(2, EnemyTypes.Zombie),
+        `${makeMultiple(1, EnemyTypes.Zombie)}, ${
+          ROLL_TABLE.UnsettlingFeeling
+        }`,
+        makeMultiple(1, EnemyTypes.Zombie),
+        ROLL_TABLE.Empty,
       ],
     },
-    startingItems: ['1-4 Knife', '1-4 Handgun', '2x First Aid Spray'],
+    startingItems: [
+      `1-4 ${ITEMS.Knife}`,
+      `1-4 ${ITEMS.Handgun}`,
+      makeMultiple(2, ITEMS.FirstAidSpray),
+    ],
     items: {
-      a: [
-        'Handgun Bullets',
-        'Handgun Bullets',
-        'Handgun Bullets',
-        'Green Herb',
-        'Green Herb',
-        'Spade Key',
+      [ITEM_TYPES.A]: [
+        ITEMS.HandgunBullets,
+        ITEMS.HandgunBullets,
+        ITEMS.HandgunBullets,
+        ITEMS.GreenHerb,
+        ITEMS.GreenHerb,
+        ITEMS.SpadeKey,
       ],
-      b: ['Blowgun', 'Red Herb', 'S.T.A.R.S. Key'],
+      [ITEM_TYPES.B]: [ITEMS.Bowgun, ITEMS.RedHerb, ITEMS.StarsKey],
     },
     startingRooms: {
       p1: {
@@ -138,7 +164,7 @@
                 doors: [
                   {
                     direction: Directions.Right,
-                    keyRequired: 'Spade Key',
+                    keyRequired: ITEMS.SpadeKey,
                     connectingRoomIndex: 4,
                   },
                 ],
@@ -201,7 +227,7 @@
             {
               index: 2,
               config: {
-                item: 'b',
+                item: ITEM_TYPES.B,
               },
             },
             {
@@ -225,7 +251,7 @@
             {
               index: 7,
               config: {
-                item: 'b',
+                item: ITEM_TYPES.B,
               },
             },
           ]),
@@ -244,13 +270,13 @@
             {
               index: 2,
               config: {
-                item: 'a',
+                item: ITEM_TYPES.A,
               },
             },
             {
               index: 6,
               config: {
-                item: 'a',
+                item: ITEM_TYPES.A,
                 walls: [Directions.Top, Directions.Bottom, Directions.Left],
               },
             },
@@ -307,7 +333,7 @@
                 doors: [
                   {
                     direction: Directions.Bottom,
-                    keyRequired: 'Spade Key',
+                    keyRequired: ITEMS.SpadeKey,
                     connectingRoomIndex: 8,
                   },
                 ],
@@ -329,8 +355,8 @@
             {
               index: 1,
               config: {
-                itemBox: true,
-                item: 'a',
+                hasItemBox: true,
+                item: ITEM_TYPES.A,
                 numberOfIcons: 2,
               },
             },
@@ -355,7 +381,7 @@
             {
               index: 3,
               config: {
-                item: 'b',
+                item: ITEM_TYPES.B,
               },
             },
           ]),
@@ -405,7 +431,7 @@
             {
               index: 0,
               config: {
-                item: 'a',
+                item: ITEM_TYPES.A,
               },
             },
             {
@@ -435,7 +461,7 @@
             {
               index: 0,
               config: {
-                item: 'a',
+                item: ITEM_TYPES.A,
               },
             },
             {
@@ -487,7 +513,7 @@
                   {
                     direction: Directions.Right,
                     connectingRoomIndex: 5,
-                    keyRequired: 'S.T.A.R.S. Key',
+                    keyRequired: ITEMS.StarsKey,
                   },
                 ],
               },
@@ -508,7 +534,7 @@
             {
               index: 0,
               config: {
-                item: 'a',
+                item: ITEM_TYPES.A,
               },
             },
             {
