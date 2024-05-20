@@ -238,7 +238,7 @@ class ScenarioBuilder {
           cell.querySelector('.fa-stack').addEventListener('click', () => {
             if (!this.#foundItems.includes(item)) {
               this.#foundItems.push(item);
-              notifier.innerHTML = `You found <span class="emphasis">${item}</span>`;
+              notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
             }
@@ -256,7 +256,7 @@ class ScenarioBuilder {
             ev.stopPropagation();
             if (!this.#foundItems.includes(item)) {
               this.#foundItems.push(item);
-              notifier.innerHTML = `You found <span class="emphasis">${item}</span>`;
+              notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
             }

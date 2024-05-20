@@ -43,12 +43,22 @@
   color: #af2510;
 }
 
-.notifier .umbrella-logo {
+.notifier .umbrella-logo  {
   width: 20px;
   margin-left: 5px;
   filter: drop-shadow(0 0 1px #000);
 }
 
+.notifier .item-text {
+  font-size: 0.75em;
+}
+
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  .notifier {
+    max-width: 90%;
+  }
 }
