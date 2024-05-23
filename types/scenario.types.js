@@ -1,7 +1,7 @@
 /**
  * @typedef Door
  * @type {Object}
- * @property {Directions} direction         - The direction to draw the door in
+ * @property {DIRECTIONS} direction         - The direction to draw the door in
  * @property {string?} keyRequired          - The key required to open the door
  * @property {number?} connectingRoomIndex  - The room index to link the door to
  *
@@ -10,7 +10,7 @@
  * @property {object} position                      - The tile's position
  * @property {number} position.x                    - The tile's x position
  * @property {number} position.y                    - The tile's y position
- * @property {Directions[]} walls                   - The directions to draw walls in
+ * @property {DIRECTIONS[]} walls                   - The directions to draw walls in
  * @property {Door[]?} doors                        - The tile's doors
  * @property {string[]?} enemies                    - The collection of enemies
  * @property {boolean?} p1StartingPoint                 - Whether the tile is the player 1 starting tile

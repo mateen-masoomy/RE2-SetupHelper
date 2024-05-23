@@ -1,3 +1,16 @@
+import { RoomGenerator } from '../defs/room-defs';
+import { ScenarioDefs } from './scenario-init';
+import { ITEMS, ITEM_TYPES } from '../constants/items';
+import { TENSION_DECK } from '../constants/tension-deck';
+import { CARDS_AND_TOKENS } from '../constants/cards-and-tokens';
+import { ROLL_TABLE } from '../constants/roll-table';
+import { STRINGS } from '../constants/strings';
+import { ENEMY_TYPES } from '../constants/enemies';
+import { DIRECTIONS } from '../constants/directions';
+import { ROOM_SHAPES, ROOM_TYPES } from '../constants/rooms';
+import { TileDescriptions } from '../constants/tiles';
+import { makeMultiple } from '../helpers/multiples';
+
 (function () {
     /**
      * @type Scenario
@@ -55,13 +68,13 @@
             text: 'First Floor',
           },
           rooms: [
-            RoomGenerator[RoomDefs.SmallTall](12, 8, RoomTypes.Green, [
+            RoomGenerator[ROOM_SHAPES.SmallTall](12, 8, ROOM_TYPES.Green, [
               {
                 index: 0,
                 config: {
                   doors: [
                     {
-                      direction: Directions.Left,
+                      direction: DIRECTIONS.Left,
                       connectingRoomIndex: 1,
                     },
                   ],
@@ -79,6 +92,6 @@
       },
     };
   
-    scenarioDefs[] = scenario;
+    ScenarioDefs[0] = scenario;
   })();
   

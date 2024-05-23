@@ -1,4 +1,4 @@
-var TENSION_DECK = {
+export const TENSION_DECK = {
   GreenCard: 'Green Card',
   EchoesInTheDarkness: 'Echoes in the Darkness',
   NoEscape: 'No Escape...',

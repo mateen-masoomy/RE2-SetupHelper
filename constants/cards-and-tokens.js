@@ -1,12 +1,15 @@
-var GetTokenName = (tensionDeckCard) => {
+import { TENSION_DECK } from "./tension-deck";
+import { ITEMS } from "./items";
+
+const GetTokenName = (tensionDeckCard) => {
   return `${tensionDeckCard} token`;
 };
 
-var GetCardName = (cardName) => {
+const GetCardName = (cardName) => {
   return `${cardName} card`;
 };
 
-var CARDS_AND_TOKENS = {
+export const CARDS_AND_TOKENS = {
   // Tokens
   EchoesInTheDarknessToken: GetTokenName(TENSION_DECK.EchoesInTheDarkness),
   PrehensileGraspToken: GetTokenName(TENSION_DECK.PrehensileGrasp),

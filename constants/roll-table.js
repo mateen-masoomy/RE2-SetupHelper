@@ -1,4 +1,4 @@
-var ROLL_TABLE = {
+export const ROLL_TABLE = {
   Empty: 'Empty',
   RollOnAmberEncounterTable: 'Roll on the amber encounter table instead.',
   UnsettlingFeeling:

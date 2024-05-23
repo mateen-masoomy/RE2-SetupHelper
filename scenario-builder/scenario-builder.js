@@ -4,7 +4,10 @@
  * @typedef {import("../types/scenario.types").Items} Items
  */
 
-class ScenarioBuilder {
+import { ENEMY_TYPES } from "../defs/enemies";
+import { TileImagePaths } from "../constants/tiles";
+
+export class ScenarioBuilder {
   /**
    * The collection of item indexes
    * @type {ItemIndexes}
@@ -74,37 +77,37 @@ class ScenarioBuilder {
    * @param {number} index                - The index of the room to build
    */
   #buildRoom(floors, floorNumber, index) {
-    var floor = floors[floorNumber];
-    var config = floor.rooms[index];
+    const floor = floors[floorNumber];
+    const config = floor.rooms[index];
 
-    var floorLabelCell = document.querySelector(
+    const floorLabelCell = document.querySelector(
       '#cell_' + floor.label.position.x + 'x' + floor.label.position.y
     );
     floorLabelCell.classList.add('label-cell');
 
-    var floorLabelEl = document.createElement('div');
+    const floorLabelEl = document.createElement('div');
     floorLabelEl.classList.add('board-label');
     floorLabelEl.classList.add('floor-label');
     floorLabelEl.textContent = floor.label.text;
 
     floorLabelCell.appendChild(floorLabelEl);
 
-    var notifier = document.querySelector('.notifier');
+    const notifier = document.querySelector('.notifier');
 
     config.tiles.forEach((tileConfig) => {
-      var cell = document.querySelector(
+      const cell = document.querySelector(
         '#cell_' + tileConfig.position.x + 'x' + tileConfig.position.y
       );
       cell.classList.add(config.type);
 
       cell.innerHTML = '';
 
-      var multiIcons = [];
+      const multiIcons = [];
 
       if (tileConfig.label) {
         cell.classList.add('label-cell');
 
-        var cellLabelEl = document.createElement('div');
+        const cellLabelEl = document.createElement('div');
         cellLabelEl.classList.add('board-label');
         cellLabelEl.classList.add('room-label');
         cellLabelEl.textContent = tileConfig.label;
@@ -122,7 +125,7 @@ class ScenarioBuilder {
         tileConfig.doors.forEach((door) => {
           cell.classList.add('door-' + door.direction);
           if (typeof door.connectingRoomIndex !== 'undefined') {
-            var openDoor = () => {
+            const openDoor = () => {
               if (door.keyRequired) {
                 if (!this.#foundItems.includes(door.keyRequired)) {
                   cell.classList.remove('door-' + door.direction);
@@ -157,13 +160,13 @@ class ScenarioBuilder {
             if (!tileConfig.numberOfIcons) {
               cell.addEventListener('click', () => openDoor());
             } else {
-              var doorIcon = document.createElement('span');
+              const doorIcon = document.createElement('span');
               doorIcon.classList.add('fa-stack', 'door-icon');
-              var doorIcon2x = document.createElement('i');
+              const doorIcon2x = document.createElement('i');
               doorIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
               doorIcon.appendChild(doorIcon2x);
 
-              var doorIcon1x = document.createElement('i');
+              const doorIcon1x = document.createElement('i');
               doorIcon1x.classList.add(
                 'fa-solid',
                 'fa-door-open',
@@ -173,7 +176,7 @@ class ScenarioBuilder {
               doorIcon.appendChild(doorIcon1x);
               cell.appendChild(doorIcon);
 
-              var notifierDoorIcon = doorIcon.cloneNode(true);
+              const notifierDoorIcon = doorIcon.cloneNode(true);
               notifierDoorIcon.addEventListener('click', () => openDoor());
 
               multiIcons.push(notifierDoorIcon);
@@ -206,14 +209,14 @@ class ScenarioBuilder {
 
       if (tileConfig.enemies) {
         tileConfig.enemies.forEach((enemy) => {
-          var enemyIcon = this.#generateEnemy(enemy);
+          const enemyIcon = this.#generateEnemy(enemy);
           cell.appendChild(enemyIcon);
-          var enemyHTML = `Enemy: <span class="emphasis">${
+          const enemyHTML = `Enemy: <span class="emphasis">${
             enemy.charAt(0).toUpperCase() + enemy.slice(1)
           }</span>`;
 
           if (tileConfig.numberOfIcons) {
-            var notifierEnemyIcon = enemyIcon.cloneNode(true);
+            const notifierEnemyIcon = enemyIcon.cloneNode(true);
             notifierEnemyIcon.addEventListener('click', (ev) => {
               ev.stopPropagation();
               ev.stopImmediatePropagation();
@@ -231,8 +234,8 @@ class ScenarioBuilder {
       if (tileConfig.item) {
         cell.innerHTML +=
           '<span class="fa-stack item"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span></span>';
-        var itemIndex = this.#itemIndexes[tileConfig.item].pop();
-        var item = this.currentScenario.items[tileConfig.item][itemIndex];
+        const itemIndex = this.#itemIndexes[tileConfig.item].pop();
+        const item = this.currentScenario.items[tileConfig.item][itemIndex];
 
         if (!tileConfig.numberOfIcons) {
           cell.querySelector('.fa-stack').addEventListener('click', () => {
@@ -245,7 +248,7 @@ class ScenarioBuilder {
             this.#showNotifierContainer();
           });
         } else {
-          var el = document.createElement('span');
+          const el = document.createElement('span');
 
           el.classList.add('fa-stack');
           el.classList.add('item');
@@ -268,14 +271,14 @@ class ScenarioBuilder {
       }
 
       if (tileConfig.stairs) {
-        var stairsIcon = document.createElement('span');
+        const stairsIcon = document.createElement('span');
         stairsIcon.classList.add('fa-stack', 'stairs');
 
-        var stairsIcon2x = document.createElement('i');
+        const stairsIcon2x = document.createElement('i');
         stairsIcon2x.classList.add('fa-solid', 'fa-square', 'fa-stack-2x');
         stairsIcon.appendChild(stairsIcon2x);
 
-        var stairsIcon1x = document.createElement('i');
+        const stairsIcon1x = document.createElement('i');
         stairsIcon1x.classList.add(
           'fa-solid',
           'fa-stairs',
@@ -314,7 +317,7 @@ class ScenarioBuilder {
             this.#showNotifierContainer();
           });
         } else {
-          var el = document.createElement('span');
+          const el = document.createElement('span');
 
           el.classList.add(['fa-stack']);
           el.innerHTML =
@@ -332,14 +335,14 @@ class ScenarioBuilder {
       }
 
       if (tileConfig.hasCorpse) {
-        var corpseIcon = document.createElement('span');
+        const corpseIcon = document.createElement('span');
         corpseIcon.classList.add('fa-stack', 'corpse');
 
-        var corpseIcon2x = document.createElement('i');
+        const corpseIcon2x = document.createElement('i');
         corpseIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
         corpseIcon.appendChild(corpseIcon2x);
 
-        var corpseIcon1x = document.createElement('i');
+        const corpseIcon1x = document.createElement('i');
         corpseIcon1x.classList.add(
           'fa-solid',
           'fa-person',
@@ -350,10 +353,10 @@ class ScenarioBuilder {
 
         cell.appendChild(corpseIcon);
 
-        var corpseHTML = `<span class="emphasis">Corpse</span>: If turn ends here, roll encounter die and replace with ${EnemyTypes.Zombie} on <img src="./assets/re-logo.png" class="umbrella-logo" />`;
+        const corpseHTML = `<span class="emphasis">Corpse</span>: If turn ends here, roll encounter die and replace with ${ENEMY_TYPES.Zombie} on <img src="./assets/re-logo.png" class="umbrella-logo" />`;
 
         if (tileConfig.numberOfIcons) {
-          var notifierCorpseIcon = corpseIcon.cloneNode(true);
+          const notifierCorpseIcon = corpseIcon.cloneNode(true);
           notifierCorpseIcon.addEventListener('click', (ev) => {
             ev.stopPropagation();
             ev.stopImmediatePropagation();
@@ -368,14 +371,14 @@ class ScenarioBuilder {
       }
 
       if (tileConfig.hasTypewriter) {
-        var typewriterIcon = document.createElement('span');
+        const typewriterIcon = document.createElement('span');
         typewriterIcon.classList.add('fa-stack', 'typewriter');
 
-        var typewriterIcon2x = document.createElement('i');
+        const typewriterIcon2x = document.createElement('i');
         typewriterIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
         typewriterIcon.appendChild(typewriterIcon2x);
 
-        var typewriterIcon1x = document.createElement('i');
+        const typewriterIcon1x = document.createElement('i');
         typewriterIcon1x.classList.add(
           'fa-regular',
           'fa-keyboard',
@@ -386,10 +389,10 @@ class ScenarioBuilder {
 
         cell.appendChild(typewriterIcon);
 
-        var typewriterHTML = `<span class='emphasis'>Typewriter</span>: Discard an ${ITEMS.InkRibbon} to refresh the tension deck (1 use only)`;
+        const typewriterHTML = `<span class='emphasis'>Typewriter</span>: Discard an ${ITEMS.InkRibbon} to refresh the tension deck (1 use only)`;
 
         if (tileConfig.numberOfIcons) {
-          var notifierTypewriterIcon = typewriterIcon.cloneNode(true);
+          const notifierTypewriterIcon = typewriterIcon.cloneNode(true);
           notifierTypewriterIcon.addEventListener('click', (ev) => {
             ev.stopPropagation();
             ev.stopImmediatePropagation();
@@ -404,14 +407,14 @@ class ScenarioBuilder {
       }
 
       if (tileConfig.isScenarioObjective) {
-        var objectiveIcon = document.createElement('span');
+        const objectiveIcon = document.createElement('span');
         objectiveIcon.classList.add('fa-stack', 'scenario-objective');
 
-        var objectiveIcon2x = document.createElement('i');
+        const objectiveIcon2x = document.createElement('i');
         objectiveIcon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
         objectiveIcon.appendChild(objectiveIcon2x);
 
-        var objectiveIcon1x = document.createElement('i');
+        const objectiveIcon1x = document.createElement('i');
         objectiveIcon1x.classList.add(
           'fa-solid',
           'fa-flag',
@@ -422,10 +425,10 @@ class ScenarioBuilder {
 
         cell.appendChild(objectiveIcon);
 
-        var objectiveHTML = `Scenario Objective`;
+        const objectiveHTML = `Scenario Objective`;
 
         if (tileConfig.numberOfIcons) {
-          var notifierObjectiveIcon = objectiveIcon.cloneNode(true);
+          const notifierObjectiveIcon = objectiveIcon.cloneNode(true);
           notifierObjectiveIcon.addEventListener('click', (ev) => {
             ev.stopPropagation();
             ev.stopImmediatePropagation();
@@ -463,22 +466,22 @@ class ScenarioBuilder {
    * @returns {HTMLSpanElement} The enemy icon
    */
   #generateEnemy = (enemyType) => {
-    var enemyContainer = document.createElement('span');
+    const enemyContainer = document.createElement('span');
     enemyContainer.classList.add('fa-stack');
     enemyContainer.classList.add('enemy');
 
-    var icon2x = document.createElement('i');
+    const icon2x = document.createElement('i');
     icon2x.classList.add('fa-solid', 'fa-circle', 'fa-stack-2x');
     enemyContainer.appendChild(icon2x);
 
-    var icon1x = document.createElement('i');
+    const icon1x = document.createElement('i');
     icon1x.classList.add('fa-solid', 'fa-stack-1x', 'fa-inverse');
 
     switch (enemyType) {
-      case EnemyTypes.Zombie:
+      case ENEMY_TYPES.Zombie:
         icon1x.textContent = 'Z';
         break;
-      case EnemyTypes.Licker:
+      case ENEMY_TYPES.Licker:
         icon1x.textContent = 'L';
         break;
     }
@@ -500,7 +503,7 @@ class ScenarioBuilder {
    * @returns {Array<T>} The shuffled array
    */
   #shuffle = (array) => {
-    var copy = JSON.parse(JSON.stringify(array));
+    const copy = JSON.parse(JSON.stringify(array));
     let currentIndex = copy.length;
 
     // While there remain elements to this.#shuffle...
@@ -529,22 +532,21 @@ class ScenarioBuilder {
     document.querySelector('.description').textContent = scenario.description;
     document.querySelector('.location').textContent = scenario.location;
 
-    var tilesRequired = document.querySelector('.tiles-required');
-    tilesRequired.innerHTML =
-      '<div class="scenario-section-header">Tiles Required</div>';
-    for (var requiredTileType in scenario.tilesRequired) {
-      var requiredTile = scenario.tilesRequired[requiredTileType];
-      var tile = document.createElement('div');
+    const tilesRequired = document.querySelector('.tiles-required');
+    this.#makeSectionHeader('Tiles Required', tilesRequired);
+    for (const requiredTileType in scenario.tilesRequired) {
+      const requiredTile = scenario.tilesRequired[requiredTileType];
+      const tile = document.createElement('div');
       tile.classList.add('required-tile');
 
-      var tileDefName =
+      const tileDefName =
         requiredTileType.charAt(0).toUpperCase() + requiredTileType.slice(1);
-      var img = document.createElement('img');
+      const img = document.createElement('img');
       img.src = TileImagePaths[tileDefName];
       img.classList.add('tile-image');
       tile.appendChild(img);
 
-      var tileName = document.createElement('div');
+      const tileName = document.createElement('div');
       tileName.classList.add('tile-name');
       tileName.textContent = requiredTile;
       tile.appendChild(tileName);
@@ -553,27 +555,36 @@ class ScenarioBuilder {
     }
 
     if (scenario.specialRules.length) {
-      var specialRules = document.querySelector('.special-rules');
-      specialRules.innerHTML =
-        '<div class="scenario-section-header">Special Rules</div>';
+      const specialRules = document.querySelector('.special-rules');
+      this.#makeSectionHeader('Special Rules', specialRules);
       scenario.specialRules.forEach((rule) => {
-        var name = document.createElement('div');
+        const name = document.createElement('div');
         name.classList.add('rule-name');
         name.textContent = `${rule.name}`;
         specialRules.appendChild(name);
-        var description = document.createElement('div');
+        const description = document.createElement('div');
         description.classList.add('rule-description');
         description.textContent = rule.description;
         specialRules.appendChild(description);
       });
     }
 
+    if (scenario.notes.length) {
+      const notes = document.querySelector('notes');
+      this.#makeSectionHeader('Notes', notes);
+      scenario.notes.forEach((note) => {
+        const noteEl = document.createElement('p');
+        noteEl.classList.add('note');
+        noteEl.innerHTML = `${note}`;
+        notes.appendChild(name);
+      });
+    }
+
     if (scenario.startingItems.length) {
-      var startingItems = document.querySelector('.starting-items');
-      startingItems.innerHTML =
-        '<div class="scenario-section-header">Starting Items</div>';
+      const startingItems = document.querySelector('.starting-items');
+      this.#makeSectionHeader('Starting Items', startingItems);
       scenario.startingItems.forEach((startingItem) => {
-        var name = document.createElement('div');
+        const name = document.createElement('div');
         name.classList.add('starting-item-name');
         name.textContent = startingItem;
         startingItems.appendChild(name);
@@ -589,11 +600,23 @@ class ScenarioBuilder {
     });
   };
 
+  /**
+   * Appends a section header to the given element
+   * @param {string} headerText The text for the section header
+   * @param {HTMLElement} parentEl The parent to attach the header to
+   */
+  #makeSectionHeader = (headerText, parentEl) => {
+    const sectionHeader = document.createElement('div');
+    sectionHeader.classList.add('scenario-section-header');
+    sectionHeader.innerHTML = headerText;
+    parentEl.appendChild(sectionHeader);
+  }
+
   #clearGrid = () => {
     document.querySelectorAll('.grid-cell').forEach((cell) => {
       cell.className = 'grid-cell';
       cell.textContent = '';
-      var newCell = cell.cloneNode(true);
+      const newCell = cell.cloneNode(true);
       cell.parentNode.replaceChild(newCell, cell);
     });
   };

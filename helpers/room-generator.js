@@ -1,40 +1,7 @@
-var RoomDefs = {
-  SmallWide: '2x1',
-  SmallTall: '1x2',
+import { ROOM_SHAPES, ROOM_TYPES } from "../constants/rooms";
+import { DIRECTIONS } from "../constants/directions";
 
-  MediumWide: '3x2',
-  MediumTall: '2x3',
-
-  SmallSquare: '2x2',
-  MediumSquare: '3x3',
-  LargeSquare: '4x4',
-
-  P: 'p',
-  P_90: 'p90',
-  P_180: 'p180',
-  P_180_Flip: 'p180Flip',
-  P_270: 'p270',
-
-  L: 'l',
-  L_90: 'l90',
-  L_180: 'l180',
-  L_270: 'l270',
-};
-
-var Directions = {
-  Top: 'top',
-  Right: 'right',
-  Bottom: 'bottom',
-  Left: 'left',
-};
-
-var RoomTypes = {
-  Green: 'green',
-  Yellow: 'yellow',
-  Amber: 'amber',
-};
-
-var RoomConfigDefs = {
+const RoomConfigDefs = {
   Small: 'small',
   Medium: 'medium',
   SmallSquare: '2x2',
@@ -44,40 +11,16 @@ var RoomConfigDefs = {
   L: 'l',
 };
 
-var TileDescriptions = {
-  Small: '[1x2] Rectangle Tile',
-  Medium: '[2x3] Rectangle Tile',
-  SmallSquare: '[2x2] Square Tile',
-  MediumSquare: '[3x3] Square Tile',
-  LargeSquare: '[4x4] Square Tile',
-  P: '[6 Space] P Tile',
-  L: '[7 Space] L Tile',
-};
-
-var TileImagePaths = {
-  Small: makeTileImageString('1x2-rectangle'),
-  Medium: makeTileImageString('2x3-rectangle'),
-  SmallSquare: makeTileImageString('2x2-square'),
-  MediumSquare: makeTileImageString('3x3-square'),
-  LargeSquare: makeTileImageString('4x4-square'),
-  P: makeTileImageString('p'),
-  L: makeTileImageString('l'),
-};
-
-function makeTileImageString(tileType) {
-  return `./assets/${tileType}.png`;
-}
-
-function createDefaultConfig(count) {
+const createDefaultConfig = (count) => {
   var tileConfigs = Array.from({ length: count - 1 }, () => ({}));
 
   return {
-    type: RoomTypes.Green,
+    type: ROOM_TYPES.Green,
     tiles: tileConfigs,
   };
 }
 
-function createConfig(type, defaultConfig, configMap) {
+const createConfig = (type, defaultConfig, configMap) => {
   if (configMap) {
     configMap.forEach((mapping) => {
       defaultConfig.tiles[mapping.index] = {
@@ -91,7 +34,7 @@ function createConfig(type, defaultConfig, configMap) {
   return defaultConfig;
 }
 
-var RoomConfigGenerator = {
+const RoomConfigGenerator = {
   [RoomConfigDefs.Small]: (type, configMap) =>
     createConfig(type, createDefaultConfig(2), configMap),
   [RoomConfigDefs.Medium]: (type, configMap) =>
@@ -120,8 +63,8 @@ var RoomConfigGenerator = {
  * Room Generators
  * @type {Object.<string, RoomGenerator}
  */
-var RoomGenerator = {
-  [RoomDefs.SmallWide]: function (x, y, type, configMap) {
+export const RoomGenerator = {
+  [ROOM_SHAPES.SmallWide]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
     var tiles = [
       {
@@ -129,7 +72,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Bottom, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Bottom, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -137,7 +80,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top, Directions.Bottom, Directions.Right],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Bottom, DIRECTIONS.Right],
         ...config.tiles[1],
       },
     ];
@@ -147,7 +90,7 @@ var RoomGenerator = {
       tiles: tiles,
     };
   },
-  [RoomDefs.SmallTall]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.SmallTall]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
     var tiles = [
       {
@@ -155,7 +98,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Right, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Right, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -163,7 +106,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Bottom, Directions.Right, Directions.Left],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Right, DIRECTIONS.Left],
         ...config.tiles[1],
       },
     ];
@@ -174,7 +117,7 @@ var RoomGenerator = {
     };
   },
 
-  [RoomDefs.MediumWide]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.MediumWide]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.Medium](type, configMap);
     var tiles = [
       {
@@ -182,7 +125,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -190,7 +133,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top],
+        walls: [DIRECTIONS.Top],
         ...config.tiles[1],
       },
       {
@@ -198,7 +141,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y,
         },
-        walls: [Directions.Top, Directions.Right],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Right],
         ...config.tiles[2],
       },
       {
@@ -206,7 +149,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Bottom, Directions.Left],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Left],
         ...config.tiles[3],
       },
       {
@@ -214,7 +157,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 1,
         },
-        walls: [Directions.Bottom],
+        walls: [DIRECTIONS.Bottom],
         ...config.tiles[4],
       },
       {
@@ -222,7 +165,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y + 1,
         },
-        walls: [Directions.Bottom, Directions.Right],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Right],
         ...config.tiles[5],
       },
     ];
@@ -232,7 +175,7 @@ var RoomGenerator = {
       tiles: tiles,
     };
   },
-  [RoomDefs.MediumTall]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.MediumTall]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.Medium](type, configMap);
     var tiles = [
       {
@@ -240,7 +183,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -248,7 +191,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top, Directions.Right],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Right],
         ...config.tiles[1],
       },
       {
@@ -256,7 +199,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Left],
+        walls: [DIRECTIONS.Left],
         ...config.tiles[2],
       },
       {
@@ -264,7 +207,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 1,
         },
-        walls: [Directions.Right],
+        walls: [DIRECTIONS.Right],
         ...config.tiles[3],
       },
       {
@@ -272,7 +215,7 @@ var RoomGenerator = {
           x: x,
           y: y + 2,
         },
-        walls: [Directions.Left, Directions.Bottom],
+        walls: [DIRECTIONS.Left, DIRECTIONS.Bottom],
         ...config.tiles[4],
       },
       {
@@ -280,7 +223,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 2,
         },
-        walls: [Directions.Bottom, Directions.Right],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Right],
         ...config.tiles[5],
       },
     ];
@@ -291,7 +234,7 @@ var RoomGenerator = {
     };
   },
 
-  [RoomDefs.SmallSquare]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.SmallSquare]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.SmallSquare](
       type,
       configMap
@@ -302,7 +245,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -310,7 +253,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top, Directions.Right],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Right],
         ...config.tiles[1],
       },
       {
@@ -318,7 +261,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Bottom, Directions.Left],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Left],
         ...config.tiles[2],
       },
       {
@@ -326,7 +269,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 1,
         },
-        walls: [Directions.Bottom, Directions.Right],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Right],
         ...config.tiles[3],
       },
     ];
@@ -336,7 +279,7 @@ var RoomGenerator = {
       tiles: tiles,
     };
   },
-  [RoomDefs.MediumSquare]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.MediumSquare]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.MediumSquare](
       type,
       configMap
@@ -347,7 +290,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -355,7 +298,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top],
+        walls: [DIRECTIONS.Top],
         ...config.tiles[1],
       },
       {
@@ -363,7 +306,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y,
         },
-        walls: [Directions.Top, Directions.Right],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Right],
         ...config.tiles[2],
       },
       {
@@ -371,7 +314,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Left],
+        walls: [DIRECTIONS.Left],
         ...config.tiles[3],
       },
       {
@@ -387,7 +330,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y + 1,
         },
-        walls: [Directions.Right],
+        walls: [DIRECTIONS.Right],
         ...config.tiles[5],
       },
       {
@@ -395,7 +338,7 @@ var RoomGenerator = {
           x: x,
           y: y + 2,
         },
-        walls: [Directions.Bottom, Directions.Left],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Left],
         ...config.tiles[6],
       },
       {
@@ -403,7 +346,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 2,
         },
-        walls: [Directions.Bottom],
+        walls: [DIRECTIONS.Bottom],
         ...config.tiles[7],
       },
       {
@@ -411,7 +354,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y + 2,
         },
-        walls: [Directions.Bottom, Directions.Right],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Right],
         ...config.tiles[8],
       },
     ];
@@ -421,7 +364,7 @@ var RoomGenerator = {
       tiles: tiles,
     };
   },
-  [RoomDefs.LargeSquare]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.LargeSquare]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.LargeSquare](
       type,
       configMap
@@ -432,7 +375,7 @@ var RoomGenerator = {
           x: x,
           y: y,
         },
-        walls: [Directions.Top, Directions.Left],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Left],
         ...config.tiles[0],
       },
       {
@@ -440,7 +383,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y,
         },
-        walls: [Directions.Top],
+        walls: [DIRECTIONS.Top],
         ...config.tiles[1],
       },
       {
@@ -448,7 +391,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y,
         },
-        walls: [Directions.Top],
+        walls: [DIRECTIONS.Top],
         ...config.tiles[2],
       },
       {
@@ -456,7 +399,7 @@ var RoomGenerator = {
           x: x + 3,
           y: y,
         },
-        walls: [Directions.Top, Directions.Right],
+        walls: [DIRECTIONS.Top, DIRECTIONS.Right],
         ...config.tiles[3],
       },
       {
@@ -464,7 +407,7 @@ var RoomGenerator = {
           x: x,
           y: y + 1,
         },
-        walls: [Directions.Left],
+        walls: [DIRECTIONS.Left],
         ...config.tiles[4],
       },
       {
@@ -488,7 +431,7 @@ var RoomGenerator = {
           x: x + 3,
           y: y + 1,
         },
-        walls: [Directions.Left],
+        walls: [DIRECTIONS.Left],
         ...config.tiles[7],
       },
       {
@@ -496,7 +439,7 @@ var RoomGenerator = {
           x: x,
           y: y + 2,
         },
-        walls: [Directions.Left],
+        walls: [DIRECTIONS.Left],
         ...config.tiles[8],
       },
       {
@@ -528,7 +471,7 @@ var RoomGenerator = {
           x: x,
           y: y + 3,
         },
-        walls: [Directions.Bottom, Directions.Left],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Left],
         ...config.tiles[12],
       },
       {
@@ -536,7 +479,7 @@ var RoomGenerator = {
           x: x + 1,
           y: y + 3,
         },
-        walls: [Directions.Bottom],
+        walls: [DIRECTIONS.Bottom],
         ...config.tiles[13],
       },
       {
@@ -544,7 +487,7 @@ var RoomGenerator = {
           x: x + 2,
           y: y + 3,
         },
-        walls: [Directions.Bottom],
+        walls: [DIRECTIONS.Bottom],
         ...config.tiles[14],
       },
       {
@@ -552,7 +495,7 @@ var RoomGenerator = {
           x: x + 3,
           y: y + 3,
         },
-        walls: [Directions.Bottom, Directions.Right],
+        walls: [DIRECTIONS.Bottom, DIRECTIONS.Right],
         ...config.tiles[15],
       },
     ];
@@ -563,7 +506,7 @@ var RoomGenerator = {
     };
   },
 
-  [RoomDefs.P]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.P]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
     var tempMap = [
@@ -582,7 +525,7 @@ var RoomGenerator = {
       {
         index: 2,
         config: {
-          walls: [Directions.Left],
+          walls: [DIRECTIONS.Left],
           ...config.tiles[2],
         },
       },
@@ -594,7 +537,7 @@ var RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[RoomDefs.SmallSquare](
+    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x,
       y,
       type,
@@ -605,7 +548,7 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[4],
         },
       },
@@ -617,7 +560,7 @@ var RoomGenerator = {
       },
     ];
 
-    var small = RoomGenerator[RoomDefs.SmallTall](
+    var small = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y + 2,
       type,
@@ -629,7 +572,7 @@ var RoomGenerator = {
       tiles: [...square.tiles, ...small.tiles],
     };
   },
-  [RoomDefs.P_90]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.P_90]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
     var tempMap = [
@@ -642,13 +585,13 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[1],
         },
       },
     ];
 
-    var small = RoomGenerator[RoomDefs.SmallWide](
+    var small = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -671,7 +614,7 @@ var RoomGenerator = {
       {
         index: 2,
         config: {
-          walls: [Directions.Top],
+          walls: [DIRECTIONS.Top],
           ...config.tiles[4],
         },
       },
@@ -683,7 +626,7 @@ var RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[RoomDefs.SmallSquare](
+    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x + 2,
       y,
       type,
@@ -695,7 +638,7 @@ var RoomGenerator = {
       tiles: [...small.tiles, ...square.tiles],
     };
   },
-  [RoomDefs.P_180]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.P_180]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
     var tempMap = [
@@ -708,14 +651,14 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[1],
         },
       },
     ];
 
-    config.tiles[1].walls = [Directions.Left, Directions.Right];
-    var small = RoomGenerator[RoomDefs.SmallTall](
+    config.tiles[1].walls = [DIRECTIONS.Left, DIRECTIONS.Right];
+    var small = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y,
       type,
@@ -744,13 +687,13 @@ var RoomGenerator = {
       {
         index: 3,
         config: {
-          walls: [Directions.Right],
+          walls: [DIRECTIONS.Right],
           ...config.tiles[5],
         },
       },
     ];
 
-    var square = RoomGenerator[RoomDefs.SmallSquare](
+    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x - 1,
       y + 2,
       type,
@@ -761,7 +704,7 @@ var RoomGenerator = {
       tiles: [...small.tiles, ...square.tiles],
     };
   },
-  [RoomDefs.P_180_Flip]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.P_180_Flip]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
     var tempMap = [
@@ -774,13 +717,13 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[1],
         },
       },
     ];
 
-    var small = RoomGenerator[RoomDefs.SmallTall](
+    var small = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y,
       type,
@@ -791,14 +734,14 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Left],
+          walls: [DIRECTIONS.Left],
           ...config.tiles[2],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Right, Directions.Top],
+          walls: [DIRECTIONS.Right, DIRECTIONS.Top],
           ...config.tiles[3],
         },
       },
@@ -816,7 +759,7 @@ var RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[RoomDefs.SmallSquare](
+    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x,
       y + 2,
       type,
@@ -827,7 +770,7 @@ var RoomGenerator = {
       tiles: [...small.tiles, ...square.tiles],
     };
   },
-  [RoomDefs.P_270]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.P_270]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
     var tempMap = [
@@ -840,7 +783,7 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Top],
+          walls: [DIRECTIONS.Top],
           ...config.tiles[1],
         },
       },
@@ -858,7 +801,7 @@ var RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[RoomDefs.SmallSquare](
+    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x,
       y,
       type,
@@ -869,7 +812,7 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[4],
         },
       },
@@ -881,7 +824,7 @@ var RoomGenerator = {
       },
     ];
 
-    var small = RoomGenerator[RoomDefs.SmallWide](
+    var small = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -894,27 +837,27 @@ var RoomGenerator = {
     };
   },
 
-  [RoomDefs.L]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.L]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
 
     var tempMap = [
       {
         index: 0,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[0],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[1],
         },
       },
     ];
 
-    var length1 = RoomGenerator[RoomDefs.SmallTall](
+    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y,
       type,
@@ -925,20 +868,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[2],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Bottom],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Bottom],
           ...config.tiles[3],
         },
       },
     ];
 
-    var length2 = RoomGenerator[RoomDefs.SmallTall](
+    var length2 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y + 2,
       type,
@@ -949,20 +892,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[4],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[5],
         },
       },
     ];
 
-    var width1 = RoomGenerator[RoomDefs.SmallWide](
+    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 1,
       y + 3,
       type,
@@ -976,7 +919,7 @@ var RoomGenerator = {
             x: x + 3,
             y: y + 3,
           },
-          walls: [Directions.Top, Directions.Right, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Right, DIRECTIONS.Bottom],
           ...config.tiles[6],
         },
       ],
@@ -992,26 +935,26 @@ var RoomGenerator = {
       ],
     };
   },
-  [RoomDefs.L_90]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.L_90]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
     var tempMap = [
       {
         index: 0,
         config: {
-          walls: [Directions.Top, Directions.Left],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Left],
           ...config.tiles[0],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[1],
         },
       },
     ];
 
-    var width1 = RoomGenerator[RoomDefs.SmallWide](
+    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -1022,7 +965,7 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[2],
         },
       },
@@ -1034,7 +977,7 @@ var RoomGenerator = {
       },
     ];
 
-    var width2 = RoomGenerator[RoomDefs.SmallWide](
+    var width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -1045,20 +988,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[4],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[5],
         },
       },
     ];
 
-    var length1 = RoomGenerator[RoomDefs.SmallTall](
+    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y + 1,
       type,
@@ -1072,7 +1015,7 @@ var RoomGenerator = {
             x: x,
             y: y + 3,
           },
-          walls: [Directions.Right, Directions.Bottom, Directions.Left],
+          walls: [DIRECTIONS.Right, DIRECTIONS.Bottom, DIRECTIONS.Left],
           ...config.tiles[6],
         },
       ],
@@ -1088,7 +1031,7 @@ var RoomGenerator = {
       ],
     };
   },
-  [RoomDefs.L_180]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.L_180]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
 
     var tempMap = [
@@ -1101,13 +1044,13 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[1],
         },
       },
     ];
 
-    var width1 = RoomGenerator[RoomDefs.SmallWide](
+    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -1118,20 +1061,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[2],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Top, Directions.Right],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Right],
           ...config.tiles[3],
         },
       },
     ];
 
-    var width2 = RoomGenerator[RoomDefs.SmallWide](
+    var width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -1142,20 +1085,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[4],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[5],
         },
       },
     ];
 
-    var length1 = RoomGenerator[RoomDefs.SmallTall](
+    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x + 3,
       y + 1,
       type,
@@ -1169,7 +1112,7 @@ var RoomGenerator = {
             x: x + 3,
             y: y + 3,
           },
-          walls: [Directions.Right, Directions.Bottom, Directions.Left],
+          walls: [DIRECTIONS.Right, DIRECTIONS.Bottom, DIRECTIONS.Left],
           ...config.tiles[6],
         },
       ],
@@ -1185,7 +1128,7 @@ var RoomGenerator = {
       ],
     };
   },
-  [RoomDefs.L_270]: function (x, y, type, configMap) {
+  [ROOM_SHAPES.L_270]: function (x, y, type, configMap) {
     var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
 
     var tempMap = [
@@ -1198,13 +1141,13 @@ var RoomGenerator = {
       {
         index: 1,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[1],
         },
       },
     ];
 
-    var width1 = RoomGenerator[RoomDefs.SmallWide](
+    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -1215,20 +1158,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Top, Directions.Bottom],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
           ...config.tiles[2],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Right, Directions.Bottom],
+          walls: [DIRECTIONS.Right, DIRECTIONS.Bottom],
           ...config.tiles[3],
         },
       },
     ];
 
-    var width2 = RoomGenerator[RoomDefs.SmallWide](
+    var width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -1239,20 +1182,20 @@ var RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[4],
         },
       },
       {
         index: 1,
         config: {
-          walls: [Directions.Left, Directions.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
           ...config.tiles[5],
         },
       },
     ];
 
-    var length1 = RoomGenerator[RoomDefs.SmallTall](
+    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x + 3,
       y - 2,
       type,
@@ -1266,7 +1209,7 @@ var RoomGenerator = {
             x: x + 3,
             y: y - 3,
           },
-          walls: [Directions.Top, Directions.Right, Directions.Left],
+          walls: [DIRECTIONS.Top, DIRECTIONS.Right, DIRECTIONS.Left],
           ...config.tiles[6],
         },
       ],

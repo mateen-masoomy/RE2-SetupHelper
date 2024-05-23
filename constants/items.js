@@ -1,4 +1,6 @@
-var ITEMS = {
+import { FaTokenizer } from "../helpers/fa-tokenizer";
+
+export const ITEMS = {
   // Consumable Items
   HandgunBullets: 'Handgun Bullets',
   GreenHerb: 'Green Herb',
@@ -23,7 +25,7 @@ var ITEMS = {
   GrenadeLauncher: 'Grenade Launcher',
 };
 
-var ITEM_TYPES = {
+export const ITEM_TYPES = {
   A: 'a',
   B: 'b',
 };

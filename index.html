@@ -48,6 +48,7 @@
                     <p class="location"></p>
                     <div class="tiles-required"></div>
                     <div class="special-rules"></div>
+                    <div class="notes"></div>
                     <div class="starting-items"></div>
 
                     <div class="scenario-section-header"><span class="dot yellow"></span>Yellow Dice Table</div>
@@ -126,7 +127,7 @@
         </div>
 
         <header>
-            <div class="sidebar-toggle" onclick="toggleSidebar()">
+            <div class="sidebar-toggle">
                 <i class="fa-solid fa-bars"></i>
                 <i class="fa-solid fa-times"></i>
             </div>
@@ -137,7 +138,7 @@
             </h1>
         </header>
 
-        <div class="sidebar-overlay" onclick="hideSidebar()"></div>
+        <div class="sidebar-overlay"></div>
 
         <div class="main-content">
             <div class="grid-container">
@@ -151,27 +152,13 @@
     </body>
 
     <script>
-        /**
-         * The scenario definitions
-         * @type {Object.<number, Scenario>}
-         */
-        var scenarioDefs = {};
+        
     </script>
 
-    <script src="./utility/fa-tokenizer.js"></script>
-    <script src="./utility/multiples.js"></script>
-    <script src="./utility/sidebar.js"></script>
-    <script src="./utility/select.js"></script>
+    <script src="./setup/sidebar.js"></script>
+    <script src="./setup/select.js"></script>
 
-    <script src="./constants/strings.js"></script>
-    <script src="./constants/items.js"></script>
-    <script src="./constants/tension-deck.js"></script>
-    <script src="./constants/roll-table.js"></script>
-    <script src="./constants/cards-and-tokens.js"></script>
-
-    <script src="./defs/room-defs.js"></script>
-    <script src="./defs/enemies.js"></script>
-
+    <script src="./scenarios/scenario-init.js"></script>
     <script src="./scenarios/scenario-2.js"></script>
     <script src="./scenarios/scenario-3.js"></script>
     <script src="./scenario-builder/scenario-builder.js"></script>
