@@ -38,7 +38,6 @@
               name="numberOfPlayers"
               value="1"
               checked
-              onchange="changePlayers(1)"
             />
             <label for="onePlayer">1 Player</label>
             <input
@@ -46,7 +45,6 @@
               id="twoPlayers"
               name="numberOfPlayers"
               value="2"
-              onchange="changePlayers(2)"
             />
             <label for="twoPlayers">2 Players</label>
             <input
@@ -54,7 +52,6 @@
               id="threePlayers"
               name="numberOfPlayers"
               value="3"
-              onchange="changePlayers(3)"
             />
             <label for="threePlayers">3 Players</label>
             <input
@@ -62,7 +59,6 @@
               id="fourPlayers"
               name="numberOfPlayers"
               value="4"
-              onchange="changePlayers(4)"
             />
             <label for="fourPlayers">4 Players</label>
           </div>
@@ -189,44 +185,8 @@
 
   <script src="./setup/sidebar.js"></script>
   <script src="./setup/select.js"></script>
+  <script src="./setup/grid.js"></script>
+  <script src="./setup/notifier.js"></script>
 
-  <script src="./scenarios/scenario-init.js" type="module"></script>
-  <script src="./scenario-builder/scenario-builder.js" type="module"></script>
-
-  <script>
-    var scenarioBuilder = new ScenarioBuilder();
-
-    (function () {
-      var grid = document.querySelector(".grid");
-      for (var col = 20; col > 0; col--) {
-        for (var row = 20; row > 0; row--) {
-          var div = document.createElement("div");
-          div.id = "cell_" + col + "x" + row;
-          div.classList.add("grid-cell");
-          grid.appendChild(div);
-        }
-      }
-
-      document
-        .querySelector(".notifier-container")
-        .addEventListener("click", function () {
-          this.classList.add("hidden");
-        });
-
-      document
-        .querySelector("#scenarioSelect")
-        .addEventListener("change", function () {
-          document.querySelector(".scenario-details").style.display = "block";
-          scenarioBuilder.buildScenario(scenarioDefs[this.value]);
-        });
-    })();
-
-    function changePlayers(numberOfPlayers) {
-      if (scenarioBuilder.currentScenario)
-        scenarioBuilder.buildScenario(
-          scenarioBuilder.currentScenario,
-          numberOfPlayers
-        );
-    }
-  </script>
+  <script src="./game.js" type="module"></script>
 </html>

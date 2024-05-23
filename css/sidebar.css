@@ -101,7 +101,7 @@
   margin-right: 10px;
 }
 
-.players-selection input[type='radio']:after {
+.players-selection input[type="radio"]:after {
   display: inline-block;
   height: 15px;
   width: 15px;
@@ -110,12 +110,12 @@
   left: -1px;
   border-radius: 15px;
   background-color: white;
-  content: '';
+  content: "";
   visibility: visible;
   border: 2px solid #efefef;
 }
 
-.players-selection input[type='radio']:checked:after {
+.players-selection input[type="radio"]:checked:after {
   display: inline-block;
   height: 15px;
   width: 15px;
@@ -124,7 +124,7 @@
   left: -1px;
   border-radius: 15px;
   background-color: #9b0c0c;
-  content: '';
+  content: "";
   visibility: visible;
   border: 2px solid #efefef;
 }
@@ -187,4 +187,8 @@
 
 .sidebar .tokenized {
   font-size: 0.8em;
+}
+
+.sidebar .note {
+  font-style: italic;
 }

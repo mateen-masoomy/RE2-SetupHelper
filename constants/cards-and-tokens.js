@@ -1,5 +1,5 @@
-import { TENSION_DECK } from "./tension-deck";
-import { ITEMS } from "./items";
+import { TENSION_DECK } from "./tension-deck.js";
+import { ITEMS } from "./items.js";
 
 const GetTokenName = (tensionDeckCard) => {
   return `${tensionDeckCard} token`;

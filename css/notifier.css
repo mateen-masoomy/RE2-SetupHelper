@@ -43,14 +43,14 @@
   color: #af2510;
 }
 
-.notifier .umbrella-logo  {
+.notifier .umbrella-logo {
   width: 20px;
   margin-left: 5px;
   filter: drop-shadow(0 0 1px #000);
 }
 
-.notifier .item-text {
-  font-size: 0.75em;
+.notifier .item-text .fa-stack {
+  font-size: 0.6em;
 }
 
 .hidden {

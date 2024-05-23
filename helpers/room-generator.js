@@ -1,24 +1,24 @@
-import { ROOM_SHAPES, ROOM_TYPES } from "../constants/rooms";
-import { DIRECTIONS } from "../constants/directions";
+import { ROOM_SHAPES, ROOM_TYPES } from "../constants/rooms.js";
+import { DIRECTIONS } from "../constants/directions.js";
 
 const RoomConfigDefs = {
-  Small: 'small',
-  Medium: 'medium',
-  SmallSquare: '2x2',
-  MediumSquare: '3x3',
-  LargeSquare: '4x4',
-  P: 'p',
-  L: 'l',
+  Small: "small",
+  Medium: "medium",
+  SmallSquare: "2x2",
+  MediumSquare: "3x3",
+  LargeSquare: "4x4",
+  P: "p",
+  L: "l",
 };
 
 const createDefaultConfig = (count) => {
-  var tileConfigs = Array.from({ length: count - 1 }, () => ({}));
+  const tileConfigs = Array.from({ length: count - 1 }, () => ({}));
 
   return {
     type: ROOM_TYPES.Green,
     tiles: tileConfigs,
   };
-}
+};
 
 const createConfig = (type, defaultConfig, configMap) => {
   if (configMap) {
@@ -32,7 +32,7 @@ const createConfig = (type, defaultConfig, configMap) => {
 
   if (type) defaultConfig.type = type;
   return defaultConfig;
-}
+};
 
 const RoomConfigGenerator = {
   [RoomConfigDefs.Small]: (type, configMap) =>
@@ -65,8 +65,8 @@ const RoomConfigGenerator = {
  */
 export const RoomGenerator = {
   [ROOM_SHAPES.SmallWide]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
-    var tiles = [
+    const config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
+    const tiles = [
       {
         position: {
           x: x,
@@ -91,8 +91,8 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.SmallTall]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
-    var tiles = [
+    const config = RoomConfigGenerator[RoomConfigDefs.Small](type, configMap);
+    const tiles = [
       {
         position: {
           x: x,
@@ -118,8 +118,8 @@ export const RoomGenerator = {
   },
 
   [ROOM_SHAPES.MediumWide]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.Medium](type, configMap);
-    var tiles = [
+    const config = RoomConfigGenerator[RoomConfigDefs.Medium](type, configMap);
+    const tiles = [
       {
         position: {
           x: x,
@@ -176,8 +176,8 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.MediumTall]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.Medium](type, configMap);
-    var tiles = [
+    const config = RoomConfigGenerator[RoomConfigDefs.Medium](type, configMap);
+    const tiles = [
       {
         position: {
           x: x,
@@ -235,11 +235,11 @@ export const RoomGenerator = {
   },
 
   [ROOM_SHAPES.SmallSquare]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.SmallSquare](
+    const config = RoomConfigGenerator[RoomConfigDefs.SmallSquare](
       type,
       configMap
     );
-    var tiles = [
+    const tiles = [
       {
         position: {
           x: x,
@@ -280,11 +280,11 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.MediumSquare]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.MediumSquare](
+    const config = RoomConfigGenerator[RoomConfigDefs.MediumSquare](
       type,
       configMap
     );
-    var tiles = [
+    const tiles = [
       {
         position: {
           x: x,
@@ -365,11 +365,11 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.LargeSquare]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.LargeSquare](
+    const config = RoomConfigGenerator[RoomConfigDefs.LargeSquare](
       type,
       configMap
     );
-    var tiles = [
+    const tiles = [
       {
         position: {
           x: x,
@@ -507,9 +507,9 @@ export const RoomGenerator = {
   },
 
   [ROOM_SHAPES.P]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -537,7 +537,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
+    const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x,
       y,
       type,
@@ -560,7 +560,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var small = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const small = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y + 2,
       type,
@@ -573,9 +573,9 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.P_90]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -591,7 +591,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var small = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const small = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -626,7 +626,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
+    const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x + 2,
       y,
       type,
@@ -639,9 +639,9 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.P_180]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -658,7 +658,7 @@ export const RoomGenerator = {
     ];
 
     config.tiles[1].walls = [DIRECTIONS.Left, DIRECTIONS.Right];
-    var small = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const small = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y,
       type,
@@ -693,7 +693,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
+    const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x - 1,
       y + 2,
       type,
@@ -705,9 +705,9 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.P_180_Flip]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -723,7 +723,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var small = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const small = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y,
       type,
@@ -759,7 +759,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
+    const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x,
       y + 2,
       type,
@@ -771,9 +771,9 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.P_270]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -801,7 +801,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var square = RoomGenerator[ROOM_SHAPES.SmallSquare](
+    const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x,
       y,
       type,
@@ -824,7 +824,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var small = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const small = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -838,9 +838,9 @@ export const RoomGenerator = {
   },
 
   [ROOM_SHAPES.L]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -857,7 +857,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y,
       type,
@@ -881,7 +881,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var length2 = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const length2 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y + 2,
       type,
@@ -905,14 +905,14 @@ export const RoomGenerator = {
       },
     ];
 
-    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 1,
       y + 3,
       type,
       JSON.parse(JSON.stringify(tempMap))
     );
 
-    var width2 = {
+    const width2 = {
       tiles: [
         {
           position: {
@@ -936,8 +936,8 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.L_90]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
-    var tempMap = [
+    const config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -954,7 +954,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -977,7 +977,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -1001,14 +1001,14 @@ export const RoomGenerator = {
       },
     ];
 
-    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x,
       y + 1,
       type,
       JSON.parse(JSON.stringify(tempMap))
     );
 
-    var length2 = {
+    const length2 = {
       tiles: [
         {
           position: {
@@ -1032,9 +1032,9 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.L_180]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -1050,7 +1050,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -1074,7 +1074,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -1098,14 +1098,14 @@ export const RoomGenerator = {
       },
     ];
 
-    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x + 3,
       y + 1,
       type,
       JSON.parse(JSON.stringify(tempMap))
     );
 
-    var length2 = {
+    const length2 = {
       tiles: [
         {
           position: {
@@ -1129,9 +1129,9 @@ export const RoomGenerator = {
     };
   },
   [ROOM_SHAPES.L_270]: function (x, y, type, configMap) {
-    var config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
+    const config = RoomConfigGenerator[RoomConfigDefs.L](type, configMap);
 
-    var tempMap = [
+    let tempMap = [
       {
         index: 0,
         config: {
@@ -1147,7 +1147,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width1 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x,
       y,
       type,
@@ -1171,7 +1171,7 @@ export const RoomGenerator = {
       },
     ];
 
-    var width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
+    const width2 = RoomGenerator[ROOM_SHAPES.SmallWide](
       x + 2,
       y,
       type,
@@ -1195,14 +1195,14 @@ export const RoomGenerator = {
       },
     ];
 
-    var length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
+    const length1 = RoomGenerator[ROOM_SHAPES.SmallTall](
       x + 3,
       y - 2,
       type,
       JSON.parse(JSON.stringify(tempMap))
     );
 
-    var length2 = {
+    const length2 = {
       tiles: [
         {
           position: {
