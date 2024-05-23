@@ -1,6 +1,3 @@
-Add tension deck
-Add Additional cards and tokens
-Add note section
-Add scenario 3 tiles
+Implement a way to get a card via scenario objective
 Add the rest of the scenarios
-Can icons be included in the items and roll table?
+Fix items found, use index rather than item name
