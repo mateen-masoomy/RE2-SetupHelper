@@ -16,8 +16,14 @@ export class ScenarioBuilder {
   #itemIndexes;
 
   /**
-   * The collection of found items
-   * @type {string[]}
+   * @typedef FoundItem
+   * @type {object}
+   * @property {number} index The item index
+   * @property {string} type The item type (a or b)
+   * @property {string} name The item name
+   * 
+   * The collection of found item indexes
+   * @type {FoundItem[]}
    */
   #foundItems = [];
 
@@ -128,7 +134,7 @@ export class ScenarioBuilder {
           if (typeof door.connectingRoomIndex !== "undefined") {
             const openDoor = () => {
               if (door.keyRequired) {
-                if (!this.#foundItems.includes(door.keyRequired)) {
+                if (!this.#foundItems.map(foundItem => foundItem.name).includes(door.keyRequired)) {
                   cell.classList.remove("door-" + door.direction);
                   cell.classList.add("locked-door-" + door.direction);
 
@@ -240,8 +246,12 @@ export class ScenarioBuilder {
 
         if (!tileConfig.numberOfIcons) {
           cell.querySelector(".fa-stack").addEventListener("click", () => {
-            if (!this.#foundItems.includes(item)) {
-              this.#foundItems.push(item);
+            if (!this.#foundItems.some(foundItem => foundItem.index === itemIndex && foundItem.type === tileConfig.item)) {
+              this.#foundItems.push({
+                index: itemIndex,
+                type: tileConfig.item,
+                name: item
+            });
               notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
@@ -258,8 +268,12 @@ export class ScenarioBuilder {
           el.addEventListener("click", (ev) => {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
-            if (!this.#foundItems.includes(item)) {
-              this.#foundItems.push(item);
+            if (!this.#foundItems.some(foundItem => foundItem.index === itemIndex && foundItem.type === tileConfig.item)) {
+              this.#foundItems.push({
+                index: itemIndex,
+                type: tileConfig.item,
+                name: item
+            });
               notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
