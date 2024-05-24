@@ -513,6 +513,14 @@ export const scenario3 = {
             index: 5,
             config: {
               isScenarioObjective: true,
+              scenarioObjectiveConfig: {
+                requirements: [ITEMS.RedJewel, ITEMS.RedJewel],
+                before:
+                  'Nothing to do here <span class="emphasis">yet</span>...',
+                after: `Discard ${makeMultiple(2, ITEMS.RedJewel)}?`,
+                result: `You made <span class="emphasis">${ITEMS.DiamondKey}</span>`,
+                item: ITEMS.DiamondKey,
+              },
             },
           },
         ]),

@@ -21,7 +21,7 @@ export class ScenarioBuilder {
    * @property {number} index The item index
    * @property {string} type The item type (a or b)
    * @property {string} name The item name
-   * 
+   *
    * The collection of found item indexes
    * @type {FoundItem[]}
    */
@@ -51,12 +51,8 @@ export class ScenarioBuilder {
     this.#numberOfPlayers = numberOfPlayers;
 
     this.#itemIndexes = {
-      [ITEM_TYPES.A]: this.#shuffle(
-        scenario.items.a.map((val, index) => index)
-      ),
-      [ITEM_TYPES.B]: this.#shuffle(
-        scenario.items.b.map((val, index) => index)
-      ),
+      [ITEM_TYPES.A]: this.#shuffleItems(scenario.items.a),
+      [ITEM_TYPES.B]: this.#shuffleItems(scenario.items.b),
     };
 
     this.#buildDetails(scenario);
@@ -134,7 +130,11 @@ export class ScenarioBuilder {
           if (typeof door.connectingRoomIndex !== "undefined") {
             const openDoor = () => {
               if (door.keyRequired) {
-                if (!this.#foundItems.map(foundItem => foundItem.name).includes(door.keyRequired)) {
+                if (
+                  !this.#foundItems
+                    .map((foundItem) => foundItem.name)
+                    .includes(door.keyRequired)
+                ) {
                   cell.classList.remove("door-" + door.direction);
                   cell.classList.add("locked-door-" + door.direction);
 
@@ -246,12 +246,18 @@ export class ScenarioBuilder {
 
         if (!tileConfig.numberOfIcons) {
           cell.querySelector(".fa-stack").addEventListener("click", () => {
-            if (!this.#foundItems.some(foundItem => foundItem.index === itemIndex && foundItem.type === tileConfig.item)) {
+            if (
+              !this.#foundItems.some(
+                (foundItem) =>
+                  foundItem.index === itemIndex &&
+                  foundItem.type === tileConfig.item
+              )
+            ) {
               this.#foundItems.push({
                 index: itemIndex,
                 type: tileConfig.item,
-                name: item
-            });
+                name: item,
+              });
               notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
@@ -268,12 +274,18 @@ export class ScenarioBuilder {
           el.addEventListener("click", (ev) => {
             ev.stopImmediatePropagation();
             ev.stopPropagation();
-            if (!this.#foundItems.some(foundItem => foundItem.index === itemIndex && foundItem.type === tileConfig.item)) {
+            if (
+              !this.#foundItems.some(
+                (foundItem) =>
+                  foundItem.index === itemIndex &&
+                  foundItem.type === tileConfig.item
+              )
+            ) {
               this.#foundItems.push({
                 index: itemIndex,
                 type: tileConfig.item,
-                name: item
-            });
+                name: item,
+              });
               notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
@@ -432,7 +444,7 @@ export class ScenarioBuilder {
         const objectiveIcon1x = document.createElement("i");
         objectiveIcon1x.classList.add(
           "fa-solid",
-          "fa-flag",
+          "fa-key",
           "fa-stack-1x",
           "contrast"
         );
@@ -440,7 +452,34 @@ export class ScenarioBuilder {
 
         cell.appendChild(objectiveIcon);
 
-        const objectiveHTML = `Scenario Objective`;
+        const config = tileConfig.scenarioObjectiveConfig;
+        const clickHandler = () => {
+          if (
+            config.item &&
+            this.#foundItems.map((item) => item.name).includes(config.item)
+          ) {
+            this.notifier.innerHTML = `There's nothing else to do here`;
+            return;
+          }
+
+          if (config.requirements) {
+            /**
+             * @type {string[]}
+             */
+            const copy = JSON.parse(
+              JSON.stringify(this.#foundItems.map((item) => item.name))
+            );
+            config.requirements.forEach((requiredItem) => {
+              const index = copy.indexOf(requiredItem);
+              if (index >= 0) copy.splice(index, 1);
+            });
+
+            if (copy.length > 0) {
+              notifier.innerHTML = config.before;
+              return;
+            }
+          }
+        };
 
         if (tileConfig.numberOfIcons) {
           const notifierObjectiveIcon = objectiveIcon.cloneNode(true);
@@ -513,18 +552,37 @@ export class ScenarioBuilder {
   };
 
   /**
-   * Shuffles the array
-   * @param {Array<T>} array
-   * @returns {Array<T>} The shuffled array
+   * Shuffles an item array
+   * @param {Array<string>} items The array of items
+   * @returns {Array<number>} The shuffled item array indexes
    */
-  #shuffle = (array) => {
-    const copy = JSON.parse(JSON.stringify(array));
-    let currentIndex = copy.length;
+  #shuffleItems = (items) => {
+    const copy = JSON.parse(JSON.stringify(items.map((val, index) => index)));
+    const numItems = copy.length;
+    const halfItemLength = Math.ceil(numItems / 2);
+    let currentIndex = numItems;
 
     // While there remain elements to this.#shuffle...
     while (currentIndex != 0) {
       // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex);
+      /**
+       * @type {number}
+       */
+      let randomIndex;
+      const item = items[currentIndex - 1];
+      const isPriority = item.includes("fa-star");
+      let isSwapPriority;
+
+      do {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        // make sure priority items are the beginning of the array since they will be popped in reverse order
+        const swapIndex = copy[randomIndex];
+        isSwapPriority = items[swapIndex].includes("fa-star");
+      } while (
+        (isPriority && randomIndex > halfItemLength) ||
+        (isSwapPriority && currentIndex > halfItemLength)
+      );
+
       currentIndex--;
 
       // And swap it with the current element.

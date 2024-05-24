@@ -2,8 +2,8 @@
  * @typedef Door
  * @type {Object}
  * @property {DIRECTIONS} direction         - The direction to draw the door in
- * @property {string?} keyRequired          - The key required to open the door
- * @property {number?} connectingRoomIndex  - The room index to link the door to
+ * @property {string} [keyRequired]          - The key required to open the door
+ * @property {number} [connectingRoomIndex]  - The room index to link the door to
  *
  * @typedef TileConfig
  * @type {object}
@@ -11,20 +11,26 @@
  * @property {number} position.x                    - The tile's x position
  * @property {number} position.y                    - The tile's y position
  * @property {DIRECTIONS[]} walls                   - The directions to draw walls in
- * @property {Door[]?} doors                        - The tile's doors
- * @property {string[]?} enemies                    - The collection of enemies
- * @property {boolean?} p1StartingPoint                 - Whether the tile is the player 1 starting tile
- * @property {boolean?} p2StartingPoint                - Whether the tile is the player 2 starting tile
- * @property {string?} item                         - The item type on the tile
- * @property {object} stairs                       - The stairs configuration
+ * @property {Door[]} [doors]                        - The tile's doors
+ * @property {string[]} [enemies]                   - The collection of enemies
+ * @property {boolean} [p1StartingPoint]                 - Whether the tile is the player 1 starting tile
+ * @property {boolean} [p2StartingPoint]                - Whether the tile is the player 2 starting tile
+ * @property {string} [item]                         - The item type on the tile
+ * @property {object} [stairs]                       - The stairs configuration
  * @property {number} stairs.connectingFloor        - The floor number to connect to
  * @property {number} stairs.connectingRoomIndex    - The room index to connect to
- * @property {boolean} hasItemBox Whether the tile has an item box
- * @property {number?} numberOfIcons                 - The number of icons on the tile
- * @property {string?} label
- * @property {boolean?} hasCorpse Whether the tile has a corpse
- * @property {boolean?} hasTypewriter Whether the tile has a typewriter
- * @property {boolean?} isScenarioObjective Wether the tile is the scenario objective
+ * @property {boolean} [hasItemBox] Whether the tile has an item box
+ * @property {number} [numberOfIcons]                 - The number of icons on the tile
+ * @property {string} [label]
+ * @property {boolean} [hasCorpse] Whether the tile has a corpse
+ * @property {boolean} [hasTypewriter] Whether the tile has a typewriter
+ * @property {boolean} [isScenarioObjective] Wether the tile is the scenario objective
+ * @property {object} [scenarioObjectiveConfig] The scenario objective configuration
+ * @property {string[]} [scenarioObjectiveConfig.requirements] The required items to activate the objective
+ * @property {string} [scenarioObjectiveConfig.before] The message to show before the required items have been found
+ * @property {string} scenarioObjectiveConfig.after The message to show after the required items have been found
+ * @property {string} [scenarioObjectiveConfig.result] The message to show when the result has been achieved
+ * @property {string} [scenarioObjectiveConfig.item] The item to award the players
  *
  * @typedef TileDefinition
  * @type {object}
@@ -74,7 +80,7 @@
  * @property {string} tilesRequired.p
  * @property {string} tilesRequired.l
  * @property {string} location                          - The location of this scenario
- * @property {string[]?} notes
+ * @property {string[]} [notes]
  * @property {SpecialRule[]} specialRules               - Special rules in play for this scenario
  * @property {string[]} startingItems                   - The starting items for this scenario
  * @property {Items} items                             - The scenario's items
