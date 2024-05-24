@@ -7,6 +7,7 @@
 import { ENEMY_TYPES } from "../constants/enemies.js";
 import { ITEMS, ITEM_TYPES } from "../constants/items.js";
 import { TileImagePaths } from "../constants/tiles.js";
+import { FaTokenizer } from "../helpers/fa-tokenizer.js";
 
 export class ScenarioBuilder {
   /**
@@ -453,12 +454,16 @@ export class ScenarioBuilder {
         cell.appendChild(objectiveIcon);
 
         const config = tileConfig.scenarioObjectiveConfig;
-        const clickHandler = () => {
+        const clickHandler = (ev) => {
+          ev.stopImmediatePropagation();
+          ev.stopPropagation();
+
           if (
             config.item &&
             this.#foundItems.map((item) => item.name).includes(config.item)
           ) {
-            this.notifier.innerHTML = `There's nothing else to do here`;
+            this.notifier.innerHTML = `There's nothing else to do here...`;
+            this.#showNotifierContainer();
             return;
           }
 
@@ -467,7 +472,7 @@ export class ScenarioBuilder {
              * @type {string[]}
              */
             const copy = JSON.parse(
-              JSON.stringify(this.#foundItems.map((item) => item.name))
+              JSON.stringify(this.#foundItems.map((item) => item.name).filter(item => config.requirements.includes(item)))
             );
             config.requirements.forEach((requiredItem) => {
               const index = copy.indexOf(requiredItem);
@@ -478,22 +483,36 @@ export class ScenarioBuilder {
               notifier.innerHTML = config.before;
               return;
             }
+
+            notifier.innerHTML = config.after;
+            const yes = FaTokenizer('check', 'yes');
+            notifier.innerHTML += yes;
+            const no = FaTokenizer('xmark');
+            notifier.innerHTML += no;
+
+            notifier.querySelector('.yes').addEventListener('click', (ev) => {
+              ev.stopImmediatePropagation();
+              ev.stopPropagation();
+              notifier.innerHTML = config.result;
+              this.#foundItems.push({
+                index: 0,
+                type: ITEM_TYPES.C,
+                name: config.item
+              })
+            })
+          } else {
+            notifier.innerHTML = config.after;
           }
+
+          this.#showNotifierContainer();
         };
 
         if (tileConfig.numberOfIcons) {
           const notifierObjectiveIcon = objectiveIcon.cloneNode(true);
-          notifierObjectiveIcon.addEventListener("click", (ev) => {
-            ev.stopPropagation();
-            ev.stopImmediatePropagation();
-            notifier.innerHTML = objectiveHTML;
-          });
+          notifierObjectiveIcon.addEventListener("click", (ev) => clickHandler(ev));
           multiIcons.push(notifierObjectiveIcon);
         } else
-          objectiveIcon.addEventListener("click", () => {
-            notifier.innerHTML = objectiveHTML;
-            this.#showNotifierContainer();
-          });
+          objectiveIcon.addEventListener("click", (ev) => clickHandler(ev));
       }
 
       if (tileConfig.numberOfIcons) {

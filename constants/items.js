@@ -28,4 +28,5 @@ export const ITEMS = {
 export const ITEM_TYPES = {
   A: "a",
   B: "b",
+  C: "c"
 };
