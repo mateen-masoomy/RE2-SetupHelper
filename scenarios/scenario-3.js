@@ -1,23 +1,23 @@
-import { RoomGenerator } from "../helpers/room-generator.js";
-import { ITEMS, ITEM_TYPES } from "../constants/items.js";
-import { TENSION_DECK } from "../constants/tension-deck.js";
-import { CARDS_AND_TOKENS } from "../constants/cards-and-tokens.js";
-import { ROLL_TABLE } from "../constants/roll-table.js";
-import { STRINGS } from "../constants/strings.js";
-import { ENEMY_TYPES } from "../constants/enemies.js";
-import { DIRECTIONS } from "../constants/directions.js";
-import { ROOM_SHAPES, ROOM_TYPES } from "../constants/rooms.js";
-import { TileDescriptions } from "../constants/tiles.js";
-import { makeMultiple } from "../helpers/multiples.js";
+import { RoomGenerator } from '../helpers/room-generator.js';
+import { ITEMS, ITEM_TYPES } from '../constants/items.js';
+import { TENSION_DECK } from '../constants/tension-deck.js';
+import { CARDS_AND_TOKENS } from '../constants/cards-and-tokens.js';
+import { ROLL_TABLE } from '../constants/roll-table.js';
+import { STRINGS } from '../constants/strings.js';
+import { ENEMY_TYPES } from '../constants/enemies.js';
+import { DIRECTIONS } from '../constants/directions.js';
+import { ROOM_SHAPES, ROOM_TYPES } from '../constants/rooms.js';
+import { TileDescriptions } from '../constants/tiles.js';
+import { makeMultiple } from '../helpers/multiples.js';
 
 /**
  * @type Scenario
  */
 export const scenario3 = {
-  name: "Heading Back To Marvin",
+  name: 'Heading Back To Marvin',
   intro: `It looks like any survivors of the initial outbreak have long since fled or been killed, and the only police officers still present are roaming the halls as undead fiends. Only Marvin Branagh remains, locked inside the west office and passed out from blood loss. Time to head back and treat his wounds before it's too late.`,
   description: `In this scenario the characters must make their way to Marvin in the West Office. The players successfully complete this scenario if all characters are on the tile marked West Office and there are no enemies on that tile.`,
-  location: "This scenario takes place in the Raccoon City Police Department.",
+  location: 'This scenario takes place in the Raccoon City Police Department.',
   notes: [
     `From this scenario onwards, if the tension deck runs out, the game ends immediately and the players lose. To prevent this happening, you must keep an eye on how many cards are remaining and use Ink Ribbons and Typewriters to refresh the deck (see 'The Tension Deck and Running Out of Time' on p. 21 of the Resident Evil 2: The Board Game rulebook).`,
     `Astute players will no doubt have noticed the Wire Cord won't be much use during this scenario. It might be worth holding on to if you're playing in campaign mode though!`,
@@ -29,20 +29,22 @@ export const scenario3 = {
       description: `Not sure how to unlock the West Office? Try searching through the items for clues...`,
     },
   ],
-  tensionDeck: {
-    green: [makeMultiple(30, TENSION_DECK.GreenCard)],
-    amber: [
-      makeMultiple(2, TENSION_DECK.EchoesInTheDarkness),
-      makeMultiple(2, TENSION_DECK.PrehensileGrasp),
-      makeMultiple(2, TENSION_DECK.NoEscape),
-      makeMultiple(1, TENSION_DECK.PersistingUnease),
-    ],
-    red: [
-      makeMultiple(1, TENSION_DECK.BloodcurdlingHowl),
-      makeMultiple(1, TENSION_DECK.UndeadAmbush),
-      makeMultiple(1, TENSION_DECK.MurderOfCrows),
-    ],
-  },
+  tensionDecks: [
+    {
+      green: [makeMultiple(30, TENSION_DECK.GreenCard)],
+      amber: [
+        makeMultiple(2, TENSION_DECK.EchoesInTheDarkness),
+        makeMultiple(2, TENSION_DECK.PrehensileGrasp),
+        makeMultiple(2, TENSION_DECK.NoEscape),
+        makeMultiple(1, TENSION_DECK.PersistingUnease),
+      ],
+      red: [
+        makeMultiple(1, TENSION_DECK.BloodcurdlingHowl),
+        makeMultiple(1, TENSION_DECK.UndeadAmbush),
+        makeMultiple(1, TENSION_DECK.MurderOfCrows),
+      ],
+    },
+  ],
   additionalCardsAndTokens: [
     makeMultiple(2, CARDS_AND_TOKENS.EchoesInTheDarknessToken),
     makeMultiple(2, CARDS_AND_TOKENS.PrehensileGraspToken),
@@ -118,7 +120,7 @@ export const scenario3 = {
           x: 2,
           y: 9,
         },
-        text: "First Floor",
+        text: 'First Floor',
       },
       rooms: [
         RoomGenerator[ROOM_SHAPES.P](2, 10, ROOM_TYPES.Yellow, [
@@ -203,11 +205,11 @@ export const scenario3 = {
             },
           },
         ]),
-        RoomGenerator[ROOM_SHAPES.MediumSquare](2, 13, ROOM_TYPES.Amber, [
+        RoomGenerator[ROOM_SHAPES.MediumSquare](4, 13, ROOM_TYPES.Amber, [
           {
             index: 4,
             config: {
-              label: "West Office",
+              label: 'West Office',
             },
           },
           {
@@ -236,7 +238,7 @@ export const scenario3 = {
           x: 1,
           y: 1,
         },
-        text: "Second Floor",
+        text: 'Second Floor',
       },
       rooms: [
         RoomGenerator[ROOM_SHAPES.P_270](1, 2, ROOM_TYPES.Yellow, [
@@ -515,9 +517,8 @@ export const scenario3 = {
               isScenarioObjective: true,
               scenarioObjectiveConfig: {
                 requirements: [ITEMS.RedJewel, ITEMS.RedJewel],
-                before:
-                  'Nothing to do here <span class="emphasis">yet</span>...',
-                after: `Discard ${makeMultiple(2, ITEMS.RedJewel)}?`,
+                before: 'Nothing to do here yet...',
+                after: `Discard 2x <span class="emphasis">${ITEMS.RedJewel}</span>?`,
                 result: `You made <span class="emphasis">${ITEMS.DiamondKey}</span>`,
                 item: ITEMS.DiamondKey,
               },
@@ -619,7 +620,7 @@ export const scenario3 = {
           x: 9,
           y: 11,
         },
-        text: "Third Floor",
+        text: 'Third Floor',
       },
       rooms: [
         RoomGenerator[ROOM_SHAPES.SmallSquare](9, 13, ROOM_TYPES.Green, [

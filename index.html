@@ -1,12 +1,10 @@
 <html>
+
   <head>
     <title>Resident Evil 2 - The Board Game Setup Helper</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      src="https://kit.fontawesome.com/78bd09203f.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/78bd09203f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="./css/milligram/milligram.min.css" />
     <link rel="stylesheet" href="./css/select.css" />
@@ -26,129 +24,157 @@
             <option value="1">Scenario 1</option>
             <option value="2">Scenario 2</option>
             <option value="3">Scenario 3</option>
+            <option value="4">Scenario 4</option>
+            <option value="5">Scenario 5</option>
           </select>
         </div>
         <div class="scenario-select-bottom-border"></div>
         <div class="scenario-details">
           <h2 class="name"></h2>
           <div class="players-selection">
-            <input
-              type="radio"
-              id="onePlayer"
-              name="numberOfPlayers"
-              value="1"
-              checked
-            />
+            <input type="radio" id="onePlayer" name="numberOfPlayers" value="1" checked />
             <label for="onePlayer">1 Player</label>
-            <input
-              type="radio"
-              id="twoPlayers"
-              name="numberOfPlayers"
-              value="2"
-            />
+            <input type="radio" id="twoPlayers" name="numberOfPlayers" value="2" />
             <label for="twoPlayers">2 Players</label>
-            <input
-              type="radio"
-              id="threePlayers"
-              name="numberOfPlayers"
-              value="3"
-            />
+            <input type="radio" id="threePlayers" name="numberOfPlayers" value="3" />
             <label for="threePlayers">3 Players</label>
-            <input
-              type="radio"
-              id="fourPlayers"
-              name="numberOfPlayers"
-              value="4"
-            />
+            <input type="radio" id="fourPlayers" name="numberOfPlayers" value="4" />
             <label for="fourPlayers">4 Players</label>
           </div>
           <p class="introduction"></p>
           <p class="description"></p>
           <p class="location"></p>
           <div class="tiles-required"></div>
+          <div class="tension-deck"></div>
+          <div class="behaviour-deck"></div>
+          <div class="cards-and-tokens"></div>
           <div class="special-rules"></div>
           <div class="notes"></div>
           <div class="starting-items"></div>
 
-          <div class="scenario-section-header">
-            <span class="dot yellow"></span>Yellow Dice Table
-          </div>
-          <table class="yellow-tile-table">
-            <thead>
-              <tr>
-                <th class="column-10">Dice</th>
-                <th class="column-90">Enemies/Event Encountered</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>6</td>
-                <td class="yellow-6"></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td class="yellow-5"></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td class="yellow-4"></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="yellow-3"></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="yellow-2"></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="./assets/re-logo.png" class="umbrella-logo" />
-                </td>
-                <td class="yellow-1"></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class='roll-tables'>
+            <div class="scenario-section-header">
+              <span class="dot yellow"></span>Yellow Tile
+            </div>
+            <table class="yellow-tile-table">
+              <thead>
+                <tr>
+                  <th class="column-10">Dice</th>
+                  <th class="column-90">Enemies/Event Encountered</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>6</td>
+                  <td class="yellow-6"></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td class="yellow-5"></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td class="yellow-4"></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td class="yellow-3"></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td class="yellow-2"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="./assets/re-logo.png" class="umbrella-logo" />
+                  </td>
+                  <td class="yellow-1"></td>
+                </tr>
+              </tbody>
+            </table>
 
-          <div class="scenario-section-header">
-            <span class="dot amber"></span>Amber Dice Table
+            <div class="scenario-section-header">
+              <span class="dot amber"></span>Amber Tile
+            </div>
+            <table class="amber-tile-table">
+              <thead>
+                <tr>
+                  <th class="column column-10">Dice</th>
+                  <th class="column column-90">Enemies/Event Encountered</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>6</td>
+                  <td class="amber-6"></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td class="amber-5"></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td class="amber-4"></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td class="amber-3"></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td class="amber-2"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="./assets/re-logo.png" class="umbrella-logo" />
+                  </td>
+                  <td class="amber-1"></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="red-roll-table">
+              <div class="scenario-section-header">
+                <span class="dot red"></span>Red Tile
+              </div>
+              <table class="red-tile-table">
+                <thead>
+                  <tr>
+                    <th class="column column-10">Dice</th>
+                    <th class="column column-90">Enemies/Event Encountered</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>6</td>
+                    <td class="red-6"></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td class="red-5"></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td class="red-4"></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td class="red-3"></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td class="red-2"></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src="./assets/re-logo.png" class="umbrella-logo" />
+                    </td>
+                    <td class="red-1"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <table class="amber-tile-table">
-            <thead>
-              <tr>
-                <th class="column column-10">Dice</th>
-                <th class="column column-90">Enemies/Event Encountered</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>6</td>
-                <td class="amber-6"></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td class="amber-5"></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td class="amber-4"></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="amber-3"></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="amber-2"></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="./assets/re-logo.png" class="umbrella-logo" />
-                </td>
-                <td class="amber-1"></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
@@ -159,11 +185,8 @@
         <i class="fa-solid fa-times"></i>
       </div>
       <h1>
-        <span class="emphasis">R</span><span class="short-title">esident </span
-        ><span class="emphasis">E</span
-        ><span class="short-title">vil </span>2<span class="short-title"
-          >: TBG</span
-        >
+        <span class="emphasis">R</span><span class="short-title">esident </span><span class="emphasis">E</span><span
+          class="short-title">vil </span>2<span class="short-title">: TBG</span>
         Helper
       </h1>
     </header>
@@ -189,4 +212,5 @@
   <script src="./setup/notifier.js"></script>
 
   <script src="./game.js" type="module"></script>
+
 </html>

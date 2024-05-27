@@ -1,3 +1,10 @@
+:root {
+  --green: #65a76e;
+  --yellow: #ceaf4b;
+  --amber: #d46b42;
+  --red: #630e01;
+}
+
 .main-content {
   height: calc(100% - 80px);
   width: 100%;
@@ -9,14 +16,14 @@
 
 .green {
   background: none;
-  background-color: #65a76e;
+  background-color: var(--green);
 }
 
 .yellow {
   background: repeating-linear-gradient(
     45deg,
-    #ceaf4b,
-    #ceaf4b 10%,
+    var(--yellow),
+    var(--yellow) 10%,
     #777777 10%,
     #777777 20%
   ) !important;
@@ -25,8 +32,18 @@
 .amber {
   background: repeating-linear-gradient(
     45deg,
-    #cc3620,
-    #cc3620 10%,
+    var(--amber),
+    var(--amber) 10%,
+    #777777 10%,
+    #777777 20%
+  ) !important;
+}
+
+.red {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--red),
+    var(--red) 10%,
     #777777 10%,
     #777777 20%
   ) !important;

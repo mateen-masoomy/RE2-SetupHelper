@@ -1,14 +1,14 @@
-import { ROOM_SHAPES, ROOM_TYPES } from "../constants/rooms.js";
-import { DIRECTIONS } from "../constants/directions.js";
+import { ROOM_SHAPES, ROOM_TYPES } from '../constants/rooms.js';
+import { DIRECTIONS } from '../constants/directions.js';
 
 const RoomConfigDefs = {
-  Small: "small",
-  Medium: "medium",
-  SmallSquare: "2x2",
-  MediumSquare: "3x3",
-  LargeSquare: "4x4",
-  P: "p",
-  L: "l",
+  Small: 'small',
+  Medium: 'medium',
+  SmallSquare: '2x2',
+  MediumSquare: '3x3',
+  LargeSquare: '4x4',
+  P: 'p',
+  L: 'l',
 };
 
 const createDefaultConfig = (count) => {
@@ -844,7 +844,7 @@ export const RoomGenerator = {
       {
         index: 0,
         config: {
-          walls: [DIRECTIONS.Left, DIRECTIONS.Right],
+          walls: [DIRECTIONS.Left, DIRECTIONS.Top, DIRECTIONS.Right],
           ...config.tiles[0],
         },
       },
@@ -1183,14 +1183,14 @@ export const RoomGenerator = {
         index: 0,
         config: {
           walls: [DIRECTIONS.Left, DIRECTIONS.Right],
-          ...config.tiles[4],
+          ...config.tiles[5],
         },
       },
       {
         index: 1,
         config: {
           walls: [DIRECTIONS.Left, DIRECTIONS.Right],
-          ...config.tiles[5],
+          ...config.tiles[4],
         },
       },
     ];

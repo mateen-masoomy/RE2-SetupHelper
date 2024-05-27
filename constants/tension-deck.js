@@ -7,4 +7,9 @@ export const TENSION_DECK = {
   BloodcurdlingHowl: 'Bloodcurdling Howl',
   PersistingUnease: 'Persisting Unease',
   MurderOfCrows: 'Murder of Crows',
+  ToughHide: 'Tough Hide',
+  HideousScreech: 'Hideous Screech',
+  VigourMortis: 'Vigour Mortis',
+  RisingFear: 'Rising Fear',
+  CrimsonThirst: 'Crimson Thirst',
 };

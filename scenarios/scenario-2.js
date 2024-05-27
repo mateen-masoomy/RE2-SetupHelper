@@ -1,45 +1,47 @@
-import { RoomGenerator } from "../helpers/room-generator.js";
-import { ITEMS, ITEM_TYPES } from "../constants/items.js";
-import { TENSION_DECK } from "../constants/tension-deck.js";
-import { CARDS_AND_TOKENS } from "../constants/cards-and-tokens.js";
-import { ROLL_TABLE } from "../constants/roll-table.js";
-import { STRINGS } from "../constants/strings.js";
-import { ENEMY_TYPES } from "../constants/enemies.js";
-import { DIRECTIONS } from "../constants/directions.js";
-import { ROOM_SHAPES, ROOM_TYPES } from "../constants/rooms.js";
-import { TileDescriptions } from "../constants/tiles.js";
-import { makeMultiple } from "../helpers/multiples.js";
+import { RoomGenerator } from '../helpers/room-generator.js';
+import { ITEMS, ITEM_TYPES } from '../constants/items.js';
+import { TENSION_DECK } from '../constants/tension-deck.js';
+import { CARDS_AND_TOKENS } from '../constants/cards-and-tokens.js';
+import { ROLL_TABLE } from '../constants/roll-table.js';
+import { STRINGS } from '../constants/strings.js';
+import { ENEMY_TYPES } from '../constants/enemies.js';
+import { DIRECTIONS } from '../constants/directions.js';
+import { ROOM_SHAPES, ROOM_TYPES } from '../constants/rooms.js';
+import { TileDescriptions } from '../constants/tiles.js';
+import { makeMultiple } from '../helpers/multiples.js';
 
 /**
  * @type Scenario
  */
 export const scenario2 = {
-  name: "THE S.T.A.R.S. OFFICE",
+  name: 'THE S.T.A.R.S. OFFICE',
   intro: `With eerily quiet halls, it seems the Raccoon City Police Department won't be the sanctuary you once hoped for.
               The streets outside are overrun, though, so your only choice is to explore deeper within the RPD building and
               try to meet up with any other survivors. With hesitant steps, the search begins...`,
   description: `In this scenario the characters must find the S.T.A.R.S. Key, and make their way to the S.T.A.R.S. Office
                     on the 2nd Floor. The players successfully complete this scenario if all characters are on the tile marked
                     as the S.T.A.R.S. Office and there are no enemies on that tile.`,
-  location: "This scenario takes place in the Raccoon City Police Department",
+  location: 'This scenario takes place in the Raccoon City Police Department',
   specialRules: [
     {
-      name: "SAFE HAVEN",
+      name: 'SAFE HAVEN',
       description: `A character on the S.T.A.R.S. Office tile does not have to draw a card during the Tension Phase.`,
     },
   ],
-  tensionDeck: {
-    green: [makeMultiple(30, TENSION_DECK.GreenCard)],
-    amber: [
-      makeMultiple(2, TENSION_DECK.EchoesInTheDarkness),
-      makeMultiple(2, TENSION_DECK.NoEscape),
-      makeMultiple(2, TENSION_DECK.PrehensileGrasp),
-    ],
-    red: [
-      makeMultiple(1, TENSION_DECK.UndeadAmbush),
-      makeMultiple(1, TENSION_DECK.BloodcurdlingHowl),
-    ],
-  },
+  tensionDecks: [
+    {
+      green: [makeMultiple(30, TENSION_DECK.GreenCard)],
+      amber: [
+        makeMultiple(2, TENSION_DECK.EchoesInTheDarkness),
+        makeMultiple(2, TENSION_DECK.NoEscape),
+        makeMultiple(2, TENSION_DECK.PrehensileGrasp),
+      ],
+      red: [
+        makeMultiple(1, TENSION_DECK.UndeadAmbush),
+        makeMultiple(1, TENSION_DECK.BloodcurdlingHowl),
+      ],
+    },
+  ],
   additionalCardsAndTokens: [
     makeMultiple(2, CARDS_AND_TOKENS.EchoesInTheDarknessToken),
     makeMultiple(2, CARDS_AND_TOKENS.PrehensileGraspToken),
@@ -107,7 +109,7 @@ export const scenario2 = {
           x: 5,
           y: 1,
         },
-        text: "First Floor",
+        text: 'First Floor',
       },
       rooms: [
         RoomGenerator[ROOM_SHAPES.SmallTall](12, 8, ROOM_TYPES.Green, [
@@ -402,7 +404,7 @@ export const scenario2 = {
           x: 5,
           y: 11,
         },
-        text: "Second Floor",
+        text: 'Second Floor',
       },
       rooms: [
         RoomGenerator[ROOM_SHAPES.L_90](13, 13, ROOM_TYPES.Green, [
@@ -581,7 +583,7 @@ export const scenario2 = {
           {
             index: 4,
             config: {
-              label: "S.T.A.R.S. Room",
+              label: 'S.T.A.R.S. Room',
             },
           },
         ]),

@@ -49,12 +49,22 @@
   filter: drop-shadow(0 0 1px #000);
 }
 
-.notifier .item-text .fa-stack {
+.notifier .item-text .fa-stack,
+.notifier .item-icon {
   font-size: 0.6em;
 }
 
+.notifier .item-icon {
+  margin-right: 0px;
+  cursor: default !important;
+}
+
+.notifier .after-text {
+  margin-bottom: 15px;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 @media only screen and (max-width: 900px) {

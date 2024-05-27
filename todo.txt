@@ -1,3 +1,1 @@
-Implement a way to get a card via scenario objective
 Add the rest of the scenarios
-Fix items found, use index rather than item name

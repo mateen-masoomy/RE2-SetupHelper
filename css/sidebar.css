@@ -101,7 +101,7 @@
   margin-right: 10px;
 }
 
-.players-selection input[type="radio"]:after {
+.players-selection input[type='radio']:after {
   display: inline-block;
   height: 15px;
   width: 15px;
@@ -110,12 +110,12 @@
   left: -1px;
   border-radius: 15px;
   background-color: white;
-  content: "";
+  content: '';
   visibility: visible;
   border: 2px solid #efefef;
 }
 
-.players-selection input[type="radio"]:checked:after {
+.players-selection input[type='radio']:checked:after {
   display: inline-block;
   height: 15px;
   width: 15px;
@@ -124,7 +124,7 @@
   left: -1px;
   border-radius: 15px;
   background-color: #9b0c0c;
-  content: "";
+  content: '';
   visibility: visible;
   border: 2px solid #efefef;
 }
@@ -191,4 +191,41 @@
 
 .sidebar .note {
   font-style: italic;
+}
+
+.sidebar .rule-description {
+  margin-bottom: 10px;
+}
+
+.sidebar .tension-deck-container {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 5px auto;
+  column-gap: 10px;
+  margin-top: 5px;
+}
+.sidebar .tension-deck .colour-bar {
+  height: 100%;
+  width: 5px;
+  grid-column: 1;
+  grid-row: 1;
+}
+.sidebar .tension-deck .green-deck .colour-bar {
+  background-color: var(--green);
+}
+.sidebar .tension-deck .amber-deck .colour-bar {
+  background-color: var(--amber);
+}
+.sidebar .tension-deck .red-deck .colour-bar {
+  background-color: var(--red);
+}
+
+.sidebar .tension-deck-container .tension-deck-cards {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.sidebar .tension-deck-header {
+  margin-top: 10px;
+  font-weight: bold;
 }

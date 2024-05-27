@@ -31,6 +31,8 @@
  * @property {string} scenarioObjectiveConfig.after The message to show after the required items have been found
  * @property {string} [scenarioObjectiveConfig.result] The message to show when the result has been achieved
  * @property {string} [scenarioObjectiveConfig.item] The item to award the players
+ * @property {boolean} [isGoal] Whether this tile is the scenario goal
+ * @property {string} [goalMessage] The message to display for the scenario goal
  *
  * @typedef TileDefinition
  * @type {object}
@@ -44,7 +46,7 @@
  *
  * @typedef Floor
  * @type {object}
- * @property {object} label The label for the floor
+ * @property {object} [label] The label for the floor
  * @property {object} label.position
  * @property {number} label.position.x
  * @property {number} label.position.y
@@ -66,6 +68,12 @@
  * @property {string[]} a
  * @property {string[]} b
  *
+ * @typedef TensionDeck
+ * @type {object}
+ * @property {string[]} green               - The green tension deck cards
+ * @property {string[]} amber               - The amber tension deck cards
+ * @property {string[]} red                 - The red tension deck cards
+ *
  * @typedef Scenario
  * @type {object}
  * @property {string} name                              - The scenario name
@@ -84,13 +92,14 @@
  * @property {SpecialRule[]} specialRules               - Special rules in play for this scenario
  * @property {string[]} startingItems                   - The starting items for this scenario
  * @property {Items} items                             - The scenario's items
- * @property {object} rollTables                        - The rolltables for yellow and amber rooms
+ * @property {object} [rollTables]                        - The rolltables for yellow and amber rooms
  * @property {string[]} rollTables.yellow               - The yellow encounter roll table
  * @property {string[]} rollTables.amber                - The amber encounter roll table
- * @property {object} tensionDeck                       - The tension deck configuration
- * @property {string[]} tensionDeck.green               - The green tension deck cards
- * @property {string[]} tensionDeck.amber               - The amber tension deck cards
- * @property {string[]} tensionDeck.red                 - The red tension deck cards
+ * @property {string[]} [rollTables.red]                - The red encounter roll table
+ * @property {TensionDeck[]} tensionDecks                       - The tension deck configuration
+ * @property {object} [behaviourDeck]
+ * @property {string} behaviourDeck.name
+ * @property {string[]} behaviourDeck.deck
  * @property {string[]} additionalCardsAndTokens        - Additional cards and tokens required for this scenario
  * @property {object} startingRooms
  * @property {object} startingRooms.p1
