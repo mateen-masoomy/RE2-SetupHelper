@@ -4,6 +4,10 @@
  * @property {DIRECTIONS} direction         - The direction to draw the door in
  * @property {string} [keyRequired]          - The key required to open the door
  * @property {number} [connectingRoomIndex]  - The room index to link the door to
+ * @property {object} [prompt]              - A prompt to show the player
+ * @property {string} prompt.text           - The prompt to show
+ * @property {string} prompt.result         - The result of the user affirming the prompt
+ * @property {boolean} [prompt.opened]      - Whether the door has been opened
  *
  * @typedef TileConfig
  * @type {object}
@@ -31,6 +35,7 @@
  * @property {string} scenarioObjectiveConfig.after The message to show after the required items have been found
  * @property {string} [scenarioObjectiveConfig.result] The message to show when the result has been achieved
  * @property {string} [scenarioObjectiveConfig.item] The item to award the players
+ * @property {boolean} [scenarioObjectiveConfig.consumeRequirements] Whether the requirements are lost
  * @property {boolean} [isGoal] Whether this tile is the scenario goal
  * @property {string} [goalMessage] The message to display for the scenario goal
  *

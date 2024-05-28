@@ -41,6 +41,7 @@ export class ScenarioBuilder {
    * @param {number} numberOfPlayers The number of players
    */
   buildScenario = (scenario, numberOfPlayers) => {
+    this.#foundItems = [];
     this.#clearGrid();
 
     this.currentScenario = JSON.parse(JSON.stringify(scenario));
@@ -77,7 +78,7 @@ export class ScenarioBuilder {
    */
   #buildRoom(floors, floorNumber, index) {
     const floor = floors[floorNumber];
-    const config = floor.rooms[index];
+    const config = JSON.parse(JSON.stringify(floor.rooms[index]));
 
     if (floor.label) {
       const floorLabelCell = document.querySelector(
@@ -126,8 +127,43 @@ export class ScenarioBuilder {
         tileConfig.doors.forEach((door) => {
           cell.classList.add('door-' + door.direction);
           if (typeof door.connectingRoomIndex !== 'undefined') {
-            const openDoor = () => {
+            const openDoor = (ev) => {
+              if (door.prompt && !door.prompt.opened) {
+                ev?.stopPropagation();
+                ev?.stopImmediatePropagation();
+
+                notifier.innerHTML = `<div class="prompt-text">${door.prompt.text}</div>`;
+                const iconContainer = document.createElement('span');
+                iconContainer.classList.add('icons');
+
+                const yes = FaTokenizer('check', 'yes');
+                iconContainer.innerHTML += yes;
+                const no = FaTokenizer('xmark');
+                iconContainer.innerHTML += no;
+
+                notifier.appendChild(iconContainer);
+
+                notifier
+                  .querySelector('.yes')
+                  .addEventListener('click', (ev) => {
+                    ev.stopImmediatePropagation();
+                    ev.stopPropagation();
+                    notifier.innerHTML = door.prompt.result;
+                    door.prompt.opened = true;
+                    this.#buildRoom(
+                      floors,
+                      floorNumber,
+                      door.connectingRoomIndex
+                    );
+                  });
+                this.#showNotifierContainer();
+                return;
+              }
+
               if (door.keyRequired) {
+                ev?.stopPropagation();
+                ev?.stopImmediatePropagation();
+
                 if (
                   !this.#foundItems
                     .map((foundItem) => foundItem.name)
@@ -190,7 +226,9 @@ export class ScenarioBuilder {
               }
 
               notifierDoorIcon.appendChild(nofifierDoorIcon1x);
-              notifierDoorIcon.addEventListener('click', () => openDoor());
+              notifierDoorIcon.addEventListener('click', (ev) => {
+                openDoor(ev);
+              });
 
               multiIcons.push(notifierDoorIcon);
             }
@@ -249,6 +287,7 @@ export class ScenarioBuilder {
           '<span class="fa-stack item"><i class="fa-solid fa-circle fa-stack-2x"></i><span class="fa-solid fa-stack-1x fa-inverse">!</span></span>';
         const itemIndex = this.#itemIndexes[tileConfig.item].pop();
         const item = this.currentScenario.items[tileConfig.item][itemIndex];
+        let isItemFound = false;
 
         if (!tileConfig.numberOfIcons) {
           cell.querySelector('.fa-stack').addEventListener('click', () => {
@@ -257,13 +296,15 @@ export class ScenarioBuilder {
                 (foundItem) =>
                   foundItem.index === itemIndex &&
                   foundItem.type === tileConfig.item
-              )
+              ) &&
+              !isItemFound
             ) {
               this.#foundItems.push({
                 index: itemIndex,
                 type: tileConfig.item,
                 name: item,
               });
+              isItemFound = true;
               notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
@@ -285,13 +326,15 @@ export class ScenarioBuilder {
                 (foundItem) =>
                   foundItem.index === itemIndex &&
                   foundItem.type === tileConfig.item
-              )
+              ) &&
+              !isItemFound
             ) {
               this.#foundItems.push({
                 index: itemIndex,
                 type: tileConfig.item,
                 name: item,
               });
+              isItemFound = true;
               notifier.innerHTML = `You found <span class="emphasis item-text">${item}</span>`;
             } else {
               notifier.innerHTML = `Item already found (${item})`;
@@ -542,7 +585,7 @@ export class ScenarioBuilder {
           }
 
           if (config.result) {
-            notifier.innerHTML = `<div class="after-text">${config.after}</div>`;
+            notifier.innerHTML = `<div class="prompt-text">${config.after}</div>`;
             const iconContainer = document.createElement('span');
             iconContainer.classList.add('icons');
 
@@ -564,6 +607,12 @@ export class ScenarioBuilder {
                   type: ITEM_TYPES.C,
                   name: config.item,
                 });
+              }
+
+              if (config.consumeRequirements) {
+                this.#foundItems = this.#foundItems.filter(
+                  (foundItem) => !config.requirements.includes(foundItem.name)
+                );
               }
             });
           } else {
@@ -644,6 +693,12 @@ export class ScenarioBuilder {
         break;
       case ENEMY_TYPES.Licker:
         icon1x.textContent = 'L';
+        break;
+      case ENEMY_TYPES.ZombieDog:
+        icon1x.textContent = 'D';
+        break;
+      case ENEMY_TYPES.GMutant:
+        icon1x.textContent = 'G';
         break;
     }
 

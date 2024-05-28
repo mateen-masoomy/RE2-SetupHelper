@@ -139,27 +139,492 @@ export const scenario5 = {
   },
   startingRooms: {
     p1: {
-      floor: 1,
-      roomIndex: 0,
+      floor: 0,
+      roomIndex: 2,
     },
     p2: {
-      floor: 2,
-      roomIndex: 0,
+      floor: 1,
+      roomIndex: 10,
     },
   },
   floors: {
+    [0]: {
+      label: {
+        position: {
+          x: 2,
+          y: 1,
+        },
+        text: 'CESSPOOL',
+      },
+      rooms: [
+        RoomGenerator[ROOM_SHAPES.SmallTall](2, 6, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 2,
+                },
+              ],
+            },
+          },
+          {
+            index: 1,
+            config: {
+              item: ITEM_TYPES.B,
+              hasItemBox: true,
+              numberOfIcons: 2,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.LargeSquare](3, 2, ROOM_TYPES.Green, [
+          {
+            index: 1,
+            config: {
+              enemies: [ENEMY_TYPES.GMutant],
+            },
+          },
+          {
+            index: 4,
+            config: {
+              walls: [DIRECTIONS.Left, DIRECTIONS.Top, DIRECTIONS.Right],
+            },
+          },
+          {
+            index: 7,
+            config: {
+              walls: [DIRECTIONS.Top, DIRECTIONS.Left, DIRECTIONS.Right],
+            },
+          },
+          {
+            index: 8,
+            config: {
+              walls: [DIRECTIONS.Bottom, DIRECTIONS.Left, DIRECTIONS.Right],
+            },
+          },
+          {
+            index: 11,
+            config: {
+              walls: [DIRECTIONS.Bottom, DIRECTIONS.Left, DIRECTIONS.Right],
+            },
+          },
+          {
+            index: 12,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.L_90](3, 6, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 0,
+                },
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 1,
+                  keyRequired: ITEMS.Lockpick,
+                },
+              ],
+              numberOfIcons: 2,
+            },
+          },
+          {
+            index: 2,
+            config: {
+              enemies: [ENEMY_TYPES.Zombie],
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 4,
+                },
+              ],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              p1StartingPoint: true,
+            },
+          },
+          {
+            index: 6,
+            config: {
+              stairs: {
+                connectingFloor: 1,
+                connectingRoomIndex: 0,
+              },
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.MediumWide](7, 1, ROOM_TYPES.Amber, [
+          {
+            index: 4,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                  connectingRoomIndex: 4,
+                },
+              ],
+              walls: [DIRECTIONS.Top, DIRECTIONS.Right],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              item: ITEM_TYPES.B,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.L_90](7, 3, ROOM_TYPES.Yellow, [
+          {
+            index: 1,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 3,
+                },
+              ],
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                  connectingRoomIndex: 5,
+                },
+              ],
+            },
+          },
+          {
+            index: 6,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 2,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.SmallWide](10, 4, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 4,
+                },
+              ],
+            },
+          },
+          {
+            index: 1,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 7,
+                  keyRequired: ITEMS.BlueKeyCard,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.SmallSquare](10, 5, ROOM_TYPES.Amber, [
+          {
+            index: 0,
+            config: {
+              hasItemBox: true,
+            },
+          },
+          {
+            index: 1,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 7,
+                },
+              ],
+            },
+          },
+          {
+            index: 2,
+            config: {
+              item: ITEM_TYPES.A,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.P_180_Flip](12, 4, ROOM_TYPES.Yellow, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 5,
+                  keyRequired: ITEMS.Lockpick,
+                },
+              ],
+            },
+          },
+          {
+            index: 1,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 6,
+                },
+              ],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              stairs: {
+                connectingFloor: 1,
+                connectingRoomIndex: 13,
+              },
+            },
+          },
+        ]),
+      ],
+    },
     [1]: {
       label: {
         position: {
-          x: 5,
-          y: 1,
+          x: 4,
+          y: 8,
         },
-        text: 'First Floor',
+        text: 'BASEMENT',
       },
       rooms: [
-        RoomGenerator[ROOM_SHAPES.SmallTall](12, 8, ROOM_TYPES.Green, [
+        RoomGenerator[ROOM_SHAPES.P](5, 9, ROOM_TYPES.Yellow, [
+          {
+            index: 1,
+            config: {
+              stairs: {
+                connectingFloor: 0,
+                connectingRoomIndex: 2,
+              },
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                  connectingRoomIndex: 5,
+                },
+              ],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                  connectingRoomIndex: 1,
+                  keyRequired: ITEMS.Lockpick,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.L_180](2, 13, ROOM_TYPES.Yellow, [
           {
             index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                  connectingRoomIndex: 4,
+                },
+              ],
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 0,
+                  keyRequired: ITEMS.Lockpick,
+                },
+              ],
+            },
+          },
+          {
+            index: 6,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 6,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.SmallSquare](3, 14, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 4,
+                },
+              ],
+            },
+          },
+          {
+            index: 1,
+            config: {
+              item: ITEM_TYPES.A,
+              hasCorpse: true,
+              numberOfIcons: 2,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.SmallSquare](3, 16, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 4,
+                },
+              ],
+            },
+          },
+          {
+            index: 3,
+            config: {
+              hasTypewriter: true,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.P_180](2, 14, ROOM_TYPES.Yellow, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 2,
+                },
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 1,
+                },
+              ],
+              numberOfIcons: 2,
+            },
+          },
+          {
+            index: 2,
+            config: {
+              item: ITEM_TYPES.A,
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 3,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.MediumTall](6, 11, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 0,
+                },
+              ],
+            },
+          },
+          {
+            index: 1,
+            config: {
+              item: ITEM_TYPES.B,
+            },
+          },
+          {
+            index: 3,
+            config: {
+              walls: [DIRECTIONS.Right, DIRECTIONS.Bottom],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              item: ITEM_TYPES.B,
+              enemies: [ENEMY_TYPES.ZombieDog],
+              numberOfIcons: 2,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.MediumSquare](6, 14, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              item: ITEM_TYPES.A,
+            },
+          },
+          {
+            index: 2,
+            config: {
+              enemies: [ENEMY_TYPES.ZombieDog],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 7,
+                },
+              ],
+            },
+          },
+          {
+            index: 6,
             config: {
               doors: [
                 {
@@ -170,9 +635,252 @@ export const scenario5 = {
             },
           },
           {
+            index: 7,
+            config: {
+              enemies: [ENEMY_TYPES.ZombieDog],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.MediumWide](9, 15, ROOM_TYPES.Amber, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 6,
+                },
+              ],
+            },
+          },
+          {
+            index: 5,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 10,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.SmallSquare](11, 11, ROOM_TYPES.Green, [
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                },
+              ],
+              label: 'Armoury',
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.MediumSquare](13, 10, ROOM_TYPES.Amber, [
+          {
+            index: 0,
+            config: {
+              item: ITEM_TYPES.A,
+            },
+          },
+          {
+            index: 2,
+            config: {
+              item: ITEM_TYPES.A,
+            },
+          },
+          {
+            index: 6,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                },
+              ],
+            },
+          },
+          {
+            index: 7,
+            config: {
+              walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
+            },
+          },
+          {
+            index: 8,
+            config: {
+              walls: [DIRECTIONS.Top, DIRECTIONS.Right, DIRECTIONS.Bottom],
+              hasTypewriter: true,
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.L_90](12, 13, ROOM_TYPES.Green, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 8,
+                  prompt: {
+                    text: `Do you have the <span class="emphasis">${ITEMS.RedKeyCard}</span>?`,
+                    result: `Unlocked with <span class="emphasis">${ITEMS.RedKeyCard}</span>`,
+                  },
+                },
+              ],
+            },
+          },
+          {
             index: 1,
             config: {
-              p1StartingPoint: true,
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                  connectingRoomIndex: 9,
+                },
+              ],
+            },
+          },
+          {
+            index: 2,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Bottom,
+                  connectingRoomIndex: 11,
+                  keyRequired: ITEMS.BlueKeyCard,
+                },
+              ],
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 12,
+                },
+              ],
+              p2StartingPoint: true,
+              numberOfIcons: 2,
+            },
+          },
+          {
+            index: 5,
+            config: {
+              enemies: [ENEMY_TYPES.ZombieDog],
+            },
+          },
+          {
+            index: 6,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 7,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.MediumSquare](13, 14, ROOM_TYPES.Red, [
+          {
+            index: 0,
+            config: {
+              hasCorpse: true,
+              item: ITEM_TYPES.A,
+              numberOfIcons: 2,
+            },
+          },
+          {
+            index: 1,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Top,
+                },
+              ],
+            },
+          },
+          {
+            index: 4,
+            config: {
+              hasCorpse: true,
+            },
+          },
+          {
+            index: 7,
+            config: {
+              hasCorpse: true,
+              walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
+            },
+          },
+          {
+            index: 8,
+            config: {
+              walls: [DIRECTIONS.Top, DIRECTIONS.Right, DIRECTIONS.Bottom],
+              isScenarioObjective: true,
+              scenarioObjectiveConfig: {
+                requirements: [ITEMS.BlueKeyCard],
+                after: `Discard the <span class="emphasis">${ITEMS.BlueKeyCard}</span>?`,
+                item: ITEMS.Lockpick,
+                result: `Received the <span class="emphasis">${ITEMS.Lockpick}</span>. Discarded ${ITEMS.BlueKeyCard}`,
+                consumeRequirements: true,
+              },
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.P_90_Flip](16, 13, ROOM_TYPES.Amber, [
+          {
+            index: 0,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 10,
+                },
+              ],
+            },
+          },
+          {
+            index: 2,
+            config: {
+              item: ITEM_TYPES.A,
+            },
+          },
+          {
+            index: 3,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Right,
+                  connectingRoomIndex: 13,
+                },
+              ],
+            },
+          },
+        ]),
+        RoomGenerator[ROOM_SHAPES.L_180](17, 10, ROOM_TYPES.Yellow, [
+          {
+            index: 0,
+            config: {
+              stairs: {
+                connectingFloor: 0,
+                connectingRoomIndex: 7,
+              },
+            },
+          },
+          {
+            index: 5,
+            config: {
+              doors: [
+                {
+                  direction: DIRECTIONS.Left,
+                  connectingRoomIndex: 12,
+                },
+              ],
             },
           },
         ]),

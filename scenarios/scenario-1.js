@@ -33,7 +33,7 @@ export const scenario1 = {
   },
   startingItems: [`1-4 ${ITEMS.Knife}`, `1-4 ${ITEMS.Handgun}`],
   items: {
-    [ITEM_TYPES.A]: [ITEMS.HandgunBullets, ITEMS.GreenHerb],
+    [ITEM_TYPES.A]: [ITEMS.HandgunBullets, ITEMS.GreenHerb, ITEMS.GreenHerb],
     [ITEM_TYPES.B]: [ITEMS.Shotgun],
   },
   startingRooms: {

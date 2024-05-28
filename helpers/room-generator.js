@@ -463,7 +463,7 @@ export const RoomGenerator = {
           x: x + 3,
           y: y + 2,
         },
-        walls: [Direction.Right],
+        walls: [DIRECTIONS.Right],
         ...config.tiles[11],
       },
       {
@@ -602,6 +602,7 @@ export const RoomGenerator = {
       {
         index: 0,
         config: {
+          walls: [DIRECTIONS.Top],
           ...config.tiles[2],
         },
       },
@@ -614,7 +615,6 @@ export const RoomGenerator = {
       {
         index: 2,
         config: {
-          walls: [DIRECTIONS.Top],
           ...config.tiles[4],
         },
       },
@@ -629,6 +629,72 @@ export const RoomGenerator = {
     const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
       x + 2,
       y,
+      type,
+      JSON.parse(JSON.stringify(tempMap))
+    );
+
+    return {
+      type: config.type,
+      tiles: [...small.tiles, ...square.tiles],
+    };
+  },
+  [ROOM_SHAPES.P_90_Flip]: function (x, y, type, configMap) {
+    const config = RoomConfigGenerator[RoomConfigDefs.P](type, configMap);
+
+    let tempMap = [
+      {
+        index: 0,
+        config: {
+          ...config.tiles[0],
+        },
+      },
+      {
+        index: 1,
+        config: {
+          walls: [DIRECTIONS.Top, DIRECTIONS.Bottom],
+          ...config.tiles[1],
+        },
+      },
+    ];
+
+    const small = RoomGenerator[ROOM_SHAPES.SmallWide](
+      x,
+      y,
+      type,
+      JSON.parse(JSON.stringify(tempMap))
+    );
+
+    tempMap = [
+      {
+        index: 0,
+        config: {
+          ...config.tiles[2],
+        },
+      },
+      {
+        index: 1,
+        config: {
+          ...config.tiles[3],
+        },
+      },
+      {
+        index: 2,
+        config: {
+          walls: [DIRECTIONS.Bottom],
+          ...config.tiles[4],
+        },
+      },
+      {
+        index: 3,
+        config: {
+          ...config.tiles[5],
+        },
+      },
+    ];
+
+    const square = RoomGenerator[ROOM_SHAPES.SmallSquare](
+      x + 2,
+      y - 1,
       type,
       JSON.parse(JSON.stringify(tempMap))
     );
@@ -675,6 +741,7 @@ export const RoomGenerator = {
       {
         index: 1,
         config: {
+          walls: [DIRECTIONS.Right],
           ...config.tiles[3],
         },
       },
@@ -687,7 +754,6 @@ export const RoomGenerator = {
       {
         index: 3,
         config: {
-          walls: [DIRECTIONS.Right],
           ...config.tiles[5],
         },
       },
