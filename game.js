@@ -1,13 +1,14 @@
-import { ScenarioBuilder } from "./scenario-builder/scenario-builder.js";
-import { Scenarios } from "./scenarios/scenarios.js";
+import { ScenarioBuilder } from './scenario-builder/scenario-builder.js';
+import { Scenarios } from './scenarios/scenarios.js';
 
 (function () {
   const scenarioBuilder = new ScenarioBuilder();
 
   document
-    .querySelector("#scenarioSelect")
-    .addEventListener("change", function () {
-      document.querySelector(".scenario-details").style.display = "block";
+    .querySelector('#scenarioSelect')
+    .addEventListener('change', function () {
+      document.querySelector('.scenario-details').style.display = 'block';
+      document.getElementById('onePlayer').checked = true;
       scenarioBuilder.buildScenario(Scenarios[this.value]);
     });
 
@@ -24,7 +25,7 @@ import { Scenarios } from "./scenarios/scenarios.js";
   }
 
   document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-    radio.addEventListener("change", () => {
+    radio.addEventListener('change', () => {
       changePlayers(+radio.value);
     });
   });
